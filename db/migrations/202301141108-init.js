@@ -1,0 +1,142 @@
+module.exports = {
+  up: async function (db) {
+    await db.schema
+      .createTable("human_player", (table) => {
+        table
+          .uuid("human_player_id")
+          .defaultTo(db.raw("gen_random_uuid()"))
+          .primary();
+        table.dateTime("created_at").defaultTo(db.fn.now()).notNull();
+      })
+      .createTable("game", (table) => {
+        table.uuid("game_id").defaultTo(db.raw("gen_random_uuid()")).primary();
+        table.uuid("human_player_id").notNull();
+        table
+          .foreign("human_player_id")
+          .references("human_player.human_player_id");
+        table.enu("human_player_color", ["white", "black"]).notNull();
+        table.enu("ai_player_color", ["white", "black"]).notNull();
+        table.check("?? != ??", ["human_player_color", "ai_player_color"]);
+      })
+      .createTable("piece_locations", (table) => {
+        table
+          .uuid("piece_locations_id")
+          .defaultTo(db.raw("gen_random_uuid()"))
+          .primary();
+        table.uuid("game_id").notNull();
+        table.foreign("game_id").references("game.game_id");
+        table.smallint("black_pawn_a_row");
+        table.smallint("black_pawn_a_column");
+        table.boolean("black_pawn_a_captured").notNull();
+        table.smallint("black_pawn_b_row");
+        table.smallint("black_pawn_b_column");
+        table.boolean("black_pawn_b_captured").notNull();
+        table.smallint("black_pawn_c_row");
+        table.smallint("black_pawn_c_column");
+        table.boolean("black_pawn_c_captured").notNull();
+        table.smallint("black_pawn_d_row");
+        table.smallint("black_pawn_d_column");
+        table.boolean("black_pawn_d_captured").notNull();
+        table.smallint("black_pawn_e_row");
+        table.smallint("black_pawn_e_column");
+        table.boolean("black_pawn_e_captured").notNull();
+        table.smallint("black_pawn_f_row");
+        table.smallint("black_pawn_f_column");
+        table.boolean("black_pawn_f_captured").notNull();
+        table.smallint("black_pawn_g_row");
+        table.smallint("black_pawn_g_column");
+        table.boolean("black_pawn_g_captured").notNull();
+        table.smallint("black_pawn_h_row");
+        table.smallint("black_pawn_h_column");
+        table.boolean("black_pawn_h_captured").notNull();
+        table.smallint("black_rook_a_row");
+        table.smallint("black_rook_a_column");
+        table.boolean("black_rook_a_captured").notNull();
+        table.smallint("black_rook_b_row");
+        table.smallint("black_rook_b_column");
+        table.boolean("black_rook_b_captured").notNull();
+        table.smallint("black_knight_a_row");
+        table.smallint("black_knight_a_column");
+        table.boolean("black_knight_a_captured").notNull();
+        table.smallint("black_knight_b_row");
+        table.smallint("black_knight_b_column");
+        table.boolean("black_knight_b_captured").notNull();
+        table.smallint("black_bishop_a_row");
+        table.smallint("black_bishop_a_column");
+        table.boolean("black_bishop_a_captured").notNull();
+        table.smallint("black_bishop_b_row");
+        table.smallint("black_bishop_b_column");
+        table.boolean("black_bishop_b_captured").notNull();
+        table.smallint("black_queen_row");
+        table.smallint("black_queen_column");
+        table.boolean("black_queen_captured").notNull();
+        table.smallint("black_king_row");
+        table.smallint("black_king_column");
+        table.boolean("black_king_captured").notNull();
+        table.smallint("white_pawn_a_row");
+        table.smallint("white_pawn_a_column");
+        table.boolean("white_pawn_a_captured").notNull();
+        table.smallint("white_pawn_b_row");
+        table.smallint("white_pawn_b_column");
+        table.boolean("white_pawn_b_captured").notNull();
+        table.smallint("white_pawn_c_row");
+        table.smallint("white_pawn_c_column");
+        table.boolean("white_pawn_c_captured").notNull();
+        table.smallint("white_pawn_d_row");
+        table.smallint("white_pawn_d_column");
+        table.boolean("white_pawn_d_captured").notNull();
+        table.smallint("white_pawn_e_row");
+        table.smallint("white_pawn_e_column");
+        table.boolean("white_pawn_e_captured").notNull();
+        table.smallint("white_pawn_f_row");
+        table.smallint("white_pawn_f_column");
+        table.boolean("white_pawn_f_captured").notNull();
+        table.smallint("white_pawn_g_row");
+        table.smallint("white_pawn_g_column");
+        table.boolean("white_pawn_g_captured").notNull();
+        table.smallint("white_pawn_h_row");
+        table.smallint("white_pawn_h_column");
+        table.boolean("white_pawn_h_captured").notNull();
+        table.smallint("white_rook_a_row");
+        table.smallint("white_rook_a_column");
+        table.boolean("white_rook_a_captured").notNull();
+        table.smallint("white_rook_b_row");
+        table.smallint("white_rook_b_column");
+        table.boolean("white_rook_b_captured").notNull();
+        table.smallint("white_knight_a_row");
+        table.smallint("white_knight_a_column");
+        table.boolean("white_knight_a_captured").notNull();
+        table.smallint("white_knight_b_row");
+        table.smallint("white_knight_b_column");
+        table.boolean("white_knight_b_captured").notNull();
+        table.smallint("white_bishop_a_row");
+        table.smallint("white_bishop_a_column");
+        table.boolean("white_bishop_a_captured").notNull();
+        table.smallint("white_bishop_b_row");
+        table.smallint("white_bishop_b_column");
+        table.boolean("white_bishop_b_captured").notNull();
+        table.smallint("white_queen_row");
+        table.smallint("white_queen_column");
+        table.boolean("white_queen_captured").notNull();
+        table.smallint("white_king_row");
+        table.smallint("white_king_column");
+        table.boolean("white_king_captured").notNull();
+      })
+      .createTable("game_outcome", (table) => {
+        table
+          .uuid("game_outcome_id")
+          .defaultTo(db.raw("gen_random_uuid()"))
+          .primary();
+        table.uuid("game_id").notNull();
+        table.foreign("game_id").references("game.game_id");
+        table.enu("outcome", ["human_wins", "ai_wins", "tie", "in_progress"]);
+      });
+  },
+  down: async function (db) {
+    await db.schema
+      .dropTable("game_outcome")
+      .dropTable("piece_locations")
+      .dropTable("game")
+      .dropTable("human_player");
+  },
+};
