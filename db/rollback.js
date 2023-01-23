@@ -1,6 +1,8 @@
+const getLastMigration = require("./helpers/getLastMigration");
+
 require("dotenv").config({ path: "../.env" });
 
-const pg = require("knex")({
+const db = require("knex")({
   client: "pg",
   connection: {
     host: process.env.POSTGRES_HOST,
@@ -11,23 +13,30 @@ const pg = require("knex")({
   },
 });
 
+let done = false;
+
 const rollback = async () => {
-  const lastMigrationData = await pg
-    .select("migration_name")
-    .from("migration")
-    .orderBy("order", "desc")
-    .first();
+  const { lastMigration, lastMigrationData } = await getLastMigration(db);
 
-  const lastMigration = require(`./migrations/${lastMigrationData.migration_name}`);
+  try {
+    await lastMigration.down(db);
 
-  await lastMigration.down(pg);
+    await db("migration")
+      .where("migration_name", lastMigrationData.migration_name)
+      .del();
 
-  await pg("migration")
-    .where("migration_name", lastMigrationData.migration_name)
-    .del();
+    done = true;
+  } catch (err) {
+    console.log(`running last migration failed: ${err}`);
+  }
 };
 
-rollback().then(
-  () => console.log("rollback complete"),
-  (err) => console.error(`rollback failed: ${err}`)
-);
+rollback();
+
+const sleep = () => {
+  do {
+    setTimeout(sleep, 1000);
+  } while (done === false);
+};
+
+console.log("rollback complete");

@@ -1,9 +1,9 @@
-const { readdir } = require("node:fs/promises");
+const getMigrations = require("./helpers/getMigrations");
+
 require("dotenv").config({ path: "../.env" });
 
-const pg = require("knex")({
+const db = require("knex")({
   client: "pg",
-  version: "15.1",
   connection: {
     host: process.env.POSTGRES_HOST,
     port: process.env.POSTGRES_PORT,
@@ -13,53 +13,51 @@ const pg = require("knex")({
   },
 });
 
+let done = false;
+
 const migrate = async () => {
-  const files = await readdir("./migrations");
-
-  let migrations = [];
-
-  for (const file of files) {
-    let migration = require(`./migrations/${file}`);
-    migrations.push({
-      fileName: file,
-      up: async function (pg) {
-        await migration.up(pg);
-      },
-      down: async function (pg) {
-        await migration.down(pg);
-      },
-    });
-  }
+  const migrations = await getMigrations();
 
   try {
-    await pg.schema.createTable("migration", (table) => {
+    await db.schema.createTable("migration", (table) => {
       table
         .uuid("migration_id")
-        .defaultTo(pg.raw("gen_random_uuid()"))
+        .defaultTo(db.raw("gen_random_uuid()"))
         .primary();
       table.string("migration_name").notNull().unique();
       table.increments("order");
-      table.dateTime("completed_at").defaultTo(pg.fn.now()).notNull();
+      table.dateTime("completed_at").defaultTo(db.fn.now()).notNull();
     });
   } catch (err) {
-    console.error("did not create migration table: " + err);
+    console.log(`create migration table failed: ${err}`);
   }
 
-  const priorMigrations = await pg.select("migration_name").from("migration");
+  try {
+    const priorMigrations = await db.select("migration_name").from("migration");
 
-  const priorMigrationsNames = priorMigrations.map(
-    (priorMigration) => priorMigration.migration_name
-  );
+    const priorMigrationsNames = priorMigrations.map(
+      (priorMigration) => priorMigration.migration_name
+    );
 
-  for (const migration of migrations) {
-    if (!priorMigrationsNames.includes(migration.fileName)) {
-      await migration.up(pg);
-      await pg("migration").insert({ migration_name: migration.fileName });
+    for (const migration of migrations) {
+      if (!priorMigrationsNames.includes(migration.fileName)) {
+        await migration.up(db);
+        await db("migration").insert({ migration_name: migration.fileName });
+      }
     }
+
+    done = true;
+  } catch (err) {
+    console.error("migrations failed: " + err);
   }
 };
 
-migrate().then(
-  () => console.log("migration complete"),
-  (err) => console.error(`migration failed: ${err}`)
-);
+migrate();
+
+const sleep = () => {
+  do {
+    setTimeout(sleep, 1000);
+  } while (done === false);
+};
+
+console.log("migration complete");
