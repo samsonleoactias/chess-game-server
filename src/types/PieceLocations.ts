@@ -1,100 +1,166 @@
+import Piece from "./Piece";
+
 type PieceLocations = {
-  humanPawnARow: number;
-  humanPawnAColumn: number;
-  humanPawnACaptured: boolean;
-  humanPawnBRow: number;
-  humanPawnBColumn: number;
-  humanPawnBCaptured: boolean;
-  humanPawnCRow: number;
-  humanPawnCColumn: number;
-  humanPawnCCaptured: boolean;
-  humanPawnDRow: number;
-  humanPawnDColumn: number;
-  humanPawnDCaptured: boolean;
-  humanPawnERow: number;
-  humanPawnEColumn: number;
-  humanPawnECaptured: boolean;
-  humanPawnFRow: number;
-  humanPawnFColumn: number;
-  humanPawnFCaptured: boolean;
-  humanPawnGRow: number;
-  humanPawnGColumn: number;
-  humanPawnGCaptured: boolean;
-  humanPawnHRow: number;
-  humanPawnHColumn: number;
-  humanPawnHCaptured: boolean;
-  humanRookARow: number;
-  humanRookAColumn: number;
-  humanRookACaptured: boolean;
-  humanRookBRow: number;
-  humanRookBColumn: number;
-  humanRookBCaptured: boolean;
-  humanKnightARow: number;
-  humanKnightAColumn: number;
-  humanKnightACaptured: boolean;
-  humanKnightBRow: number;
-  humanKnightBColumn: number;
-  humanKnightBCaptured: boolean;
-  humanBishopARow: number;
-  humanBishopAColumn: number;
-  humanBishopACaptured: boolean;
-  humanBishopBRow: number;
-  humanBishopBColumn: number;
-  humanBishopBCaptured: boolean;
-  humanQueenRow: number;
-  humanQueenColumn: number;
-  humanQueenCaptured: boolean;
-  humanKingRow: number;
-  humanKingColumn: number;
-  humanKingCaptured: boolean;
-  aiPawnARow: number;
-  aiPawnAColumn: number;
-  aiPawnACaptured: boolean;
-  aiPawnBRow: number;
-  aiPawnBColumn: number;
-  aiPawnBCaptured: boolean;
-  aiPawnCRow: number;
-  aiPawnCColumn: number;
-  aiPawnCCaptured: boolean;
-  aiPawnDRow: number;
-  aiPawnDColumn: number;
-  aiPawnDCaptured: boolean;
-  aiPawnERow: number;
-  aiPawnEColumn: number;
-  aiPawnECaptured: boolean;
-  aiPawnFRow: number;
-  aiPawnFColumn: number;
-  aiPawnFCaptured: boolean;
-  aiPawnGRow: number;
-  aiPawnGColumn: number;
-  aiPawnGCaptured: boolean;
-  aiPawnHRow: number;
-  aiPawnHColumn: number;
-  aiPawnHCaptured: boolean;
-  aiRookARow: number;
-  aiRookAColumn: number;
-  aiRookACaptured: boolean;
-  aiRookBRow: number;
-  aiRookBColumn: number;
-  aiRookBCaptured: boolean;
-  aiKnightARow: number;
-  aiKnightAColumn: number;
-  aiKnightACaptured: boolean;
-  aiKnightBRow: number;
-  aiKnightBColumn: number;
-  aiKnightBCaptured: boolean;
-  aiBishopARow: number;
-  aiBishopAColumn: number;
-  aiBishopACaptured: boolean;
-  aiBishopBRow: number;
-  aiBishopBColumn: number;
-  aiBishopBCaptured: boolean;
-  aiQueenRow: number;
-  aiQueenColumn: number;
-  aiQueenCaptured: boolean;
-  aiKingRow: number;
-  aiKingColumn: number;
-  aiKingCaptured: boolean;
+  humanPawnA: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanPawnB: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanPawnC: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanPawnD: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanPawnE: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanPawnF: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanPawnG: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanPawnH: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanRookA: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanRookB: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanKnightA: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanKnightB: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanBishopA: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanBishopB: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanQueen: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  humanKing: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiPawnA: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiPawnB: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiPawnC: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiPawnD: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiPawnE: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiPawnF: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiPawnG: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiPawnH: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiRookA: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiRookB: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiKnightA: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiKnightB: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiBishopA: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiBishopB: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiQueen: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
+  aiKing: {
+    row: number;
+    column: number;
+    captured: boolean;
+  };
   matrix: boolean[][];
 };
 

@@ -19,8 +19,10 @@ module.exports = {
       table.boolean("ai_pawn_f_initial_move_eligible").defaultTo(true);
       table.boolean("ai_pawn_g_initial_move_eligible").defaultTo(true);
       table.boolean("ai_pawn_h_initial_move_eligible").defaultTo(true);
-      table.boolean("human_castle_eligible").defaultTo(true);
-      table.boolean("ai_castle_eligible").defaultTo(true);
+      table.boolean("human_castle_rook_a_eligible").defaultTo(true);
+      table.boolean("human_castle_rook_b_eligible").defaultTo(true);
+      table.boolean("ai_castle_rook_a_eligible").defaultTo(true);
+      table.boolean("ai_castle_rook_b_eligible").defaultTo(true);
     });
   },
   down: async function (db) {

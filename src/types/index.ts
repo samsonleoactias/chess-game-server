@@ -4,6 +4,7 @@ import OneTimeOnlyMoveFlags from "./OneTimeOnlyMoveFlags";
 import PlayerType from "./PlayerType";
 import PossibleMove from "./PossibleMove";
 import PossibleMovesAssignedToPieces from "./PossibleMovesAssignedToPieces";
+import Piece from "./Piece";
 
 export {
   Color,
@@ -12,4 +13,5 @@ export {
   PlayerType,
   PossibleMove,
   PossibleMovesAssignedToPieces,
+  Piece,
 };

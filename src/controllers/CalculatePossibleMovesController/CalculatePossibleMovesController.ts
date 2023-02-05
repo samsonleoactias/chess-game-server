@@ -4,8 +4,7 @@ import PlayerType from "../../types/PlayerType";
 import objectCamelToSnake from "../helpers/objectCamelToSnake";
 import mapToOneTimeOnlyMoveFlags from "../helpers/dbMaps/mapToOneTimeOnlyMoveFlags";
 import { OneTimeOnlyMoveFlags } from "../../types";
-import calculateHumanPawnPossibleMoves from "./utils/calculateHumanPawnPossibleMoves";
-import calculateHumanPossibleMoves from "./utils/calculateHumanPossibleMoves";
+import calculateHumanPossibleMoves from "./utils/possibleMoves/calculateHumanPossibleMoves";
 
 type CalculatePossibleMovesControllerParams = {
   pieceLocations: PieceLocations;
@@ -23,8 +22,6 @@ const CalculatePossibleMovesController = async (
       await db("one_time_only_move_flags").where("game_id", gameId)
     )
   );
-
-  const possibleMoves: Object = {};
 
   if (playerType === PlayerType.Human) {
     return calculateHumanPossibleMoves(pieceLocations, oneTimeOnlyMoveFlags);
