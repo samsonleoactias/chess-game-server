@@ -16,7 +16,7 @@ type OneTimeOnlyMoveFlags = {
   aiPawnGInitialMoveEligible: boolean;
   aiPawnHInitialMoveEligible: boolean;
   humanCastleRookAEligible: boolean;
-  umanCastleRookBEligible: boolean;
+  humanCastleRookBEligible: boolean;
   aiCastleRookAEligible: boolean;
   aiCastleRookBEligible: boolean;
 };

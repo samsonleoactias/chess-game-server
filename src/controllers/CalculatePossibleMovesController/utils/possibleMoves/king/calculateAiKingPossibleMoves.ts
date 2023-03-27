@@ -1,12 +1,16 @@
-import { PossibleMove, Piece, PieceLocations } from "../../../../../types";
+import {
+  PossibleMove,
+  Piece,
+  PieceLocations,
+  OneTimeOnlyMoveFlags,
+} from "../../../../../types";
 import checkIfSquareIsOccupiedByAiPiece from "../helpers/checkIfSquareIsOccupiedByAiPiece";
 
 const calculateAiKingPossibleMoves = (
   row: number,
   column: number,
-  rookACastleEligible: boolean,
-  rookBCastleEligible: boolean,
-  pieceLocations: PieceLocations
+  pieceLocations: PieceLocations,
+  oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
 ) => {
   const possibleMoves: PossibleMove[] = [];
 
@@ -19,7 +23,7 @@ const calculateAiKingPossibleMoves = (
   possibleMoves.push({ location: { row: row - 1, column: column + 1 } });
   possibleMoves.push({ location: { row: row - 1, column: column + 1 } });
 
-  if (rookACastleEligible) {
+  if (oneTimeOnlyMoveFlags.aiCastleRookAEligible) {
     let castlePossible = true;
 
     for (let i = column; i > 0; i--) {
@@ -40,7 +44,7 @@ const calculateAiKingPossibleMoves = (
     }
   }
 
-  if (rookBCastleEligible) {
+  if (oneTimeOnlyMoveFlags.aiCastleRookBEligible) {
     let castlePossible = true;
 
     for (let i = column; i < 8; i++) {

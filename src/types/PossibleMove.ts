@@ -1,3 +1,5 @@
+import Piece from "./Piece";
+
 type PossibleMove = {
   location: {
     row: number;
@@ -5,7 +7,7 @@ type PossibleMove = {
   };
   sideEffects?: [
     {
-      piece: string; // TODO make enum?
+      piece: Piece;
       row: number;
       column: number;
     }

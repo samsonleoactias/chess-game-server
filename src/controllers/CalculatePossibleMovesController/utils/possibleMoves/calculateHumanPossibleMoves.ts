@@ -1,10 +1,19 @@
-import { Piece, PossibleMovesAssignedToPieces } from "../../../../types";
+import {
+  OneTimeOnlyMoveFlags,
+  Piece,
+  PossibleMovesAssignedToPieces,
+} from "../../../../types";
 import PieceLocations from "../../../../types/PieceLocations";
+import calculateHumanBishopPossibleMoves from "./bishop/calculateHumanBishopPossibleMoves";
+import calculateHumanKingPossibleMoves from "./king/calculateHumanKingPossibleMoves";
+import calculateHumanKnightPossibleMoves from "./knight/calculateHumanKnightPossibleMoves";
 import calculateHumanPawnPossibleMoves from "./pawn/calculateHumanPawnPossibleMoves";
+import calculateHumanQueenPossibleMoves from "./queen/calculateHumanQueenPossibleMoves";
+import calculateHumanRookPossibleMoves from "./rook/calculateHumanRookPossibleMoves";
 
 const calculateHumanPossibleMoves = (
   pieceLocations: PieceLocations,
-  oneTimeOnlyMoveFlags: any
+  oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
 ) => {
   const humanPossibleMoves: PossibleMovesAssignedToPieces = {};
 
@@ -96,7 +105,81 @@ const calculateHumanPossibleMoves = (
     );
   }
 
-  // TODO other pieces
+  if (pieceLocations.humanRookA.captured === false) {
+    humanPossibleMoves.rookA = calculateHumanRookPossibleMoves(
+      pieceLocations.humanRookA.row,
+      pieceLocations.humanRookA.column,
+      pieceLocations,
+      Piece.HumanRookA,
+      oneTimeOnlyMoveFlags
+    );
+  }
+
+  if (pieceLocations.humanRookB.captured === false) {
+    humanPossibleMoves.rookB = calculateHumanRookPossibleMoves(
+      pieceLocations.humanRookB.row,
+      pieceLocations.humanRookB.column,
+      pieceLocations,
+      Piece.HumanRookB,
+      oneTimeOnlyMoveFlags
+    );
+  }
+
+  if (pieceLocations.humanKnightA.captured === false) {
+    humanPossibleMoves.knightA = calculateHumanKnightPossibleMoves(
+      pieceLocations.humanKnightA.row,
+      pieceLocations.humanKnightA.column,
+      pieceLocations,
+      Piece.HumanKnightA,
+      oneTimeOnlyMoveFlags
+    );
+  }
+
+  if (pieceLocations.humanKnightB.captured === false) {
+    humanPossibleMoves.knightB = calculateHumanKnightPossibleMoves(
+      pieceLocations.humanKnightB.row,
+      pieceLocations.humanKnightB.column,
+      pieceLocations,
+      Piece.HumanKnightB,
+      oneTimeOnlyMoveFlags
+    );
+  }
+
+  if (pieceLocations.humanBishopA.captured === false) {
+    humanPossibleMoves.bishopA = calculateHumanBishopPossibleMoves(
+      pieceLocations.humanBishopA.row,
+      pieceLocations.humanBishopA.column,
+      pieceLocations,
+      Piece.HumanBishopA,
+      oneTimeOnlyMoveFlags
+    );
+  }
+
+  if (pieceLocations.humanBishopB.captured === false) {
+    humanPossibleMoves.bishopB = calculateHumanBishopPossibleMoves(
+      pieceLocations.humanBishopB.row,
+      pieceLocations.humanBishopB.column,
+      pieceLocations,
+      Piece.HumanBishopB,
+      oneTimeOnlyMoveFlags
+    );
+  }
+
+  if (pieceLocations.humanQueen.captured === false) {
+    humanPossibleMoves.queen = calculateHumanQueenPossibleMoves(
+      pieceLocations.humanQueen.row,
+      pieceLocations.humanQueen.column,
+      pieceLocations,
+      oneTimeOnlyMoveFlags
+    );
+  }
+
+  humanPossibleMoves.king = calculateHumanKingPossibleMoves(
+    pieceLocations.humanKing.row,
+    pieceLocations.humanKing.column,
+    pieceLocations,
+    oneTimeOnlyMoveFlags
+  );
 
   return humanPossibleMoves;
 };

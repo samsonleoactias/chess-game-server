@@ -10,8 +10,6 @@ import determineIfAnyPossibleMovesCreateCheckOnHuman from "../helpers/determineI
 const calculateHumanKingPossibleMoves = (
   row: number,
   column: number,
-  rookACastleEligible: boolean,
-  rookBCastleEligible: boolean,
   pieceLocations: PieceLocations,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
 ) => {
@@ -26,7 +24,7 @@ const calculateHumanKingPossibleMoves = (
   possibleMoves.push({ location: { row: row - 1, column: column + 1 } });
   possibleMoves.push({ location: { row: row - 1, column: column + 1 } });
 
-  if (rookACastleEligible) {
+  if (oneTimeOnlyMoveFlags.humanCastleRookAEligible) {
     let castlePossible = true;
 
     for (let i = column; i > 0; i--) {
@@ -49,7 +47,7 @@ const calculateHumanKingPossibleMoves = (
     }
   }
 
-  if (rookBCastleEligible) {
+  if (oneTimeOnlyMoveFlags.humanCastleRookBEligible) {
     let castlePossible = true;
 
     for (let i = column; i < 8; i++) {
