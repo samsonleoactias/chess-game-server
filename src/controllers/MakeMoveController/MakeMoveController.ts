@@ -1,16 +1,17 @@
 import { Piece, PieceLocations, PlayerType, PossibleMove } from "../../types";
 import findWhatPieceIsOnASquare from "../helpers/findWhatPieceIsOnASquare";
+import db from "../../db/postgresConnection";
+import objectCamelToSnake from "../helpers/objectCamelToSnake";
 
 type MakeMoveControllerParams = {
   pieceLocations: PieceLocations;
   gameId: string;
-  playerType: PlayerType;
   piece: Piece;
   move: PossibleMove;
 };
 
 const MakeMoveController = async (params: MakeMoveControllerParams) => {
-  const { pieceLocations, gameId, playerType, piece, move } = params;
+  const { pieceLocations, gameId, piece, move } = params;
 
   var pieceCurrentlyOnSquare: Piece = findWhatPieceIsOnASquare(
     pieceLocations,
@@ -30,4 +31,17 @@ const MakeMoveController = async (params: MakeMoveControllerParams) => {
 
   pieceLocations[piece].row = move.location.row;
   pieceLocations[piece].column = move.location.column;
+
+  try {
+    await db("piece_locations")
+      .where({ game_id: gameId })
+      .update({
+        ...objectCamelToSnake(pieceLocations),
+      });
+  } catch (error) {
+    console.log("Database error: " + JSON.stringify(error));
+    throw error;
+  }
 };
+
+export default MakeMoveController;
