@@ -11,7 +11,8 @@ const calculateHumanKingPossibleMoves = (
   row: number,
   column: number,
   pieceLocations: PieceLocations,
-  oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
+  oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
+  checkForCheck: boolean
 ) => {
   const possibleMoves: PossibleMove[] = [];
 
@@ -70,22 +71,26 @@ const calculateHumanKingPossibleMoves = (
     }
   }
 
-  let possibleMovesCheckedForCheckOnHuman: PossibleMove[] = [];
+  if (checkForCheck) {
+    let possibleMovesCheckedForCheckOnHuman: PossibleMove[] = [];
 
-  possibleMoves.forEach((possibleMove) => {
-    if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
-        pieceLocations,
-        Piece.HumanKing,
-        possibleMove,
-        oneTimeOnlyMoveFlags
-      )
-    ) {
-      possibleMovesCheckedForCheckOnHuman.push(possibleMove);
-    }
-  });
+    possibleMoves.forEach((possibleMove) => {
+      if (
+        !determineIfAnyPossibleMovesCreateCheckOnHuman(
+          pieceLocations,
+          Piece.HumanKing,
+          possibleMove,
+          oneTimeOnlyMoveFlags
+        )
+      ) {
+        possibleMovesCheckedForCheckOnHuman.push(possibleMove);
+      }
+    });
 
-  return possibleMovesCheckedForCheckOnHuman;
+    return possibleMovesCheckedForCheckOnHuman;
+  }
+
+  return possibleMoves;
 };
 
 export default calculateHumanKingPossibleMoves;

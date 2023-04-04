@@ -12,7 +12,8 @@ const calculateHumanRookPossibleMoves = (
   column: number,
   pieceLocations: PieceLocations,
   piece: Piece,
-  oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
+  oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
+  checkForCheck: boolean
 ) => {
   const possibleMoves: PossibleMove[] = [];
 
@@ -60,22 +61,26 @@ const calculateHumanRookPossibleMoves = (
     }
   }
 
-  let possibleMovesCheckedForCheckOnHuman: PossibleMove[] = [];
+  if (checkForCheck) {
+    let possibleMovesCheckedForCheckOnHuman: PossibleMove[] = [];
 
-  possibleMoves.forEach((possibleMove) => {
-    if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
-        pieceLocations,
-        piece,
-        possibleMove,
-        oneTimeOnlyMoveFlags
-      )
-    ) {
-      possibleMovesCheckedForCheckOnHuman.push(possibleMove);
-    }
-  });
+    possibleMoves.forEach((possibleMove) => {
+      if (
+        !determineIfAnyPossibleMovesCreateCheckOnHuman(
+          pieceLocations,
+          piece,
+          possibleMove,
+          oneTimeOnlyMoveFlags
+        )
+      ) {
+        possibleMovesCheckedForCheckOnHuman.push(possibleMove);
+      }
+    });
 
-  return possibleMovesCheckedForCheckOnHuman;
+    return possibleMovesCheckedForCheckOnHuman;
+  }
+
+  return possibleMoves;
 };
 
 export default calculateHumanRookPossibleMoves;

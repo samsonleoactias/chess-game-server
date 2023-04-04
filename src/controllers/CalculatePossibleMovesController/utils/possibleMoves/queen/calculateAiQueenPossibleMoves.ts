@@ -1,10 +1,18 @@
-import { PieceLocations, PossibleMove } from "../../../../../types";
+import {
+  OneTimeOnlyMoveFlags,
+  Piece,
+  PieceLocations,
+  PossibleMove,
+} from "../../../../../types";
 import checkIfSquareIsOccupiedByAiPiece from "../helpers/checkIfSquareIsOccupiedByAiPiece";
+import determineIfAnyPossibleMovesCreateCheckOnAi from "../helpers/determineIfAnyPossibleMovesCreateCheckOnAi";
 
 const calculateAiQueenPossibleMoves = (
   row: number,
   column: number,
-  pieceLocations: PieceLocations
+  pieceLocations: PieceLocations,
+  oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
+  checkForCheck: boolean
 ) => {
   const possibleMoves: PossibleMove[] = [];
 
@@ -94,6 +102,25 @@ const calculateAiQueenPossibleMoves = (
     if (pieceLocations.matrix[row][i] === true) {
       break;
     }
+  }
+
+  if (checkForCheck) {
+    let possibleMovesCheckedForCheckOnAi: PossibleMove[] = [];
+
+    possibleMoves.forEach((possibleMove) => {
+      if (
+        !determineIfAnyPossibleMovesCreateCheckOnAi(
+          pieceLocations,
+          Piece.AiQueen,
+          possibleMove,
+          oneTimeOnlyMoveFlags
+        )
+      ) {
+        possibleMovesCheckedForCheckOnAi.push(possibleMove);
+      }
+    });
+
+    return possibleMovesCheckedForCheckOnAi;
   }
 
   return possibleMoves;

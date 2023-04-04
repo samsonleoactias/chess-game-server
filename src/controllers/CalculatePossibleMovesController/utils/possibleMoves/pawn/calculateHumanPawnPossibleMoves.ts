@@ -10,10 +10,11 @@ import determineIfAnyPossibleMovesCreateCheckOnHuman from "../helpers/determineI
 const calculateHumanPawnPossibleMoves = (
   row: number,
   column: number,
-  pawnInitialMoveEligible: boolean,
   pieceLocations: PieceLocations,
   piece: Piece,
-  oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
+  pawnInitialMoveEligible: boolean,
+  oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
+  checkForCheck: boolean
 ) => {
   const possibleMoves: PossibleMove[] = [];
 
@@ -57,22 +58,26 @@ const calculateHumanPawnPossibleMoves = (
     possibleMoves.push({ location: { row: row + 1, column: column + 1 } });
   }
 
-  let possibleMovesCheckedForCheckOnHuman: PossibleMove[] = [];
+  if (checkForCheck) {
+    let possibleMovesCheckedForCheckOnHuman: PossibleMove[] = [];
 
-  possibleMoves.forEach((possibleMove) => {
-    if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
-        pieceLocations,
-        piece,
-        possibleMove,
-        oneTimeOnlyMoveFlags
-      )
-    ) {
-      possibleMovesCheckedForCheckOnHuman.push(possibleMove);
-    }
-  });
+    possibleMoves.forEach((possibleMove) => {
+      if (
+        !determineIfAnyPossibleMovesCreateCheckOnHuman(
+          pieceLocations,
+          piece,
+          possibleMove,
+          oneTimeOnlyMoveFlags
+        )
+      ) {
+        possibleMovesCheckedForCheckOnHuman.push(possibleMove);
+      }
+    });
 
-  return possibleMovesCheckedForCheckOnHuman;
+    return possibleMovesCheckedForCheckOnHuman;
+  }
+
+  return possibleMoves;
 };
 
 export default calculateHumanPawnPossibleMoves;

@@ -1,8 +1,17 @@
 import first from "lodash/first";
 
-import { Piece, PieceLocations, PossibleMove } from "../../types";
+import {
+  OneTimeOnlyMoveFlags,
+  Piece,
+  PieceLocations,
+  PossibleMove,
+  PossibleMovesAssignedToPieces,
+} from "../../types";
 import db from "../../db/postgresConnection";
 import MakeMoveController from "../MakeMoveController";
+import calculateAiPossibleMoves from "../CalculatePossibleMovesController/utils/possibleMoves/calculateAiPossibleMoves";
+import chooseAiMove from "./helpers/chooseAiMove";
+import calculateHumanPossibleMoves from "../CalculatePossibleMovesController/utils/possibleMoves/calculateHumanPossibleMoves";
 
 type DoTurnControllerParams = {
   humanMove: PossibleMove;
@@ -30,4 +39,36 @@ const DoTurnController = async (params: DoTurnControllerParams) => {
   } catch (error) {
     return;
   }
+
+  var oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags = first(
+    await db
+      .where({ game_id: gameId })
+      .select()
+      .from<OneTimeOnlyMoveFlags>("one_time_only_move_flags")
+  );
+
+  var possibleAiMovesAssignedToPieces: PossibleMovesAssignedToPieces =
+    calculateAiPossibleMoves(pieceLocations, oneTimeOnlyMoveFlags);
+
+  var chosenAiMove: { piece: string; move: PossibleMove } = chooseAiMove(
+    pieceLocations,
+    oneTimeOnlyMoveFlags,
+    possibleAiMovesAssignedToPieces
+  );
+
+  try {
+    await MakeMoveController({
+      pieceLocations,
+      gameId,
+      piece: Piece[chosenAiMove.piece],
+      move: chosenAiMove.move,
+    });
+  } catch (error) {
+    return;
+  }
+
+  var possibleHumanMovesAssignedToPieces: PossibleMovesAssignedToPieces =
+    calculateHumanPossibleMoves(pieceLocations, oneTimeOnlyMoveFlags);
+
+  return possibleHumanMovesAssignedToPieces;
 };
