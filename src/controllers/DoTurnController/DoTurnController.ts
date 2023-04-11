@@ -22,13 +22,14 @@ type DoTurnControllerParams = {
 const DoTurnController = async (params: DoTurnControllerParams) => {
   const { humanMove, piece, gameId } = params;
 
-  var pieceLocations: PieceLocations = first(
+  var pieceLocations: PieceLocations | undefined = first(
     await db
       .where({ game_id: gameId })
       .select()
       .from<PieceLocations>("piece_locations")
   );
 
+  if (pieceLocations) { // TODO fix
   try {
     await MakeMoveController({
       pieceLocations,
