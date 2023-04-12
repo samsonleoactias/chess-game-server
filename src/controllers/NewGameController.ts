@@ -14,3 +14,5 @@ const NewGameController = async (params: NewGameControllerParams) => {
 
   return pieceLocations;
 };
+
+export default NewGameController;

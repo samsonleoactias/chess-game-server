@@ -6,7 +6,7 @@ const objectCamelToSnake = (object: Object) => {
   const keys: string[] = Object.keys(object);
 
   keys.forEach((key) => {
-    newObject[camelToSnake(key)] = object[key];
+    (<any>newObject)[camelToSnake(key)] = (<any>object)[key];
   });
 
   return newObject;

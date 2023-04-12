@@ -32,7 +32,7 @@ const chooseAiMove = (
 
   var pickedPiece = pieceNames[Math.floor(Math.random() * pieceNames.length)];
 
-  if (possibleMovesAssignedToPieces[pickedPiece].length === 0) {
+  if ((<any>possibleMovesAssignedToPieces)[pickedPiece].length === 0) {
     chooseAiMove(
       pieceLocations,
       oneTimeOnlyMoveFlags,
@@ -40,12 +40,13 @@ const chooseAiMove = (
     );
   }
 
-  var pickedMove: PossibleMove =
-    possibleMovesAssignedToPieces[pickedPiece][
-      Math.floor(
-        Math.random() * possibleMovesAssignedToPieces[pickedPiece].length
-      )
-    ];
+  var pickedMove: PossibleMove = (<any>possibleMovesAssignedToPieces)[
+    pickedPiece
+  ][
+    Math.floor(
+      Math.random() * (<any>possibleMovesAssignedToPieces)[pickedPiece].length
+    )
+  ];
 
   return { piece: pickedPiece, move: pickedMove };
 };
