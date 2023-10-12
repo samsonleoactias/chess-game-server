@@ -1,8 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import NewGameController from "../controllers/NewGameController.js";
 
-import NewGameGeneratorController from "../controllers/NewGameGeneratorController/index.js";
-
 const GameApiHandler = () => {
   const app: Express = express();
 
