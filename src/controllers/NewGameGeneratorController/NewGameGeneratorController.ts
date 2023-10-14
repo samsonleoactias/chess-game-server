@@ -38,7 +38,6 @@ const NewGameGeneratorController = async (
       const newGamePieceLocations: PieceLocations = {
         humanColor,
         aiColor,
-        none: { row: 0, column: 0, captured: false },
         humanPawnA: { row: 6, column: 0, captured: false },
         humanPawnB: { row: 6, column: 1, captured: false },
         humanPawnC: { row: 6, column: 2, captured: false },
