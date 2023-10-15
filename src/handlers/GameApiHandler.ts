@@ -1,20 +1,19 @@
 import express, { Express, Request, Response } from "express";
-import NewGameController from "../controllers/NewGameController.js";
+import { graphqlHTTP } from "express-graphql";
+import gameSchema from "../graphql/schemas/GameSchema";
+import newGameResolver from "../graphql/resolvers/NewGameResolver";
 
 const GameApiHandler = () => {
   const app: Express = express();
 
-  app.use(express.json());
-
-  app.post("/newGame", async (req: Request, res: Response) => {
-    if (!req.body.humanPlayerId) res.status(404); // TODO better error handling
-
-    res.send(
-      await NewGameController({
-        humanPlayerId: req.body.humanPlayerId,
-      })
-    );
-  });
+  app.use(
+    "/newGame",
+    graphqlHTTP({
+      schema: gameSchema,
+      rootValue: newGameResolver,
+      graphiql: true,
+    })
+  );
 
   return app;
 };
