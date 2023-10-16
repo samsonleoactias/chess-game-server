@@ -1,9 +1,9 @@
 import NewGameController from "../../controllers/NewGameController";
 
 const newGameResolver = {
-  createGame: async ({ humanPlayerId }) => {
+  createGame: async (input: { humanPlayerId: string }) => {
     await NewGameController({
-      humanPlayerId,
+      humanPlayerId: input.humanPlayerId,
     });
   },
 };
