@@ -4,11 +4,6 @@ import Piece from "./Piece";
 type PieceLocations = {
   humanColor: Color;
   aiColor: Color;
-  none: {
-    row: number;
-    column: number;
-    captured: boolean;
-  };
   humanPawnA: {
     row: number;
     column: number;

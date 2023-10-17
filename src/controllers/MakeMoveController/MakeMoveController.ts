@@ -19,6 +19,10 @@ const MakeMoveController = async (params: MakeMoveControllerParams) => {
     move.location.column
   );
 
+  if (piece === Piece.None) {
+    throw new Error("Cannot move 'None' piece"); // TODO better error
+  }
+
   if (pieceCurrentlyOnSquare !== Piece.None) {
     pieceLocations[pieceCurrentlyOnSquare].captured = true;
   } else {
