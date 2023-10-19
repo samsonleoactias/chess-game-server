@@ -1,6 +1,4 @@
-import { buildSchema } from "graphql";
-
-const gameSchema = buildSchema(`
+const gameSchema = `#graphql
   type Color {
     WHITE: { value: "white" },
     BLACK: { value: "black" },
@@ -57,6 +55,6 @@ const gameSchema = buildSchema(`
   type Mutation {
     createGame(humanPlayerId: String!): PieceLocations!,
   }
-`);
+`;
 
 export default gameSchema;

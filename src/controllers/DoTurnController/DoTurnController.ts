@@ -7,20 +7,21 @@ import {
   PossibleMove,
   PossibleMovesAssignedToPieces,
 } from "../../types";
-import db from "../../db/postgresConnection";
 import MakeMoveController from "../MakeMoveController";
 import calculateAiPossibleMoves from "../CalculatePossibleMovesController/utils/possibleMoves/calculateAiPossibleMoves";
 import chooseAiMove from "./helpers/chooseAiMove";
 import calculateHumanPossibleMoves from "../CalculatePossibleMovesController/utils/possibleMoves/calculateHumanPossibleMoves";
+import { Knex } from "knex";
 
 type DoTurnControllerParams = {
+  db: Knex;
   humanMove: PossibleMove;
   piece: Piece;
   gameId: string;
 };
 
 const DoTurnController = async (params: DoTurnControllerParams) => {
-  const { humanMove, piece, gameId } = params;
+  const { db, humanMove, piece, gameId } = params;
 
   var pieceLocations: PieceLocations | undefined = first(
     await db

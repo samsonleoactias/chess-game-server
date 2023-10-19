@@ -2,8 +2,10 @@ import { Piece, PieceLocations, PlayerType, PossibleMove } from "../../types";
 import findWhatPieceIsOnASquare from "../helpers/findWhatPieceIsOnASquare";
 import db from "../../db/postgresConnection";
 import objectCamelToSnake from "../helpers/objectCamelToSnake";
+import { Knex } from "knex";
 
 type MakeMoveControllerParams = {
+  db: Knex;
   pieceLocations: PieceLocations;
   gameId: string;
   piece: Piece;

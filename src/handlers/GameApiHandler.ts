@@ -1,21 +1,15 @@
 import express, { Express, Request, Response } from "express";
-import { graphqlHTTP } from "express-graphql";
 import gameSchema from "../graphql/schemas/GameSchema";
 import newGameResolver from "../graphql/resolvers/NewGameResolver";
+import { ApolloServer } from "@apollo/server";
 
 const GameApiHandler = () => {
-  const app: Express = express();
+  const server = new ApolloServer({
+    typeDefs: gameSchema,
+    resolvers: newGameResolver,
+  });
 
-  app.use(
-    "/newGame",
-    graphqlHTTP({
-      schema: gameSchema,
-      rootValue: newGameResolver,
-      graphiql: true,
-    })
-  );
-
-  return app;
+  return server;
 };
 
 export default GameApiHandler;

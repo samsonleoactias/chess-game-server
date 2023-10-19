@@ -1,18 +1,19 @@
 import chooseColor from "./utils/chooseColor";
 import { Color } from "../../types";
 import PieceLocations from "../../types/PieceLocations";
-import db from "../../db/postgresConnection";
 import pieceLocationsObjectToDb from "../helpers/pieceLocationsObjectToDb";
 import first from "lodash/first";
+import { Knex } from "knex";
 
 type NewGameGeneratorController = {
+  db: Knex;
   humanPlayerId: string;
 };
 
 const NewGameGeneratorController = async (
   params: NewGameGeneratorController
 ) => {
-  const { humanPlayerId } = params;
+  const { db, humanPlayerId } = params;
 
   const humanColor = chooseColor();
 
