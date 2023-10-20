@@ -8,9 +8,9 @@ import {
   PossibleMovesAssignedToPieces,
 } from "../../types";
 import MakeMoveController from "../MakeMoveController";
-import calculateAiPossibleMoves from "../CalculatePossibleMovesController/utils/possibleMoves/calculateAiPossibleMoves";
+import calculateAiPossibleMoves from "../CalculatePossibleMovesController/helpers/possibleMoves/calculateAiPossibleMoves";
 import chooseAiMove from "./helpers/chooseAiMove";
-import calculateHumanPossibleMoves from "../CalculatePossibleMovesController/utils/possibleMoves/calculateHumanPossibleMoves";
+import calculateHumanPossibleMoves from "../CalculatePossibleMovesController/helpers/possibleMoves/calculateHumanPossibleMoves";
 import { Knex } from "knex";
 
 type DoTurnControllerParams = {

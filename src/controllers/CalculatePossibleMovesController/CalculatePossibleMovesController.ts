@@ -3,7 +3,7 @@ import PlayerType from "../../types/PlayerType";
 import objectCamelToSnake from "../helpers/objectCamelToSnake";
 import mapToOneTimeOnlyMoveFlags from "../helpers/dbMaps/mapToOneTimeOnlyMoveFlags";
 import { OneTimeOnlyMoveFlags } from "../../types";
-import calculateHumanPossibleMoves from "./utils/possibleMoves/calculateHumanPossibleMoves";
+import calculateHumanPossibleMoves from "./helpers/possibleMoves/calculateHumanPossibleMoves";
 import { Knex } from "knex";
 import first from "lodash/first";
 

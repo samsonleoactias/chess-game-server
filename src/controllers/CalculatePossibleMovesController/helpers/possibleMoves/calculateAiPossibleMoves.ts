@@ -7,7 +7,7 @@ import PieceLocations from "../../../../types/PieceLocations";
 import calculateAiBishopPossibleMoves from "./bishop/calculateAiBishopPossibleMoves";
 import calculateAiKingPossibleMoves from "./king/calculateAiKingPossibleMoves";
 import calculateAiKnightPossibleMoves from "./knight/calculateAiKnightPossibleMoves";
-import calculateAiPawnPossibleMoves from "./pawn/calculateHumanPawnPossibleMoves";
+import calculateAiPawnPossibleMoves from "./pawn/calculateAiPawnPossibleMoves";
 import calculateAiQueenPossibleMoves from "./queen/calculateAiQueenPossibleMoves";
 import calculateAiRookPossibleMoves from "./rook/calculateAiRookPossibleMoves";
 

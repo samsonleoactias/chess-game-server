@@ -4,7 +4,7 @@ import {
   PossibleMove,
   PossibleMovesAssignedToPieces,
 } from "../../../types";
-import calculateAiPossibleMoves from "../../CalculatePossibleMovesController/utils/possibleMoves/calculateAiPossibleMoves";
+import calculateAiPossibleMoves from "../../CalculatePossibleMovesController/helpers/possibleMoves/calculateAiPossibleMoves";
 
 const chooseAiMove = (
   pieceLocations: PieceLocations,

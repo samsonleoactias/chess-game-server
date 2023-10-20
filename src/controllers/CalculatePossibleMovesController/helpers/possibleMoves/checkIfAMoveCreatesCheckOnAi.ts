@@ -1,4 +1,4 @@
-import { Piece, PieceLocations, PossibleMove } from "../../../../../types";
+import { Piece, PieceLocations, PossibleMove } from "../../../../types";
 
 const checkIfAMoveCreatesCheckOnAi = (
   move: PossibleMove,
