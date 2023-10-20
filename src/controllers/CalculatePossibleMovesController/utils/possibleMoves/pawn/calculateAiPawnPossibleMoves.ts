@@ -10,52 +10,52 @@ import determineIfAnyPossibleMovesCreateCheckOnAi from "../helpers/determineIfAn
 const calculateAiPawnPossibleMoves = (
   row: number,
   column: number,
-  pawnInitialMoveEligible: boolean,
   pieceLocations: PieceLocations,
   piece: Piece,
+  pawnInitialMoveEligible: boolean,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
   checkForCheck: boolean
 ) => {
   const possibleMoves: PossibleMove[] = [];
 
-  // check if space one row down is not occupied
+  // check if space one row up is not occupied
   if (
-    row > 0 &&
-    pieceLocations.matrix[row - 1][column] === false &&
-    !checkIfSquareIsOccupiedByAiPiece(pieceLocations, row - 1, column)
+    row < 7 &&
+    pieceLocations.matrix[row + 1][column] === false &&
+    !checkIfSquareIsOccupiedByAiPiece(pieceLocations, row + 1, column)
   ) {
-    possibleMoves.push({ location: { row: row - 1, column: column } });
+    possibleMoves.push({ location: { row: row + 1, column: column } });
   }
 
-  // check if pawn is eligible for initial move and spaces one row and two rows down are not occupied
+  // check if pawn is eligible for initial move and spaces one row and two rows up are not occupied
   if (
-    row === 6 &&
+    row === 1 &&
     pawnInitialMoveEligible &&
-    pieceLocations.matrix[row - 1][column] === false &&
-    pieceLocations.matrix[row - 2][column] === false &&
-    !checkIfSquareIsOccupiedByAiPiece(pieceLocations, row - 2, column)
+    pieceLocations.matrix[row + 1][column] === false &&
+    pieceLocations.matrix[row + 2][column] === false &&
+    !checkIfSquareIsOccupiedByAiPiece(pieceLocations, row + 2, column)
   ) {
-    possibleMoves.push({ location: { row: row - 2, column: column } });
+    possibleMoves.push({ location: { row: row + 2, column: column } });
   }
 
   // check if can capture to the left
   if (
-    row > 0 &&
+    row < 7 &&
     column > 0 &&
-    pieceLocations.matrix[row - 1][column - 1] === true &&
-    !checkIfSquareIsOccupiedByAiPiece(pieceLocations, row - 1, column - 1)
+    pieceLocations.matrix[row + 1][column - 1] === true &&
+    !checkIfSquareIsOccupiedByAiPiece(pieceLocations, row + 1, column - 1)
   ) {
-    possibleMoves.push({ location: { row: row - 1, column: column - 1 } });
+    possibleMoves.push({ location: { row: row + 1, column: column - 1 } });
   }
 
   // check if can capture to the right
   if (
-    row > 0 &&
+    row < 7 &&
     column < 7 &&
-    pieceLocations.matrix[row - 1][column + 1] === true &&
-    !checkIfSquareIsOccupiedByAiPiece(pieceLocations, row - 1, column + 1)
+    pieceLocations.matrix[row + 1][column + 1] === true &&
+    !checkIfSquareIsOccupiedByAiPiece(pieceLocations, row + 1, column + 1)
   ) {
-    possibleMoves.push({ location: { row: row - 1, column: column + 1 } });
+    possibleMoves.push({ location: { row: row + 1, column: column + 1 } });
   }
 
   if (checkForCheck) {

@@ -3,7 +3,7 @@ import { Knex } from "knex";
 
 const getMigrations = async (db: Knex) => {
   try {
-    const files = await readdir("./../../db/migrations");
+    const files = await readdir("db/migrations");
 
     files.sort();
 

@@ -19,7 +19,7 @@ const calculateHumanQueenPossibleMoves = (
   // check up-left direction
   for (let i = 1; i < Math.min(row, column); i++) {
     if (
-      !!checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row - i, column - i)
+      !checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row - i, column - i)
     )
       possibleMoves.push({ location: { row: row - i, column: column - i } });
 

@@ -7,7 +7,7 @@ import {
 import calculateHumanBishopPossibleMoves from "../bishop/calculateHumanBishopPossibleMoves";
 import calculateHumanKingPossibleMoves from "../king/calculateHumanKingPossibleMoves";
 import calculateHumanKnightPossibleMoves from "../knight/calculateHumanKnightPossibleMoves";
-import calculateHumanPawnPossibleMoves from "../pawn/calculateHumanPawnPossibleMoves";
+import calculateHumanPawnPossibleMoves from "../pawn/calculateAiPawnPossibleMoves";
 import calculateHumanQueenPossibleMoves from "../queen/calculateHumanQueenPossibleMoves";
 import calculateHumanRookPossibleMoves from "../rook/calculateHumanRookPossibleMoves";
 import checkIfAMoveCreatesCheckOnAi from "./checkIfAMoveCreatesCheckOnAi";

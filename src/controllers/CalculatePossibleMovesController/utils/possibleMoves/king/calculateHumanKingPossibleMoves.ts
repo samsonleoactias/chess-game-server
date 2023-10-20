@@ -16,14 +16,65 @@ const calculateHumanKingPossibleMoves = (
 ) => {
   const possibleMoves: PossibleMove[] = [];
 
-  possibleMoves.push({ location: { row: row + 1, column: column } });
-  possibleMoves.push({ location: { row: row - 1, column: column } });
-  possibleMoves.push({ location: { row: row, column: column + 1 } });
-  possibleMoves.push({ location: { row: row, column: column - 1 } });
-  possibleMoves.push({ location: { row: row + 1, column: column + 1 } });
-  possibleMoves.push({ location: { row: row + 1, column: column - 1 } });
-  possibleMoves.push({ location: { row: row - 1, column: column + 1 } });
-  possibleMoves.push({ location: { row: row - 1, column: column + 1 } });
+  if (
+    row !== 7 &&
+    !checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row + 1, column)
+  ) {
+    possibleMoves.push({ location: { row: row + 1, column: column } });
+  }
+
+  if (
+    row !== 0 &&
+    !checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row - 1, column)
+  ) {
+    possibleMoves.push({ location: { row: row - 1, column: column } });
+  }
+
+  if (
+    column !== 7 &&
+    !checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row, column + 1)
+  ) {
+    possibleMoves.push({ location: { row: row, column: column + 1 } });
+  }
+
+  if (
+    column !== 0 &&
+    !checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row, column - 1)
+  ) {
+    possibleMoves.push({ location: { row: row, column: column - 1 } });
+  }
+
+  if (
+    row !== 7 &&
+    column !== 7 &&
+    !checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row + 1, column + 1)
+  ) {
+    possibleMoves.push({ location: { row: row + 1, column: column + 1 } });
+  }
+
+  if (
+    row !== 7 &&
+    column !== 0 &&
+    !checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row + 1, column - 1)
+  ) {
+    possibleMoves.push({ location: { row: row + 1, column: column - 1 } });
+  }
+
+  if (
+    row !== 0 &&
+    column !== 7 &&
+    !checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row - 1, column + 1)
+  ) {
+    possibleMoves.push({ location: { row: row - 1, column: column + 1 } });
+  }
+
+  if (
+    row !== 0 &&
+    column !== 0 &&
+    !checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row - 1, column - 1)
+  ) {
+    possibleMoves.push({ location: { row: row - 1, column: column - 1 } });
+  }
 
   if (oneTimeOnlyMoveFlags.humanCastleRookAEligible) {
     let castlePossible = true;

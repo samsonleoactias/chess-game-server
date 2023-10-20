@@ -6,7 +6,7 @@ module.exports = {
   },
   down: async function (db) {
     await db.schema.alterTable("game", (table) => {
-      table.dropColumn("Created_at");
+      table.dropColumn("created_at");
     });
   },
 };

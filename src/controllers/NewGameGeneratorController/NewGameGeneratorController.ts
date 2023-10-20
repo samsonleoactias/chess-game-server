@@ -104,10 +104,14 @@ const NewGameGeneratorController = async (
         ...pieceLocationsObjectToDb(newGamePieceLocations),
       });
 
+      await db("one_time_only_move_flags").insert({
+        game_id: gameId,
+      });
+
       return newGamePieceLocations;
     }
-  } catch (e) {
-    throw new Error(); // TODO better error
+  } catch (e: any) {
+    throw new Error(e); // TODO better error
   }
 };
 

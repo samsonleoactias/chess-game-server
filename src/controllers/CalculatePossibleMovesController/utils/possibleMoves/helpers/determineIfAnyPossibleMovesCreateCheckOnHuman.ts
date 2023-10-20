@@ -7,7 +7,7 @@ import {
 import calculateAiBishopPossibleMoves from "../bishop/calculateAiBishopPossibleMoves";
 import calculateAiKingPossibleMoves from "../king/calculateAiKingPossibleMoves";
 import calculateAiKnightPossibleMoves from "../knight/calculateAiKnightPossibleMoves";
-import calculateAiPawnPossibleMoves from "../pawn/calculateAiPawnPossibleMoves";
+import calculateAiPawnPossibleMoves from "../pawn/calculateHumanPawnPossibleMoves";
 import calculateAiQueenPossibleMoves from "../queen/calculateAiQueenPossibleMoves";
 import calculateAiRookPossibleMoves from "../rook/calculateAiRookPossibleMoves";
 import checkIfAMoveCapturesHumanKing from "./checkIfAMoveCapturesHumanKing";
