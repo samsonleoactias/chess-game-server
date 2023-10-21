@@ -11,7 +11,7 @@ import calculateHumanPawnPossibleMoves from "./pawn/calculateAiPawnPossibleMoves
 import calculateHumanQueenPossibleMoves from "./queen/calculateHumanQueenPossibleMoves";
 import calculateHumanRookPossibleMoves from "./rook/calculateHumanRookPossibleMoves";
 import checkIfAMoveCreatesCheckOnAi from "./checkIfAMoveCreatesCheckOnAi";
-import findWhatPieceIsOnASquare from "../../../helpers/findWhatPieceIsOnASquare";
+import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare";
 
 const determineIfAnyPossibleMovesCreateCheckOnAi = (
   pieceLocations: PieceLocations,

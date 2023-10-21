@@ -5,6 +5,7 @@ import PlayerType from "./PlayerType";
 import PossibleMove from "./PossibleMove";
 import PossibleMovesAssignedToPieces from "./PossibleMovesAssignedToPieces";
 import Piece from "./Piece";
+import Game from "./Game";
 
 export {
   Color,
@@ -14,4 +15,5 @@ export {
   PossibleMove,
   PossibleMovesAssignedToPieces,
   Piece,
+  Game,
 };

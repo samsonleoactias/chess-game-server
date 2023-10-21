@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, test, expect } from "@jest/globals";
-import NewGameController from "../../src/controllers/NewGameController";
+import NewGameController from "../../src/controllers/NewGameController/NewGameController";
 import { PostgreSqlContainer } from "@testcontainers/postgresql";
 import knex, { Knex } from "knex";
 import { Color } from "../../src/types";

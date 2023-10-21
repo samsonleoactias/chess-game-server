@@ -1,15 +1,16 @@
 import first from "lodash/first";
 
 import {
+  Game,
   OneTimeOnlyMoveFlags,
   Piece,
   PieceLocations,
   PossibleMove,
   PossibleMovesAssignedToPieces,
 } from "../../types";
-import MakeMoveController from "../MakeMoveController";
+import makeMove from "./helpers/makeMove";
 import calculateAiPossibleMoves from "../CalculatePossibleMovesController/helpers/possibleMoves/calculateAiPossibleMoves";
-import chooseAiMove from "./helpers/chooseAiMove";
+import chooseAiMove from "./helpers";
 import calculateHumanPossibleMoves from "../CalculatePossibleMovesController/helpers/possibleMoves/calculateHumanPossibleMoves";
 import { Knex } from "knex";
 
@@ -17,63 +18,98 @@ type DoTurnControllerParams = {
   db: Knex;
   humanMove: PossibleMove;
   piece: Piece;
-  gameId: string;
+  humanPlayerId: string;
 };
 
 const DoTurnController = async (params: DoTurnControllerParams) => {
-  const { db, humanMove, piece, gameId } = params;
+  const { db, humanMove, piece, humanPlayerId } = params;
 
-  var pieceLocations: PieceLocations | undefined = first(
+  const game = first(
     await db
-      .where({ game_id: gameId })
+      .where({ human_player_id: humanPlayerId })
+      .select("id")
+      .from<Game>("games")
+  );
+
+  const pieceLocations: PieceLocations | undefined = first(
+    await db
+      .where({ game_id: game.gameId })
       .select()
       .from<PieceLocations>("piece_locations")
   );
 
-  if (pieceLocations) {
+  const oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags | undefined = first(
+    await db
+      .where({ game_id: game.gameId })
+      .select()
+      .from<OneTimeOnlyMoveFlags>("one_time_only_move_flags")
+  );
+
+  let pieceLocationsAfterHumanMove;
+
+  if (pieceLocations && oneTimeOnlyMoveFlags) {
     try {
-      await MakeMoveController({
+      pieceLocationsAfterHumanMove = await makeMove({
+        db,
         pieceLocations,
-        gameId,
         piece,
+        oneTimeOnlyMoveFlags,
+        gameId: game.gameId,
         move: humanMove,
+        humanColor: game.humanColor,
       });
     } catch (error) {
       return;
     }
 
-    var oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags | undefined = first(
-      await db
-        .where({ game_id: gameId })
-        .select()
-        .from<OneTimeOnlyMoveFlags>("one_time_only_move_flags")
+    const possibleAiMovesAssignedToPieces: PossibleMovesAssignedToPieces =
+      calculateAiPossibleMoves(pieceLocations, oneTimeOnlyMoveFlags);
+
+    const chosenAiMove: { piece: string; move: PossibleMove } = chooseAiMove(
+      pieceLocations,
+      oneTimeOnlyMoveFlags,
+      possibleAiMovesAssignedToPieces
     );
 
-    if (oneTimeOnlyMoveFlags) {
-      var possibleAiMovesAssignedToPieces: PossibleMovesAssignedToPieces =
-        calculateAiPossibleMoves(pieceLocations, oneTimeOnlyMoveFlags);
+    let pieceLocationsAfterAiMove: PieceLocations;
 
-      var chosenAiMove: { piece: string; move: PossibleMove } = chooseAiMove(
+    try {
+      pieceLocationsAfterAiMove = await makeMove({
+        db,
         pieceLocations,
+        gameId: game.gameId,
+        humanColor: game.humanColor,
+        piece: (<any>Piece)[chosenAiMove.piece],
         oneTimeOnlyMoveFlags,
-        possibleAiMovesAssignedToPieces
+        move: chosenAiMove.move,
+      });
+    } catch (error) {
+      return;
+    }
+
+    if (pieceLocationsAfterAiMove.humanKing.captured === true) {
+      // TODO insert losing logic
+      return {
+        pieceLocations: pieceLocationsAfterAiMove,
+        possibleMoves: {},
+        humanKingCaptured: true,
+        aiKingCaptured: false,
+      };
+    }
+
+    const possibleHumanMovesAssignedToPieces: PossibleMovesAssignedToPieces =
+      calculateHumanPossibleMoves(
+        pieceLocationsAfterAiMove,
+        oneTimeOnlyMoveFlags
       );
 
-      try {
-        await MakeMoveController({
-          pieceLocations,
-          gameId,
-          piece: (<any>Piece)[chosenAiMove.piece],
-          move: chosenAiMove.move,
-        });
-      } catch (error) {
-        return;
-      }
-
-      var possibleHumanMovesAssignedToPieces: PossibleMovesAssignedToPieces =
-        calculateHumanPossibleMoves(pieceLocations, oneTimeOnlyMoveFlags);
-
-      return possibleHumanMovesAssignedToPieces;
-    }
+    return {
+      pieceLocations: pieceLocationsAfterAiMove,
+      possibleMoves: possibleHumanMovesAssignedToPieces,
+      humanKingCaptured: false,
+      aiKingCaptured: false,
+    };
   }
 };
+
+export default DoTurnController;

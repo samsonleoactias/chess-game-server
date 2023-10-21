@@ -1,19 +1,35 @@
-import { Piece, PieceLocations, PlayerType, PossibleMove } from "../../types";
-import findWhatPieceIsOnASquare from "../helpers/findWhatPieceIsOnASquare";
-import db from "../../db/postgresConnection";
-import objectCamelToSnake from "../helpers/objectCamelToSnake";
+import {
+  Color,
+  OneTimeOnlyMoveFlags,
+  Piece,
+  PieceLocations,
+  PossibleMove,
+} from "../../../../types";
+import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare";
+import objectCamelToSnake from "../../../utils/objectCamelToSnake";
 import { Knex } from "knex";
+import updateOneTimeOnlyMarkers from "./helpers";
 
-type MakeMoveControllerParams = {
+type makeMoveParams = {
   db: Knex;
   pieceLocations: PieceLocations;
   gameId: string;
   piece: Piece;
   move: PossibleMove;
+  oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags;
+  humanColor: Color;
 };
 
-const MakeMoveController = async (params: MakeMoveControllerParams) => {
-  const { pieceLocations, gameId, piece, move } = params;
+const makeMove = async (params: makeMoveParams) => {
+  const {
+    db,
+    pieceLocations,
+    gameId,
+    piece,
+    move,
+    oneTimeOnlyMoveFlags,
+    humanColor,
+  } = params;
 
   var pieceCurrentlyOnSquare: Piece = findWhatPieceIsOnASquare(
     pieceLocations,
@@ -45,9 +61,19 @@ const MakeMoveController = async (params: MakeMoveControllerParams) => {
         ...objectCamelToSnake(pieceLocations),
       });
   } catch (error) {
-    console.log("Database error: " + JSON.stringify(error));
+    console.log("Database error: " + JSON.stringify(error)); // TODO better error
     throw error;
   }
+
+  updateOneTimeOnlyMarkers({
+    db,
+    gameId,
+    pieceLocations,
+    oneTimeOnlyMoveFlags,
+    humanColor,
+  });
+
+  return pieceLocations;
 };
 
-export default MakeMoveController;
+export default makeMove;

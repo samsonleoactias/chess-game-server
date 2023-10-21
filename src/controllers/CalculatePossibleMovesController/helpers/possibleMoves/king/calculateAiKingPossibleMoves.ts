@@ -25,6 +25,7 @@ const calculateAiKingPossibleMoves = (
   possibleMoves.push({ location: { row: row - 1, column: column + 1 } });
   possibleMoves.push({ location: { row: row - 1, column: column + 1 } });
 
+  // TODO add additional rules for castles
   if (oneTimeOnlyMoveFlags.aiCastleRookAEligible) {
     let castlePossible = true;
 

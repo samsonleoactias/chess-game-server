@@ -76,6 +76,7 @@ const calculateHumanKingPossibleMoves = (
     possibleMoves.push({ location: { row: row - 1, column: column - 1 } });
   }
 
+  // TODO add additional rules for castles
   if (oneTimeOnlyMoveFlags.humanCastleRookAEligible) {
     let castlePossible = true;
 

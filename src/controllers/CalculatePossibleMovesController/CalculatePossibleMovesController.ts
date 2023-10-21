@@ -1,7 +1,7 @@
 import PieceLocations from "../../types/PieceLocations";
 import PlayerType from "../../types/PlayerType";
-import objectCamelToSnake from "../helpers/objectCamelToSnake";
-import mapToOneTimeOnlyMoveFlags from "../helpers/dbMaps/mapToOneTimeOnlyMoveFlags";
+import objectCamelToSnake from "../utils/objectCamelToSnake";
+import mapToOneTimeOnlyMoveFlags from "../utils/dbMaps/mapToOneTimeOnlyMoveFlags";
 import { OneTimeOnlyMoveFlags } from "../../types";
 import calculateHumanPossibleMoves from "./helpers/possibleMoves/calculateHumanPossibleMoves";
 import { Knex } from "knex";

@@ -1,12 +1,11 @@
-import express, { Express, Request, Response } from "express";
-import gameSchema from "../graphql/schemas/GameSchema";
-import newGameResolver from "../graphql/resolvers/NewGameResolver";
 import { ApolloServer } from "@apollo/server";
+import schema from "../graphql/schema";
+import resolvers from "../graphql/resolvers";
 
 const GameApiHandler = () => {
   const server = new ApolloServer({
-    typeDefs: gameSchema,
-    resolvers: newGameResolver,
+    typeDefs: schema,
+    resolvers: resolvers,
   });
 
   return server;
