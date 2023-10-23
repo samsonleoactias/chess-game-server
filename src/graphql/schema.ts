@@ -119,7 +119,7 @@ const schema = `#graphql
   }
 
   type Game {
-    pieceLocation: PieceLocations!,
+    pieceLocations: PieceLocations!,
     possibleMoves: PossibleMovesAssignedToPieces!
     humanWinner: Boolean!,
     aiWinner: Boolean!,
