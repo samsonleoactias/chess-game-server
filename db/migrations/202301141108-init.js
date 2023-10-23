@@ -17,7 +17,6 @@ module.exports = {
         table.enu("human_player_color", ["white", "black"]).notNull();
         table.enu("ai_player_color", ["white", "black"]).notNull();
         table.check("?? != ??", ["human_player_color", "ai_player_color"]);
-        table.enu("winner", ["human", "ai", "active_game"]).notNull();
       })
       .createTable("piece_locations", (table) => {
         table

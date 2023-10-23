@@ -30,6 +30,16 @@ const resolvers = {
       });
     },
   },
+  Query: {
+    GetGame(
+      parent: null,
+      args: { humanPlayerId: string },
+      contextValue: null,
+      info: null
+    ) {
+      return;
+    },
+  },
 };
 
 export default resolvers;
