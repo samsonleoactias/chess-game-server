@@ -6,6 +6,7 @@ import PossibleMove from "./PossibleMove";
 import PossibleMovesAssignedToPieces from "./PossibleMovesAssignedToPieces";
 import Piece from "./Piece";
 import Game from "./Game";
+import GamePieceLocationsGameOutcomeDb from "./GamePieceLocationsGameOutcomeDb";
 
 export {
   Color,
@@ -16,4 +17,5 @@ export {
   PossibleMovesAssignedToPieces,
   Piece,
   Game,
+  GamePieceLocationsGameOutcomeDb,
 };

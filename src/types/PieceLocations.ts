@@ -2,8 +2,6 @@ import Color from "./Color";
 import Piece from "./Piece";
 
 type PieceLocations = {
-  humanColor: Color;
-  aiColor: Color;
   humanPawnA: {
     row: number;
     column: number;

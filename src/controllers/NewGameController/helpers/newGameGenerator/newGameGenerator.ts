@@ -35,8 +35,6 @@ const newGameGenerator = async (params: NewGameGeneratorParams) => {
       const gameId: string = (<any>gameIdDbResult)["game_id"];
 
       const newGamePieceLocations: PieceLocations = {
-        humanColor,
-        aiColor,
         humanPawnA: { row: 6, column: 0, captured: false },
         humanPawnB: { row: 6, column: 1, captured: false },
         humanPawnC: { row: 6, column: 2, captured: false },

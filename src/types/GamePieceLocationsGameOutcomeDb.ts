@@ -1,5 +1,13 @@
-type PieceLocationsDb = {
+import Color from "./Color";
+
+type GamePieceLocationsGameOutcomeDb = {
   game_id: string;
+  human_player_id: string;
+  human_player_color: Color;
+  ai_player_color: Color;
+  game_outcome_id: string;
+  outcome: "in_progress" | "human_won" | "ai_won" | "draw";
+  piece_locations_id: string;
   human_pawn_a_row: number;
   human_pawn_a_column: number;
   human_pawn_a_captured: boolean;
@@ -97,3 +105,5 @@ type PieceLocationsDb = {
   ai_king_column: number;
   ai_king_captured: boolean;
 };
+
+export default GamePieceLocationsGameOutcomeDb;
