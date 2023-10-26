@@ -14,7 +14,7 @@ const calculateAiKnightPossibleMoves = (
   piece: Piece,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
   checkForCheck: boolean
-) => {
+): PossibleMove[] => {
   const possibleMoves: PossibleMove[] = [];
 
   if (row + 2 <= 7 && column + 1 <= 7)
@@ -52,7 +52,7 @@ const calculateAiKnightPossibleMoves = (
   if (checkForCheck) {
     let possibleMovesCheckedForCheckOnAi: PossibleMove[] = [];
 
-    possibleMoves.forEach((possibleMove) => {
+    possibleMoves.forEach((possibleMove): void => {
       if (
         !determineIfAnyPossibleMovesCreateCheckOnAi(
           pieceLocations,

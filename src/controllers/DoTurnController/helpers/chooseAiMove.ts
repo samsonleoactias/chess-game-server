@@ -9,7 +9,7 @@ const chooseAiMove = (
   pieceLocations: PieceLocations,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
   possibleMovesAssignedToPieces: PossibleMovesAssignedToPieces
-) => {
+): { piece: string; move: PossibleMove } => {
   var pieceNames = [
     "pawnA",
     "pawnB",

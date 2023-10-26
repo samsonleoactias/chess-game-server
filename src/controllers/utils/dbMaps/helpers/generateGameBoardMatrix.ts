@@ -1,6 +1,8 @@
 import { PieceLocations } from "../../../../types";
 
-const generateGameBoardMatrix = (pieceLocations: PieceLocations) => {
+const generateGameBoardMatrix = (
+  pieceLocations: PieceLocations
+): boolean[][] => {
   const matrix: boolean[][] = [
     [false, false, false, false, false, false, false, false],
     [false, false, false, false, false, false, false, false],

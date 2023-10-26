@@ -3,7 +3,7 @@ import { PieceLocations, PossibleMove } from "../../../../types";
 const checkIfAMoveCreatesCheckOnHuman = (
   move: PossibleMove,
   pieceLocations: PieceLocations
-) => {
+): boolean => {
   if (
     move.location.row === pieceLocations.humanKing.row &&
     move.location.column === pieceLocations.humanKing.column
@@ -11,16 +11,18 @@ const checkIfAMoveCreatesCheckOnHuman = (
     return true;
   }
 
-  move.sideEffects?.forEach((sideEffect) => {
+  let sideEffectCreatesCheck: boolean = false;
+
+  move.sideEffects?.forEach((sideEffect): void => {
     if (
       sideEffect.row === pieceLocations.humanKing.row &&
       sideEffect.column === pieceLocations.humanKing.column
     ) {
-      return true;
+      sideEffectCreatesCheck = true;
     }
   });
 
-  return false;
+  return sideEffectCreatesCheck;
 };
 
 export default checkIfAMoveCreatesCheckOnHuman;

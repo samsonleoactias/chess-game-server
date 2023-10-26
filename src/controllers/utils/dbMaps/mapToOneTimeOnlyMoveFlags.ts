@@ -1,6 +1,6 @@
 import { OneTimeOnlyMoveFlags } from "../../../types";
 
-const mapToOneTimeOnlyMoveFlags = (object: Object) => {
+const mapToOneTimeOnlyMoveFlags = (object: Object): OneTimeOnlyMoveFlags => {
   const oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags = {
     humanPawnAInitialMoveEligible: (<any>object)[
       "human_pawn_a_initial_move_eligible"

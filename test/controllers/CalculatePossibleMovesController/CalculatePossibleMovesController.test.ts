@@ -9,8 +9,8 @@ import CalculatePossibleMovesController from "../../../src/controllers/Calculate
 let postgresClient: Knex;
 
 const humanPlayerId = "00000000-0000-0000-0000-000000000000";
-const humanColor = Color.White;
-const aiColor = Color.Black;
+const humanColor = Color.WHITE;
+const aiColor = Color.BLACK;
 
 beforeAll(async () => {
   try {

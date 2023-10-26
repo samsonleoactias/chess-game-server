@@ -14,7 +14,7 @@ const calculateHumanBishopPossibleMoves = (
   piece: Piece,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
   checkForCheck: boolean
-) => {
+): PossibleMove[] => {
   const possibleMoves: PossibleMove[] = [];
 
   // check up-left direction
@@ -72,7 +72,7 @@ const calculateHumanBishopPossibleMoves = (
   if (checkForCheck) {
     let possibleMovesCheckedForCheckOnHuman: PossibleMove[] = [];
 
-    possibleMoves.forEach((possibleMove) => {
+    possibleMoves.forEach((possibleMove): void => {
       if (
         !determineIfAnyPossibleMovesCreateCheckOnHuman(
           pieceLocations,

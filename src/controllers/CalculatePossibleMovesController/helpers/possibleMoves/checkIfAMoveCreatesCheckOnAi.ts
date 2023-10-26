@@ -3,7 +3,7 @@ import { Piece, PieceLocations, PossibleMove } from "../../../../types";
 const checkIfAMoveCreatesCheckOnAi = (
   move: PossibleMove,
   pieceLocations: PieceLocations
-) => {
+): boolean => {
   if (
     move.location.row === pieceLocations.aiKing.row &&
     move.location.column === pieceLocations.aiKing.column
@@ -11,16 +11,18 @@ const checkIfAMoveCreatesCheckOnAi = (
     return true;
   }
 
-  move.sideEffects?.forEach((sideEffect) => {
+  let sideEffectCreatesCheck: boolean = false;
+
+  move.sideEffects?.forEach((sideEffect): void => {
     if (
       sideEffect.row === pieceLocations.aiKing.row &&
       sideEffect.column === pieceLocations.aiKing.column
     ) {
-      return true;
+      sideEffectCreatesCheck = true;
     }
   });
 
-  return false;
+  return sideEffectCreatesCheck;
 };
 
 export default checkIfAMoveCreatesCheckOnAi;

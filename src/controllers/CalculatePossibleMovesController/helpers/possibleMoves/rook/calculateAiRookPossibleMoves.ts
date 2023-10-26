@@ -14,7 +14,7 @@ const calculateAiRookPossibleMoves = (
   piece: Piece,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
   checkForCheck: boolean
-) => {
+): PossibleMove[] => {
   const possibleMoves: PossibleMove[] = [];
 
   // check rows above
@@ -64,7 +64,7 @@ const calculateAiRookPossibleMoves = (
   if (checkForCheck) {
     let possibleMovesCheckedForCheckOnAi: PossibleMove[] = [];
 
-    possibleMoves.forEach((possibleMove) => {
+    possibleMoves.forEach((possibleMove): void => {
       if (
         !determineIfAnyPossibleMovesCreateCheckOnAi(
           pieceLocations,

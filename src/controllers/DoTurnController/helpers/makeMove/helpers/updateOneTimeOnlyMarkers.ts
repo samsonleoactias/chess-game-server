@@ -15,7 +15,7 @@ type UpdateOneTimeOnlyMarkersParams = {
 
 const updateOneTimeOnlyMarkers = async (
   params: UpdateOneTimeOnlyMarkersParams
-) => {
+): Promise<void> => {
   const { db, gameId, pieceLocations, oneTimeOnlyMoveFlags, humanColor } =
     params;
 
@@ -167,7 +167,7 @@ const updateOneTimeOnlyMarkers = async (
     oneTimeOnlyMoveFlags.humanCastleRookAEligible === true &&
     (pieceLocations.humanKing.row <= 6 ||
       pieceLocations.humanKing.column !==
-        (humanColor === Color.White ? 4 : 3) ||
+        (humanColor === Color.WHITE ? 4 : 3) ||
       pieceLocations.humanRookA.row <= 6 ||
       pieceLocations.humanRookA.column >= 1 ||
       pieceLocations.humanRookA.captured === true)
@@ -181,7 +181,7 @@ const updateOneTimeOnlyMarkers = async (
     oneTimeOnlyMoveFlags.humanCastleRookBEligible === true &&
     (pieceLocations.humanKing.row <= 6 ||
       pieceLocations.humanKing.column !==
-        (humanColor === Color.White ? 4 : 3) ||
+        (humanColor === Color.WHITE ? 4 : 3) ||
       pieceLocations.humanRookB.row <= 6 ||
       pieceLocations.humanRookB.column <= 6 ||
       pieceLocations.humanRookB.captured === true)
@@ -194,7 +194,7 @@ const updateOneTimeOnlyMarkers = async (
   if (
     oneTimeOnlyMoveFlags.aiCastleRookAEligible === true &&
     (pieceLocations.aiKing.row >= 1 ||
-      pieceLocations.aiKing.column !== (humanColor === Color.Black ? 4 : 3) ||
+      pieceLocations.aiKing.column !== (humanColor === Color.BLACK ? 4 : 3) ||
       pieceLocations.aiRookA.row >= 1 ||
       pieceLocations.aiRookA.column >= 1 ||
       pieceLocations.aiRookA.captured === true)
@@ -207,7 +207,7 @@ const updateOneTimeOnlyMarkers = async (
   if (
     oneTimeOnlyMoveFlags.aiCastleRookBEligible === true &&
     (pieceLocations.aiKing.row >= 1 ||
-      pieceLocations.aiKing.column !== (humanColor === Color.Black ? 4 : 3) ||
+      pieceLocations.aiKing.column !== (humanColor === Color.BLACK ? 4 : 3) ||
       pieceLocations.aiRookB.row >= 1 ||
       pieceLocations.aiRookB.column <= 6 ||
       pieceLocations.aiRookB.captured === true)

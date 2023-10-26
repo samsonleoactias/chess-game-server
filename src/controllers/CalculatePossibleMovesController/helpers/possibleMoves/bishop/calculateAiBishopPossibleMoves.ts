@@ -14,7 +14,7 @@ const calculateAiBishopPossibleMoves = (
   piece: Piece,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
   checkForCheck: boolean
-) => {
+): PossibleMove[] => {
   const possibleMoves: PossibleMove[] = [];
 
   // check up-left direction
@@ -64,7 +64,7 @@ const calculateAiBishopPossibleMoves = (
   if (checkForCheck) {
     let possibleMovesCheckedForCheckOnAi: PossibleMove[] = [];
 
-    possibleMoves.forEach((possibleMove) => {
+    possibleMoves.forEach((possibleMove): void => {
       if (
         !determineIfAnyPossibleMovesCreateCheckOnAi(
           pieceLocations,

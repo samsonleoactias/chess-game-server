@@ -13,7 +13,7 @@ const calculateHumanQueenPossibleMoves = (
   pieceLocations: PieceLocations,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
   checkForCheck: boolean
-) => {
+): PossibleMove[] => {
   const possibleMoves: PossibleMove[] = [];
 
   // check up-left direction
@@ -115,7 +115,7 @@ const calculateHumanQueenPossibleMoves = (
   if (checkForCheck) {
     let possibleMovesCheckedForCheckOnHuman: PossibleMove[] = [];
 
-    possibleMoves.forEach((possibleMove) => {
+    possibleMoves.forEach((possibleMove): void => {
       if (
         !determineIfAnyPossibleMovesCreateCheckOnHuman(
           pieceLocations,

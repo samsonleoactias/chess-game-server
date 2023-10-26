@@ -14,7 +14,7 @@ import calculateAiRookPossibleMoves from "./rook/calculateAiRookPossibleMoves";
 const calculateAiPossibleMoves = (
   pieceLocations: PieceLocations,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
-) => {
+): PossibleMovesAssignedToPieces => {
   const aiPossibleMoves: PossibleMovesAssignedToPieces = {};
 
   if (pieceLocations.aiPawnA.captured === false) {

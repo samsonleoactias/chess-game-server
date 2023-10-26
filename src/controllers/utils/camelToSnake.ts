@@ -1,9 +1,9 @@
-const camelToSnake = (string: string) => {
+const camelToSnake = (string: string): string => {
   let newString: string = "";
 
   const charArray: string[] = string.split("");
 
-  charArray.forEach((char, index) => {
+  charArray.forEach((char, index): void => {
     const lowerCaseChar = char.toLowerCase();
 
     if (char.toLowerCase() !== char && index > 0) {

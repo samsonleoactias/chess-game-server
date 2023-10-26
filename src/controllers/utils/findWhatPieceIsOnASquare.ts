@@ -4,7 +4,7 @@ const findWhatPieceIsOnASquare = (
   pieceLocations: PieceLocations,
   row: number,
   column: number
-) => {
+): Piece => {
   if (pieceLocations.matrix[row][column] === false) {
     return Piece.None;
   }

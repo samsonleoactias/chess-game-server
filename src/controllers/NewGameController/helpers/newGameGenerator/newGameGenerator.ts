@@ -15,7 +15,7 @@ const newGameGenerator = async (params: NewGameGeneratorParams) => {
 
   const humanColor = chooseColor();
 
-  const aiColor = humanColor === Color.White ? Color.Black : Color.White;
+  const aiColor = humanColor === Color.WHITE ? Color.BLACK : Color.WHITE;
 
   try {
     const gameIdDbResult: object | undefined = first(
@@ -51,12 +51,12 @@ const newGameGenerator = async (params: NewGameGeneratorParams) => {
         humanBishopB: { row: 7, column: 5, captured: false },
         humanQueen: {
           row: 7,
-          column: humanColor === Color.Black ? 4 : 3,
+          column: humanColor === Color.BLACK ? 4 : 3,
           captured: false,
         },
         humanKing: {
           row: 7,
-          column: humanColor === Color.Black ? 3 : 4,
+          column: humanColor === Color.BLACK ? 3 : 4,
           captured: false,
         },
         aiPawnA: { row: 1, column: 0, captured: false },
@@ -75,12 +75,12 @@ const newGameGenerator = async (params: NewGameGeneratorParams) => {
         aiBishopB: { row: 0, column: 5, captured: false },
         aiQueen: {
           row: 0,
-          column: aiColor === Color.Black ? 4 : 3,
+          column: aiColor === Color.BLACK ? 4 : 3,
           captured: false,
         },
         aiKing: {
           row: 0,
-          column: aiColor === Color.Black ? 3 : 4,
+          column: aiColor === Color.BLACK ? 3 : 4,
           captured: false,
         },
         matrix: [

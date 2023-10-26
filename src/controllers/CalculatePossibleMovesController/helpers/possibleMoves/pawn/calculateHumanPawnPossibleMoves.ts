@@ -15,7 +15,7 @@ const calculateHumanPawnPossibleMoves = (
   pawnInitialMoveEligible: boolean,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
   checkForCheck: boolean
-) => {
+): PossibleMove[] => {
   const possibleMoves: PossibleMove[] = [];
 
   // check if space one row down is not occupied
@@ -60,7 +60,7 @@ const calculateHumanPawnPossibleMoves = (
   if (checkForCheck) {
     let possibleMovesCheckedForCheckOnHuman: PossibleMove[] = [];
 
-    possibleMoves.forEach((possibleMove) => {
+    possibleMoves.forEach((possibleMove): void => {
       if (
         !determineIfAnyPossibleMovesCreateCheckOnHuman(
           pieceLocations,

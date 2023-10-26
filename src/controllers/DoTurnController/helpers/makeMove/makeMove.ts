@@ -20,7 +20,7 @@ type makeMoveParams = {
   humanColor: Color;
 };
 
-const makeMove = async (params: makeMoveParams) => {
+const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
   const {
     db,
     pieceLocations,

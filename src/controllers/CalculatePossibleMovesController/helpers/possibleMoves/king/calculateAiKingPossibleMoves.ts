@@ -13,7 +13,7 @@ const calculateAiKingPossibleMoves = (
   pieceLocations: PieceLocations,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
   checkForCheck: boolean
-) => {
+): PossibleMove[] => {
   const possibleMoves: PossibleMove[] = [];
 
   possibleMoves.push({ location: { row: row + 1, column: column } });
@@ -71,7 +71,7 @@ const calculateAiKingPossibleMoves = (
   if (checkForCheck) {
     let possibleMovesCheckedForCheckOnAi: PossibleMove[] = [];
 
-    possibleMoves.forEach((possibleMove) => {
+    possibleMoves.forEach((possibleMove): void => {
       if (
         !determineIfAnyPossibleMovesCreateCheckOnAi(
           pieceLocations,

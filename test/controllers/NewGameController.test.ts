@@ -37,7 +37,7 @@ test("NewGameController return PieceLocations from NewGameGeneratorController", 
   });
 
   const humanColor = newGameResult.humanColor;
-  const aiColor = humanColor === Color.White ? Color.Black : Color.White;
+  const aiColor = humanColor === Color.WHITE ? Color.BLACK : Color.WHITE;
 
   expect(newGameResult).toEqual({
     humanColor,
@@ -58,12 +58,12 @@ test("NewGameController return PieceLocations from NewGameGeneratorController", 
     humanBishopB: { row: 7, column: 5, captured: false },
     humanQueen: {
       row: 7,
-      column: humanColor === Color.Black ? 4 : 3,
+      column: humanColor === Color.BLACK ? 4 : 3,
       captured: false,
     },
     humanKing: {
       row: 7,
-      column: humanColor === Color.Black ? 3 : 4,
+      column: humanColor === Color.BLACK ? 3 : 4,
       captured: false,
     },
     aiPawnA: { row: 1, column: 0, captured: false },
@@ -82,12 +82,12 @@ test("NewGameController return PieceLocations from NewGameGeneratorController", 
     aiBishopB: { row: 0, column: 5, captured: false },
     aiQueen: {
       row: 0,
-      column: aiColor === Color.Black ? 4 : 3,
+      column: aiColor === Color.BLACK ? 4 : 3,
       captured: false,
     },
     aiKing: {
       row: 0,
-      column: aiColor === Color.Black ? 3 : 4,
+      column: aiColor === Color.BLACK ? 3 : 4,
       captured: false,
     },
     matrix: [
@@ -111,7 +111,7 @@ test("NewGameController return PieceLocations from NewGameGeneratorController", 
 //   });
 
 //   const humanColor = newGameResult.humanColor;
-//   const aiColor = humanColor === Color.White ? Color.Black : Color.White;
+//   const aiColor = humanColor === Color.WHITE ? Color.BLACK : Color.WHITE;
 
 //   const game = await postgresClient("game")
 //     .where("human_player_id", humanPlayerId)
@@ -139,7 +139,7 @@ test("NewGameController return PieceLocations from NewGameGeneratorController", 
 //     human_bishop_b_column: 5,
 //     human_bishop_b_row: 7,
 //     human_king_captured: false,
-//     human_king_column: humanColor === Color.Black ? 3 : 4,
+//     human_king_column: humanColor === Color.BLACK ? 3 : 4,
 //     human_king_row: 7,
 //     human_knight_a_captured: false,
 //     human_knight_a_column: 1,
@@ -172,7 +172,7 @@ test("NewGameController return PieceLocations from NewGameGeneratorController", 
 //     human_pawn_h_column: 7,
 //     human_pawn_h_row: 6,
 //     human_queen_captured: false,
-//     human_queen_column: humanColor === Color.Black ? 4 : 3,
+//     human_queen_column: humanColor === Color.BLACK ? 4 : 3,
 //     human_queen_row: 7,
 //     human_rook_a_captured: false,
 //     human_rook_a_column: 0,
@@ -187,7 +187,7 @@ test("NewGameController return PieceLocations from NewGameGeneratorController", 
 //     ai_bishop_b_column: 5,
 //     ai_bishop_b_row: 0,
 //     ai_king_captured: false,
-//     ai_king_column: aiColor === Color.Black ? 3 : 4,
+//     ai_king_column: aiColor === Color.BLACK ? 3 : 4,
 //     ai_king_row: 0,
 //     ai_knight_a_captured: false,
 //     ai_knight_a_column: 1,
@@ -220,7 +220,7 @@ test("NewGameController return PieceLocations from NewGameGeneratorController", 
 //     ai_pawn_h_column: 7,
 //     ai_pawn_h_row: 1,
 //     ai_queen_captured: false,
-//     ai_queen_column: aiColor === Color.Black ? 4 : 3,
+//     ai_queen_column: aiColor === Color.BLACK ? 4 : 3,
 //     ai_queen_row: 0,
 //     ai_rook_a_captured: false,
 //     ai_rook_a_column: 0,

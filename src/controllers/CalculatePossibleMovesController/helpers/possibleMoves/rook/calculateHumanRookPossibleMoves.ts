@@ -14,7 +14,7 @@ const calculateHumanRookPossibleMoves = (
   piece: Piece,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
   checkForCheck: boolean
-) => {
+): PossibleMove[] => {
   const possibleMoves: PossibleMove[] = [];
 
   // check rows above
@@ -64,7 +64,7 @@ const calculateHumanRookPossibleMoves = (
   if (checkForCheck) {
     let possibleMovesCheckedForCheckOnHuman: PossibleMove[] = [];
 
-    possibleMoves.forEach((possibleMove) => {
+    possibleMoves.forEach((possibleMove): void => {
       if (
         !determineIfAnyPossibleMovesCreateCheckOnHuman(
           pieceLocations,

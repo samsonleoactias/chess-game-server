@@ -1,7 +1,7 @@
 import { Color } from "../../../../../types";
 
-const chooseColor = () => {
-  const colors = [Color.Black, Color.White];
+const chooseColor = (): Color => {
+  const colors = [Color.BLACK, Color.WHITE];
 
   const randomNumber = Math.floor(Math.random() * 2);
 

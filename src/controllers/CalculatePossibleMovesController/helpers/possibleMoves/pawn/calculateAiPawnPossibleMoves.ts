@@ -15,7 +15,7 @@ const calculateAiPawnPossibleMoves = (
   piece: Piece,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
   checkForCheck: boolean
-) => {
+): PossibleMove[] => {
   const possibleMoves: PossibleMove[] = [];
 
   // check if space one row up is not occupied
@@ -61,7 +61,7 @@ const calculateAiPawnPossibleMoves = (
   if (checkForCheck) {
     let possibleMovesCheckedForCheckOnAi: PossibleMove[] = [];
 
-    possibleMoves.forEach((possibleMove) => {
+    possibleMoves.forEach((possibleMove): void => {
       if (
         !determineIfAnyPossibleMovesCreateCheckOnAi(
           pieceLocations,

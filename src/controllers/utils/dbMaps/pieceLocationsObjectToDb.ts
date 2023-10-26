@@ -1,6 +1,6 @@
 import { PieceLocations } from "../../../types";
 
-const pieceLocationsObjectToDb = (pieceLocations: PieceLocations) => {
+const pieceLocationsObjectToDb = (pieceLocations: PieceLocations): Object => {
   return {
     human_pawn_a_row: pieceLocations.humanPawnA.row,
     human_pawn_a_column: pieceLocations.humanPawnA.column,

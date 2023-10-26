@@ -6,7 +6,7 @@ const checkIfSquareIsOccupiedByHumanPiece = (
   pieceLocations: PieceLocations,
   row: number,
   column: number
-) => {
+): boolean => {
   return isHumanPiece(findWhatPieceIsOnASquare(pieceLocations, row, column));
 };
 

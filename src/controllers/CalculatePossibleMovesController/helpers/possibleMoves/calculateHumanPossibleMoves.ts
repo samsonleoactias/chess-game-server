@@ -14,7 +14,7 @@ import calculateHumanRookPossibleMoves from "./rook/calculateHumanRookPossibleMo
 const calculateHumanPossibleMoves = (
   pieceLocations: PieceLocations,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
-) => {
+): PossibleMovesAssignedToPieces => {
   const humanPossibleMoves: PossibleMovesAssignedToPieces = {};
 
   if (pieceLocations.humanPawnA.captured === false) {

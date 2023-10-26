@@ -6,7 +6,7 @@ const checkIfSquareIsOccupiedByAiPiece = (
   pieceLocations: PieceLocations,
   row: number,
   column: number
-) => {
+): boolean => {
   return isAiPiece(findWhatPieceIsOnASquare(pieceLocations, row, column));
 };
 
