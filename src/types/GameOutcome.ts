@@ -1,3 +1,5 @@
+import Outcome from "./Outcome";
+
 type GameOutcome = {
   gameOutcomeId: string;
   gameId: string;

@@ -123,6 +123,7 @@ const schema = `#graphql
     possibleMoves: PossibleMovesAssignedToPieces!
     humanWinner: Boolean!,
     aiWinner: Boolean!,
+    humanColor: Color!,
   }
 
   type Query {
@@ -131,7 +132,7 @@ const schema = `#graphql
 
   type Mutation {
     createGame(humanPlayerId: String!): Game!,
-    doTurn(humanPlayerId: String!, piece: Piece!, move: PossibleMove!): Game!
+    doTurn(humanPlayerId: String!, piece: Piece!, move: PossibleMove!):  Game!
   }
 `;
 

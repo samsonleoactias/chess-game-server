@@ -23,9 +23,13 @@ const CalculatePossibleMovesController = async (
     first(await db("one_time_only_move_flags").where("game_id", gameId))
   );
 
-  if (playerType === PlayerType.Human) {
+  // TODO do we need player type, is this always human when called
+  if (playerType === PlayerType.HUMAN) {
     return calculateHumanPossibleMoves(pieceLocations, oneTimeOnlyMoveFlags);
   }
+
+  // TODO needed if don't need player type
+  return {};
 };
 
 export default CalculatePossibleMovesController;

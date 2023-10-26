@@ -1,6 +1,6 @@
 enum PlayerType {
-  Human = "human",
-  Ai = "ai",
+  HUMAN = "human",
+  AI = "ai",
 }
 
 export default PlayerType;

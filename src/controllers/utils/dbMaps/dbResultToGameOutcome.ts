@@ -9,3 +9,5 @@ const dbResultToGameOutcome = (dbResult: any): GameOutcome => {
 
   return gameOutcome;
 };
+
+export default dbResultToGameOutcome;

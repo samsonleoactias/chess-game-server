@@ -10,7 +10,9 @@ type NewGameGeneratorParams = {
   humanPlayerId: string;
 };
 
-const newGameGenerator = async (params: NewGameGeneratorParams) => {
+const newGameGenerator = async (
+  params: NewGameGeneratorParams
+): Promise<[string, PieceLocations, Color]> => {
   const { db, humanPlayerId } = params;
 
   const humanColor = chooseColor();
@@ -18,7 +20,7 @@ const newGameGenerator = async (params: NewGameGeneratorParams) => {
   const aiColor = humanColor === Color.WHITE ? Color.BLACK : Color.WHITE;
 
   try {
-    const gameIdDbResult: object | undefined = first(
+    const gameIdDbResult: any = first(
       await db("game").insert(
         {
           human_player_id: humanPlayerId,
@@ -104,7 +106,7 @@ const newGameGenerator = async (params: NewGameGeneratorParams) => {
         game_id: gameId,
       });
 
-      return newGamePieceLocations;
+      return [gameId, newGamePieceLocations, humanColor];
     }
   } catch (e: any) {
     throw new Error(e); // TODO better error

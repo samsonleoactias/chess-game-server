@@ -1,6 +1,7 @@
 import first from "lodash/first";
 
 import {
+  Color,
   Game,
   OneTimeOnlyMoveFlags,
   Piece,
@@ -21,7 +22,11 @@ type DoTurnControllerParams = {
   humanPlayerId: string;
 };
 
-const DoTurnController = async (params: DoTurnControllerParams) => {
+const DoTurnController = async (
+  params: DoTurnControllerParams
+): Promise<
+  [Color, PieceLocations, PossibleMovesAssignedToPieces, boolean, boolean]
+> => {
   const { db, humanMove, piece, humanPlayerId } = params;
 
   const game = first(
@@ -31,85 +36,77 @@ const DoTurnController = async (params: DoTurnControllerParams) => {
       .from<Game>("games")
   );
 
-  const pieceLocations: PieceLocations | undefined = first(
+  const pieceLocations: PieceLocations = first(
     await db
       .where({ game_id: game.gameId })
       .select()
       .from<PieceLocations>("piece_locations")
   );
 
-  const oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags | undefined = first(
+  const oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags = first(
     await db
       .where({ game_id: game.gameId })
       .select()
       .from<OneTimeOnlyMoveFlags>("one_time_only_move_flags")
   );
 
-  let pieceLocationsAfterHumanMove;
+  if (!pieceLocations || !oneTimeOnlyMoveFlags) {
+    throw Error("DB error"); // TODO better error
+  }
 
-  if (pieceLocations && oneTimeOnlyMoveFlags) {
-    try {
-      pieceLocationsAfterHumanMove = await makeMove({
-        db,
-        pieceLocations,
-        piece,
-        oneTimeOnlyMoveFlags,
-        gameId: game.gameId,
-        move: humanMove,
-        humanColor: game.humanColor,
-      });
-    } catch (error) {
-      return;
-    }
+  const pieceLocationsAfterHumanMove: PieceLocations = await makeMove({
+    db,
+    pieceLocations,
+    piece,
+    oneTimeOnlyMoveFlags,
+    gameId: game.gameId,
+    move: humanMove,
+    humanColor: game.humanColor,
+  });
 
-    const possibleAiMovesAssignedToPieces: PossibleMovesAssignedToPieces =
-      calculateAiPossibleMoves(pieceLocations, oneTimeOnlyMoveFlags);
-
-    const chosenAiMove: { piece: string; move: PossibleMove } = chooseAiMove(
-      pieceLocations,
-      oneTimeOnlyMoveFlags,
-      possibleAiMovesAssignedToPieces
+  const possibleAiMovesAssignedToPieces: PossibleMovesAssignedToPieces =
+    calculateAiPossibleMoves(
+      pieceLocationsAfterHumanMove,
+      oneTimeOnlyMoveFlags
     );
 
-    let pieceLocationsAfterAiMove: PieceLocations;
+  const chosenAiMove: { piece: string; move: PossibleMove } = chooseAiMove(
+    pieceLocations,
+    oneTimeOnlyMoveFlags,
+    possibleAiMovesAssignedToPieces
+  );
 
-    try {
-      pieceLocationsAfterAiMove = await makeMove({
-        db,
-        pieceLocations,
-        gameId: game.gameId,
-        humanColor: game.humanColor,
-        piece: (<any>Piece)[chosenAiMove.piece],
-        oneTimeOnlyMoveFlags,
-        move: chosenAiMove.move,
-      });
-    } catch (error) {
-      return;
-    }
+  let pieceLocationsAfterAiMove: PieceLocations;
 
-    if (pieceLocationsAfterAiMove.humanKing.captured === true) {
-      // TODO insert losing logic
-      return {
-        pieceLocations: pieceLocationsAfterAiMove,
-        possibleMoves: {},
-        humanKingCaptured: true,
-        aiKingCaptured: false,
-      };
-    }
+  // TODO if winning move?
+  pieceLocationsAfterAiMove = await makeMove({
+    db,
+    pieceLocations,
+    gameId: game.gameId,
+    humanColor: game.humanColor,
+    piece: (<any>Piece)[chosenAiMove.piece],
+    oneTimeOnlyMoveFlags,
+    move: chosenAiMove.move,
+  });
 
-    const possibleHumanMovesAssignedToPieces: PossibleMovesAssignedToPieces =
-      calculateHumanPossibleMoves(
-        pieceLocationsAfterAiMove,
-        oneTimeOnlyMoveFlags
-      );
-
-    return {
-      pieceLocations: pieceLocationsAfterAiMove,
-      possibleMoves: possibleHumanMovesAssignedToPieces,
-      humanKingCaptured: false,
-      aiKingCaptured: false,
-    };
+  if (pieceLocationsAfterAiMove.humanKing.captured === true) {
+    // TODO insert losing logic
+    return [game.humanColor, pieceLocationsAfterAiMove, {}, true, false];
   }
+
+  const possibleHumanMovesAssignedToPieces: PossibleMovesAssignedToPieces =
+    calculateHumanPossibleMoves(
+      pieceLocationsAfterAiMove,
+      oneTimeOnlyMoveFlags
+    );
+
+  return [
+    game.humanColor,
+    pieceLocationsAfterAiMove,
+    possibleHumanMovesAssignedToPieces,
+    false,
+    false,
+  ];
 };
 
 export default DoTurnController;

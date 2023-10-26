@@ -1,8 +1,8 @@
 import Color from "./Color";
 
 type Game = {
-  gameId: String;
-  humanPlayerId: String;
+  gameId: string;
+  humanPlayerId: string;
   humanPlayerColor: Color;
   aiPlayerColor: Color;
   createdAt: Date;
