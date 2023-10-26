@@ -1,6 +1,3 @@
-import Color from "./Color";
-import Piece from "./Piece";
-
 type PieceLocations = {
   humanPawnA: {
     row: number;
