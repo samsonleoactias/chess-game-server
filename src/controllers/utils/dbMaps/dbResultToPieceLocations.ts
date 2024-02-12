@@ -1,5 +1,5 @@
-import { PieceLocations } from "../../../types";
-import generateGameBoardMatrix from "./helpers/generateGameBoardMatrix";
+import { PieceLocations } from "../../../types/index.js";
+import generateGameBoardMatrix from "./helpers/generateGameBoardMatrix.js";
 
 const dbResultToPieceLocations = (dbResult: any): PieceLocations => {
   const pieceLocations: PieceLocations = {

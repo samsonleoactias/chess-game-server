@@ -1,8 +1,9 @@
-import GameApiHandler from "./handlers";
+import GameApiHandler from "./handlers/index.js";
+
 import { startStandaloneServer } from "@apollo/server/standalone";
 
 const { url } = await startStandaloneServer(GameApiHandler(), {
-  listen: { port: 4000 },
+  listen: { port: 8080 },
 });
 
 console.log(`🚀  Server ready at: ${url}`);

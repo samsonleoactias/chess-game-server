@@ -4,11 +4,11 @@ import {
   Piece,
   PieceLocations,
   PossibleMove,
-} from "../../../../types";
-import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare";
-import objectCamelToSnake from "../../../utils/objectCamelToSnake";
+} from "../../../../types/index.js";
+import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare.js";
+import objectCamelToSnake from "../../../utils/objectCamelToSnake.js";
 import { Knex } from "knex";
-import updateOneTimeOnlyMarkers from "./helpers";
+import updateOneTimeOnlyMarkers from "./helpers/index.js";
 
 type makeMoveParams = {
   db: Knex;

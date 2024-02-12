@@ -1,3 +1,3 @@
-import GameApiHandler from "./GameApiHandler";
+import GameApiHandler from "./GameApiHandler.js";
 
 export default GameApiHandler;

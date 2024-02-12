@@ -3,7 +3,7 @@ import {
   PieceLocations,
   PossibleMove,
   PossibleMovesAssignedToPieces,
-} from "../../../types";
+} from "../../../types/index.js";
 
 const chooseAiMove = (
   pieceLocations: PieceLocations,

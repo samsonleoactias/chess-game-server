@@ -3,9 +3,9 @@ import {
   Piece,
   PieceLocations,
   PossibleMove,
-} from "../../../../../types";
-import checkIfSquareIsOccupiedByHumanPiece from "../checkIfSquareIsOccupiedByHumanPiece";
-import determineIfAnyPossibleMovesCreateCheckOnHuman from "../determineIfAnyPossibleMovesCreateCheckOnHuman";
+} from "../../../../../types/index.js";
+import checkIfSquareIsOccupiedByHumanPiece from "../checkIfSquareIsOccupiedByHumanPiece.js";
+import determineIfAnyPossibleMovesCreateCheckOnHuman from "../determineIfAnyPossibleMovesCreateCheckOnHuman.js";
 
 const calculateHumanQueenPossibleMoves = (
   row: number,

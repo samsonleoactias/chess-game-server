@@ -1,18 +1,9 @@
 import { Knex } from "knex";
-import { first } from "lodash";
-import dbResultToPieceLocations from "./utils/dbMaps/dbResultToPieceLocations";
-import {
-  Game,
-  GameOutcome,
-  Outcome,
-  PieceLocations,
-  PlayerType,
-  PossibleMove,
-  PossibleMovesAssignedToPieces,
-} from "../types";
-import dbResultToGame from "./utils/dbMaps/dbResultToGame";
-import dbResultToGameOutcome from "./utils/dbMaps/dbResultToGameOutcome";
-import CalculatePossibleMovesController from "./CalculatePossibleMovesController/CalculatePossibleMovesController";
+import lodash from "lodash";
+import dbResultToPieceLocations from "./utils/dbMaps/dbResultToPieceLocations.js";
+import { Game, GameOutcome, PieceLocations } from "../types/index.js";
+import dbResultToGame from "./utils/dbMaps/dbResultToGame.js";
+import dbResultToGameOutcome from "./utils/dbMaps/dbResultToGameOutcome.js";
 
 type GetGameControllerParams = {
   db: Knex;
@@ -25,7 +16,7 @@ const GetGameController = async (
 ): Promise<[PieceLocations, Game, GameOutcome]> => {
   const { db, humanPlayerId } = params;
 
-  const gameFromDb: any = first(
+  const gameFromDb: any = lodash.first(
     await db("pieceLocations")
       .join("piece_location", "game.game_id", "=", "piece_location.game_id")
       .join("game_outcome", "game.game_id", "=", "game_outcome.game_id")

@@ -3,9 +3,9 @@ import {
   Piece,
   PieceLocations,
   OneTimeOnlyMoveFlags,
-} from "../../../../../types";
-import checkIfSquareIsOccupiedByAiPiece from "../checkIfSquareIsOccupiedByAiPiece";
-import determineIfAnyPossibleMovesCreateCheckOnAi from "../determineIfAnyPossibleMovesCreateCheckOnAi";
+} from "../../../../../types/index.js";
+import checkIfSquareIsOccupiedByAiPiece from "../checkIfSquareIsOccupiedByAiPiece.js";
+import determineIfAnyPossibleMovesCreateCheckOnAi from "../determineIfAnyPossibleMovesCreateCheckOnAi.js";
 
 const calculateAiKingPossibleMoves = (
   row: number,

@@ -1,4 +1,4 @@
-import { Piece } from "../../../../types";
+import { Piece } from "../../../../types/index.js";
 
 const isHumanPiece = (piece: Piece): boolean => {
   // TODO more rigid check

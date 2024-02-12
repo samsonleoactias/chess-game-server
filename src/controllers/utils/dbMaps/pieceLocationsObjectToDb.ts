@@ -1,4 +1,4 @@
-import { PieceLocations } from "../../../types";
+import { PieceLocations } from "../../../types/index.js";
 
 const pieceLocationsObjectToDb = (pieceLocations: PieceLocations): Object => {
   return {

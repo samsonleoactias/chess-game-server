@@ -1,8 +1,8 @@
-import CalculatePossibleMovesController from "../controllers/CalculatePossibleMovesController/CalculatePossibleMovesController";
-import DoTurnController from "../controllers/DoTurnController";
-import GetGameController from "../controllers/GetGameController";
-import NewGameController from "../controllers/NewGameController";
-import db from "../db/postgresConnection";
+import CalculatePossibleMovesController from "../controllers/CalculatePossibleMovesController/CalculatePossibleMovesController.js";
+import DoTurnController from "../controllers/DoTurnController/DoTurnController.js";
+import GetGameController from "../controllers/GetGameController.js";
+import NewGameController from "../controllers/NewGameController/NewGameController.js";
+import db from "../db/postgresConnection.js";
 import {
   Color,
   Game,
@@ -13,7 +13,7 @@ import {
   PlayerType,
   PossibleMove,
   PossibleMovesAssignedToPieces,
-} from "../types";
+} from "../types/index.js";
 
 const resolvers = {
   Mutation: {
@@ -48,6 +48,7 @@ const resolvers = {
         aiWinner: false,
       };
     },
+    // TODO fix input
     doTurn: async (
       parent: null,
       args: { humanPlayerId: string; piece: Piece; move: PossibleMove },

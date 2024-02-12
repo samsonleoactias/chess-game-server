@@ -1,4 +1,4 @@
-import camelToSnake from "./camelToSnake";
+import camelToSnake from "./camelToSnake.js";
 
 const objectCamelToSnake = (object: Object): Object => {
   const newObject: Object = {};

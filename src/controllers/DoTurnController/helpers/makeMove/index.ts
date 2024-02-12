@@ -1,3 +1,3 @@
-import makeMove from "./makeMove";
+import makeMove from "./makeMove.js";
 
 export default makeMove;

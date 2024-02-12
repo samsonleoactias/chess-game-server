@@ -1,4 +1,4 @@
-import first from "lodash/first";
+import lodash from "lodash";
 
 import {
   Color,
@@ -8,11 +8,11 @@ import {
   PieceLocations,
   PossibleMove,
   PossibleMovesAssignedToPieces,
-} from "../../types";
-import makeMove from "./helpers/makeMove";
-import calculateAiPossibleMoves from "../CalculatePossibleMovesController/helpers/possibleMoves/calculateAiPossibleMoves";
-import chooseAiMove from "./helpers";
-import calculateHumanPossibleMoves from "../CalculatePossibleMovesController/helpers/possibleMoves/calculateHumanPossibleMoves";
+} from "../../types/index.js";
+import makeMove from "./helpers/makeMove/index.js";
+import calculateAiPossibleMoves from "../CalculatePossibleMovesController/helpers/possibleMoves/calculateAiPossibleMoves.js";
+import chooseAiMove from "./helpers/index.js";
+import calculateHumanPossibleMoves from "../CalculatePossibleMovesController/helpers/possibleMoves/calculateHumanPossibleMoves.js";
 import { Knex } from "knex";
 
 type DoTurnControllerParams = {
@@ -29,21 +29,21 @@ const DoTurnController = async (
 > => {
   const { db, humanMove, piece, humanPlayerId } = params;
 
-  const game = first(
+  const game = lodash.first(
     await db
       .where({ human_player_id: humanPlayerId })
       .select("id")
       .from<Game>("games")
   );
 
-  const pieceLocations: PieceLocations = first(
+  const pieceLocations: PieceLocations = lodash.first(
     await db
       .where({ game_id: game.gameId })
       .select()
       .from<PieceLocations>("piece_locations")
   );
 
-  const oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags = first(
+  const oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags = lodash.first(
     await db
       .where({ game_id: game.gameId })
       .select()

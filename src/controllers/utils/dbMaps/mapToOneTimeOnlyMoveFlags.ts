@@ -1,4 +1,4 @@
-import { OneTimeOnlyMoveFlags } from "../../../types";
+import { OneTimeOnlyMoveFlags } from "../../../types/index.js";
 
 const mapToOneTimeOnlyMoveFlags = (object: Object): OneTimeOnlyMoveFlags => {
   const oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags = {

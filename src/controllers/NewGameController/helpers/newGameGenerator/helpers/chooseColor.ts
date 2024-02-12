@@ -1,4 +1,4 @@
-import { Color } from "../../../../../types";
+import { Color } from "../../../../../types/index.js";
 
 const chooseColor = (): Color => {
   const colors = [Color.BLACK, Color.WHITE];

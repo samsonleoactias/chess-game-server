@@ -1,7 +1,9 @@
-import knex from "knex";
+import pkg from "knex";
 import * as dotenv from "dotenv";
 
 dotenv.config({ path: ".env" });
+
+const { knex } = pkg;
 
 const db = knex({
   client: "pg",

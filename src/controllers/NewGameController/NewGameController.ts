@@ -1,12 +1,6 @@
 import { Knex } from "knex";
-import PieceLocations from "../../types/PieceLocations";
-import newGameGenerator from "./helpers/newGameGenerator";
-import {
-  Color,
-  Game,
-  GameOutcome,
-  PossibleMovesAssignedToPieces,
-} from "../../types";
+import { PieceLocations, Color } from "../../types/index.js";
+import newGameGenerator from "./helpers/newGameGenerator/newGameGenerator.js";
 
 type NewGameControllerParams = {
   db: Knex;

@@ -1,3 +1,3 @@
-import DoTurnController from "./DoTurnController";
+import DoTurnController from "./DoTurnController.js";
 
 export default DoTurnController;

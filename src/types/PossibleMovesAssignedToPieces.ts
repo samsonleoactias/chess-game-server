@@ -1,4 +1,4 @@
-import PossibleMove from "./PossibleMove";
+import PossibleMove from "./PossibleMove.js";
 
 type PossibleMovesAssignedToPieces = {
   pawnA?: PossibleMove[];

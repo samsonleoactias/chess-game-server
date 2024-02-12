@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "compile": "tsc",
-    "start": "npm run compile && node ./dist/index.js",
+    "start": "npm run compile && node ./dist/App.js",
     "test": "jest"
   },
   "repository": {
@@ -29,7 +29,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "graphql": "^16.8.1",
-    "knex": "^2.4.0",
+    "knex": "^3.0.1",
     "lodash": "^4.17.21",
     "pg": "^8.8.0",
     "react": "^18.2.0",

@@ -3,7 +3,7 @@ import {
   Color,
   OneTimeOnlyMoveFlags,
   PieceLocations,
-} from "../../../../../types";
+} from "../../../../../types/index.js";
 
 type UpdateOneTimeOnlyMarkersParams = {
   db: Knex;

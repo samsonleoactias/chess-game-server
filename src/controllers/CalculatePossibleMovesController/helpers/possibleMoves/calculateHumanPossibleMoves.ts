@@ -2,14 +2,14 @@ import {
   OneTimeOnlyMoveFlags,
   Piece,
   PossibleMovesAssignedToPieces,
-} from "../../../../types";
-import PieceLocations from "../../../../types/PieceLocations";
-import calculateHumanBishopPossibleMoves from "./bishop/calculateHumanBishopPossibleMoves";
-import calculateHumanKingPossibleMoves from "./king/calculateHumanKingPossibleMoves";
-import calculateHumanKnightPossibleMoves from "./knight/calculateHumanKnightPossibleMoves";
-import calculateHumanPawnPossibleMoves from "./pawn/calculateHumanPawnPossibleMoves";
-import calculateHumanQueenPossibleMoves from "./queen/calculateHumanQueenPossibleMoves";
-import calculateHumanRookPossibleMoves from "./rook/calculateHumanRookPossibleMoves";
+  PieceLocations,
+} from "../../../../types/index.js";
+import calculateHumanBishopPossibleMoves from "./bishop/calculateHumanBishopPossibleMoves.js";
+import calculateHumanKingPossibleMoves from "./king/calculateHumanKingPossibleMoves.js";
+import calculateHumanKnightPossibleMoves from "./knight/calculateHumanKnightPossibleMoves.js";
+import calculateHumanPawnPossibleMoves from "./pawn/calculateHumanPawnPossibleMoves.js";
+import calculateHumanQueenPossibleMoves from "./queen/calculateHumanQueenPossibleMoves.js";
+import calculateHumanRookPossibleMoves from "./rook/calculateHumanRookPossibleMoves.js";
 
 const calculateHumanPossibleMoves = (
   pieceLocations: PieceLocations,

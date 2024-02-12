@@ -1,4 +1,4 @@
-import { Game } from "../../../types";
+import { Game } from "../../../types/index.js";
 
 const dbResultToGame = (dbResult: any): Game => {
   const game: Game = {

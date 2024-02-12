@@ -1,4 +1,4 @@
-import { Piece, PieceLocations } from "../../types";
+import { Piece, PieceLocations } from "../../types/index.js";
 
 const findWhatPieceIsOnASquare = (
   pieceLocations: PieceLocations,

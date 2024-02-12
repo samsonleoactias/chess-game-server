@@ -1,3 +1,3 @@
-import chooseColor from "./chooseColor";
+import chooseColor from "./chooseColor.js";
 
 export default chooseColor;

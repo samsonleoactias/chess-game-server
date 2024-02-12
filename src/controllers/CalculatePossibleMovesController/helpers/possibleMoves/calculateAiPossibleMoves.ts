@@ -2,14 +2,14 @@ import {
   OneTimeOnlyMoveFlags,
   Piece,
   PossibleMovesAssignedToPieces,
-} from "../../../../types";
-import PieceLocations from "../../../../types/PieceLocations";
-import calculateAiBishopPossibleMoves from "./bishop/calculateAiBishopPossibleMoves";
-import calculateAiKingPossibleMoves from "./king/calculateAiKingPossibleMoves";
-import calculateAiKnightPossibleMoves from "./knight/calculateAiKnightPossibleMoves";
-import calculateAiPawnPossibleMoves from "./pawn/calculateAiPawnPossibleMoves";
-import calculateAiQueenPossibleMoves from "./queen/calculateAiQueenPossibleMoves";
-import calculateAiRookPossibleMoves from "./rook/calculateAiRookPossibleMoves";
+  PieceLocations,
+} from "../../../../types/index.js";
+import calculateAiBishopPossibleMoves from "./bishop/calculateAiBishopPossibleMoves.js";
+import calculateAiKingPossibleMoves from "./king/calculateAiKingPossibleMoves.js";
+import calculateAiKnightPossibleMoves from "./knight/calculateAiKnightPossibleMoves.js";
+import calculateAiPawnPossibleMoves from "./pawn/calculateAiPawnPossibleMoves.js";
+import calculateAiQueenPossibleMoves from "./queen/calculateAiQueenPossibleMoves.js";
+import calculateAiRookPossibleMoves from "./rook/calculateAiRookPossibleMoves.js";
 
 const calculateAiPossibleMoves = (
   pieceLocations: PieceLocations,

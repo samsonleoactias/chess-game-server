@@ -1,5 +1,9 @@
-import { Piece, PieceLocations, PossibleMove } from "../../../../types";
-import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare";
+import {
+  Piece,
+  PieceLocations,
+  PossibleMove,
+} from "../../../../types/index.js";
+import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare.js";
 
 const movePiece = (
   piece: Piece,

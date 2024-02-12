@@ -1,6 +1,6 @@
-import { PieceLocations } from "../../../../types";
-import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare";
-import isHumanPiece from "./isHumanPiece";
+import { PieceLocations } from "../../../../types/index.js";
+import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare.js";
+import isHumanPiece from "./isHumanPiece.js";
 
 const checkIfSquareIsOccupiedByHumanPiece = (
   pieceLocations: PieceLocations,

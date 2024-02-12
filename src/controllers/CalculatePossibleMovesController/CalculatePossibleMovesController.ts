@@ -1,11 +1,12 @@
-import PieceLocations from "../../types/PieceLocations";
-import PlayerType from "../../types/PlayerType";
-import objectCamelToSnake from "../utils/objectCamelToSnake";
-import mapToOneTimeOnlyMoveFlags from "../utils/dbMaps/mapToOneTimeOnlyMoveFlags";
-import { OneTimeOnlyMoveFlags } from "../../types";
-import calculateHumanPossibleMoves from "./helpers/possibleMoves/calculateHumanPossibleMoves";
+import mapToOneTimeOnlyMoveFlags from "../utils/dbMaps/mapToOneTimeOnlyMoveFlags.js";
+import {
+  OneTimeOnlyMoveFlags,
+  PieceLocations,
+  PlayerType,
+} from "../../types/index.js";
+import calculateHumanPossibleMoves from "./helpers/possibleMoves/calculateHumanPossibleMoves.js";
 import { Knex } from "knex";
-import first from "lodash/first";
+import lodash from "lodash";
 
 type CalculatePossibleMovesControllerParams = {
   db: Knex;
@@ -20,7 +21,7 @@ const CalculatePossibleMovesController = async (
   const { db, pieceLocations, gameId, playerType } = params;
 
   const oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags = mapToOneTimeOnlyMoveFlags(
-    first(await db("one_time_only_move_flags").where("game_id", gameId))
+    lodash.first(await db("one_time_only_move_flags").where("game_id", gameId))
   );
 
   // TODO do we need player type, is this always human when called

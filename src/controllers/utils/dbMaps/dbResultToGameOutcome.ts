@@ -1,4 +1,4 @@
-import { GameOutcome } from "../../../types";
+import { GameOutcome } from "../../../types/index.js";
 
 const dbResultToGameOutcome = (dbResult: any): GameOutcome => {
   const gameOutcome: GameOutcome = {

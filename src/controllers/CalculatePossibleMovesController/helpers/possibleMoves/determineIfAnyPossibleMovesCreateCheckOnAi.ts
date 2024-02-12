@@ -3,15 +3,15 @@ import {
   Piece,
   PieceLocations,
   PossibleMove,
-} from "../../../../types";
-import calculateHumanBishopPossibleMoves from "./bishop/calculateHumanBishopPossibleMoves";
-import calculateHumanKingPossibleMoves from "./king/calculateHumanKingPossibleMoves";
-import calculateHumanKnightPossibleMoves from "./knight/calculateHumanKnightPossibleMoves";
-import calculateHumanPawnPossibleMoves from "./pawn/calculateAiPawnPossibleMoves";
-import calculateHumanQueenPossibleMoves from "./queen/calculateHumanQueenPossibleMoves";
-import calculateHumanRookPossibleMoves from "./rook/calculateHumanRookPossibleMoves";
-import checkIfAMoveCreatesCheckOnAi from "./checkIfAMoveCreatesCheckOnAi";
-import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare";
+} from "../../../../types/index.js";
+import calculateHumanBishopPossibleMoves from "./bishop/calculateHumanBishopPossibleMoves.js";
+import calculateHumanKingPossibleMoves from "./king/calculateHumanKingPossibleMoves.js";
+import calculateHumanKnightPossibleMoves from "./knight/calculateHumanKnightPossibleMoves.js";
+import calculateHumanPawnPossibleMoves from "./pawn/calculateAiPawnPossibleMoves.js";
+import calculateHumanQueenPossibleMoves from "./queen/calculateHumanQueenPossibleMoves.js";
+import calculateHumanRookPossibleMoves from "./rook/calculateHumanRookPossibleMoves.js";
+import checkIfAMoveCreatesCheckOnAi from "./checkIfAMoveCreatesCheckOnAi.js";
+import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare.js";
 
 const determineIfAnyPossibleMovesCreateCheckOnAi = (
   pieceLocations: PieceLocations,

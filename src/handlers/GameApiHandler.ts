@@ -1,6 +1,6 @@
 import { ApolloServer } from "@apollo/server";
-import schema from "../graphql/schema";
-import resolvers from "../graphql/resolvers";
+import schema from "../graphql/schema.js";
+import resolvers from "../graphql/resolvers.js";
 
 const GameApiHandler = () => {
   const server = new ApolloServer({

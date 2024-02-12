@@ -1,8 +1,7 @@
-import chooseColor from "./helpers";
-import { Color } from "../../../../types";
-import PieceLocations from "../../../../types/PieceLocations";
-import pieceLocationsObjectToDb from "../../../utils/dbMaps/pieceLocationsObjectToDb";
-import first from "lodash/first";
+import chooseColor from "./helpers/chooseColor.js";
+import { Color, PieceLocations } from "../../../../types/index.js";
+import pieceLocationsObjectToDb from "../../../utils/dbMaps/pieceLocationsObjectToDb.js";
+import lodash from "lodash";
 import { Knex } from "knex";
 
 type NewGameGeneratorParams = {
@@ -20,7 +19,7 @@ const newGameGenerator = async (
   const aiColor = humanColor === Color.WHITE ? Color.BLACK : Color.WHITE;
 
   try {
-    const gameIdDbResult: any = first(
+    const gameIdDbResult: any = lodash.first(
       await db("game").insert(
         {
           human_player_id: humanPlayerId,
