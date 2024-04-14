@@ -43,7 +43,7 @@ const resolvers = {
       return {
         pieceLocations,
         possibleMoves,
-        humanColor,
+        humanColor: humanColor === Color.WHITE ? "WHITE" : "BLACK",
         humanWinner: false,
         aiWinner: false,
       };
@@ -51,10 +51,19 @@ const resolvers = {
     // TODO fix input
     doTurn: async (
       parent: null,
-      args: { humanPlayerId: string; piece: Piece; move: PossibleMove },
+      args: { humanPlayerId: string; piece: Piece; move: string },
       contextValue: null,
       info: null
     ) => {
+      let parsedMove: PossibleMove;
+
+      try {
+        parsedMove = JSON.parse(args.move);
+      } catch (error) {
+        console.log("could not parse move"); // TODO: better error
+        return;
+      }
+
       const [
         humanColor,
         pieceLocations,
@@ -71,7 +80,7 @@ const resolvers = {
         db,
         humanPlayerId: args.humanPlayerId,
         piece: args.piece,
-        humanMove: args.move,
+        humanMove: parsedMove,
       });
 
       return {
@@ -90,31 +99,41 @@ const resolvers = {
       contextValue: null,
       info: null
     ) {
-      const [pieceLocations, game, gameOutcome]: [
-        PieceLocations,
-        Game,
-        GameOutcome
-      ] = await GetGameController({ db, humanPlayerId: args.humanPlayerId });
+      try {
+        const [pieceLocations, game, gameOutcome]: [
+          PieceLocations,
+          Game,
+          GameOutcome
+        ] = await GetGameController({ db, humanPlayerId: args.humanPlayerId });
 
-      let possibleMoves: PossibleMovesAssignedToPieces;
+        let possibleMoves: PossibleMovesAssignedToPieces;
 
-      if (gameOutcome.outcome === Outcome.IN_PROGRESS) {
-        possibleMoves = await CalculatePossibleMovesController({
-          db,
+        if (gameOutcome.outcome === Outcome.IN_PROGRESS) {
+          possibleMoves = await CalculatePossibleMovesController({
+            db,
+            pieceLocations,
+            gameId: game.gameId,
+            playerType: PlayerType.HUMAN,
+          });
+        } else {
+          possibleMoves = {};
+        }
+        return {
           pieceLocations,
-          gameId: game.gameId,
-          playerType: PlayerType.HUMAN,
-        });
-      } else {
-        possibleMoves = {};
+          possibleMoves,
+          humanWinner: gameOutcome.outcome === Outcome.HUMAN_WINS,
+          aiWinner: gameOutcome.outcome === Outcome.AI_WINS,
+          humanColor: game.humanPlayerColor,
+        };
+      } catch (error) {
+        return {
+          pieceLocations: null,
+          possibleMovies: null,
+          humanWinner: null,
+          aiWinner: null,
+          humanColor: null,
+        };
       }
-      return {
-        pieceLocations,
-        possibleMoves,
-        humanWinner: gameOutcome.outcome === Outcome.HUMAN_WINS,
-        aiWinner: gameOutcome.outcome === Outcome.AI_WINS,
-        humanColor: game.humanPlayerColor,
-      };
     },
   },
 };

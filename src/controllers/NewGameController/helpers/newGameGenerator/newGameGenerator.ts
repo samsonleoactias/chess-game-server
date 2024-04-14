@@ -23,8 +23,8 @@ const newGameGenerator = async (
       await db("game").insert(
         {
           human_player_id: humanPlayerId,
-          human_player_color: humanColor,
-          ai_player_color: aiColor,
+          human_player_color: humanColor === Color.WHITE ? "white" : "black",
+          ai_player_color: aiColor === Color.WHITE ? "white" : "black",
         },
         ["game_id"]
       )

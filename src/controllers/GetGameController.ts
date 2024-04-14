@@ -17,8 +17,8 @@ const GetGameController = async (
   const { db, humanPlayerId } = params;
 
   const gameFromDb: any = lodash.first(
-    await db("pieceLocations")
-      .join("piece_location", "game.game_id", "=", "piece_location.game_id")
+    await db("game")
+      .join("piece_locations", "game.game_id", "=", "piece_locations.game_id")
       .join("game_outcome", "game.game_id", "=", "game_outcome.game_id")
       .where({
         human_player_id: humanPlayerId,
@@ -27,7 +27,7 @@ const GetGameController = async (
   );
 
   // TODO do we need a check that all data is present?
-  if (gameFromDb.game_id) {
+  if (gameFromDb?.game_id) {
     const pieceLocations: PieceLocations = dbResultToPieceLocations(gameFromDb);
 
     const game: Game = dbResultToGame(gameFromDb);
