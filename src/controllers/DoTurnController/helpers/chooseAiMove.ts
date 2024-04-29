@@ -3,6 +3,7 @@ import {
   PieceLocations,
   PossibleMove,
   PossibleMovesAssignedToPieces,
+  Piece,
 } from "../../../types/index.js";
 
 const chooseAiMove = (
@@ -11,22 +12,22 @@ const chooseAiMove = (
   possibleMovesAssignedToPieces: PossibleMovesAssignedToPieces
 ): { piece: string; move: PossibleMove } => {
   var pieceNames = [
-    "pawnA",
-    "pawnB",
-    "pawnC",
-    "pawnD",
-    "pawnE",
-    "pawnF",
-    "pawnG",
-    "pawnH",
-    "rookA",
-    "rookB",
-    "knightA",
-    "knightB",
-    "bishopA",
-    "bishopB",
-    "queen",
-    "king",
+    Piece.AiPawnA,
+    Piece.AiPawnB,
+    Piece.AiPawnC,
+    Piece.AiPawnD,
+    Piece.AiPawnE,
+    Piece.AiPawnF,
+    Piece.AiPawnG,
+    Piece.AiPawnH,
+    Piece.AiRookA,
+    Piece.AiRookB,
+    Piece.AiKnightA,
+    Piece.AiKnightB,
+    Piece.AiBishopA,
+    Piece.AiBishopB,
+    Piece.AiQueen,
+    Piece.AiKing,
   ];
 
   var pickedPiece = pieceNames[Math.floor(Math.random() * pieceNames.length)];

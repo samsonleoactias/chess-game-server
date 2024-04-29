@@ -1,4 +1,4 @@
-import CalculatePossibleMovesController from "../controllers/CalculatePossibleMovesController/CalculatePossibleMovesController.js";
+import CalculateHumanPossibleMovesController from "../controllers/CalculatePossibleMovesController/CalculateHumanPossibleMovesController.js";
 import DoTurnController from "../controllers/DoTurnController/DoTurnController.js";
 import GetGameController from "../controllers/GetGameController.js";
 import NewGameController from "../controllers/NewGameController/NewGameController.js";
@@ -33,7 +33,7 @@ const resolvers = {
       });
 
       const possibleMoves: PossibleMovesAssignedToPieces =
-        await CalculatePossibleMovesController({
+        await CalculateHumanPossibleMovesController({
           db,
           gameId,
           pieceLocations,
@@ -109,7 +109,7 @@ const resolvers = {
         let possibleMoves: PossibleMovesAssignedToPieces;
 
         if (gameOutcome.outcome === Outcome.IN_PROGRESS) {
-          possibleMoves = await CalculatePossibleMovesController({
+          possibleMoves = await CalculateHumanPossibleMovesController({
             db,
             pieceLocations,
             gameId: game.gameId,

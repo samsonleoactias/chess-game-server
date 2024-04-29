@@ -18,7 +18,7 @@ const calculateHumanPossibleMoves = (
   const humanPossibleMoves: PossibleMovesAssignedToPieces = {};
 
   if (pieceLocations.humanPawnA.captured === false) {
-    humanPossibleMoves.pawnA = calculateHumanPawnPossibleMoves(
+    humanPossibleMoves.humanPawnA = calculateHumanPawnPossibleMoves(
       pieceLocations.humanPawnA.row,
       pieceLocations.humanPawnA.column,
       pieceLocations,
@@ -30,7 +30,7 @@ const calculateHumanPossibleMoves = (
   }
 
   if (pieceLocations.humanPawnB.captured === false) {
-    humanPossibleMoves.pawnB = calculateHumanPawnPossibleMoves(
+    humanPossibleMoves.humanPawnB = calculateHumanPawnPossibleMoves(
       pieceLocations.humanPawnB.row,
       pieceLocations.humanPawnB.column,
       pieceLocations,
@@ -42,7 +42,7 @@ const calculateHumanPossibleMoves = (
   }
 
   if (pieceLocations.humanPawnC.captured === false) {
-    humanPossibleMoves.pawnC = calculateHumanPawnPossibleMoves(
+    humanPossibleMoves.humanPawnC = calculateHumanPawnPossibleMoves(
       pieceLocations.humanPawnC.row,
       pieceLocations.humanPawnC.column,
       pieceLocations,
@@ -54,7 +54,7 @@ const calculateHumanPossibleMoves = (
   }
 
   if (pieceLocations.humanPawnD.captured === false) {
-    humanPossibleMoves.pawnD = calculateHumanPawnPossibleMoves(
+    humanPossibleMoves.humanPawnD = calculateHumanPawnPossibleMoves(
       pieceLocations.humanPawnD.row,
       pieceLocations.humanPawnD.column,
       pieceLocations,
@@ -66,7 +66,7 @@ const calculateHumanPossibleMoves = (
   }
 
   if (pieceLocations.humanPawnE.captured === false) {
-    humanPossibleMoves.pawnE = calculateHumanPawnPossibleMoves(
+    humanPossibleMoves.humanPawnE = calculateHumanPawnPossibleMoves(
       pieceLocations.humanPawnE.row,
       pieceLocations.humanPawnE.column,
       pieceLocations,
@@ -78,7 +78,7 @@ const calculateHumanPossibleMoves = (
   }
 
   if (pieceLocations.humanPawnF.captured === false) {
-    humanPossibleMoves.pawnF = calculateHumanPawnPossibleMoves(
+    humanPossibleMoves.humanPawnF = calculateHumanPawnPossibleMoves(
       pieceLocations.humanPawnF.row,
       pieceLocations.humanPawnF.column,
       pieceLocations,
@@ -90,7 +90,7 @@ const calculateHumanPossibleMoves = (
   }
 
   if (pieceLocations.humanPawnG.captured === false) {
-    humanPossibleMoves.pawnG = calculateHumanPawnPossibleMoves(
+    humanPossibleMoves.humanPawnG = calculateHumanPawnPossibleMoves(
       pieceLocations.humanPawnG.row,
       pieceLocations.humanPawnG.column,
       pieceLocations,
@@ -102,7 +102,7 @@ const calculateHumanPossibleMoves = (
   }
 
   if (pieceLocations.humanPawnH.captured === false) {
-    humanPossibleMoves.pawnH = calculateHumanPawnPossibleMoves(
+    humanPossibleMoves.humanPawnH = calculateHumanPawnPossibleMoves(
       pieceLocations.humanPawnH.row,
       pieceLocations.humanPawnH.column,
       pieceLocations,
@@ -114,7 +114,7 @@ const calculateHumanPossibleMoves = (
   }
 
   if (pieceLocations.humanRookA.captured === false) {
-    humanPossibleMoves.rookA = calculateHumanRookPossibleMoves(
+    humanPossibleMoves.humanRookA = calculateHumanRookPossibleMoves(
       pieceLocations.humanRookA.row,
       pieceLocations.humanRookA.column,
       pieceLocations,
@@ -125,7 +125,7 @@ const calculateHumanPossibleMoves = (
   }
 
   if (pieceLocations.humanRookB.captured === false) {
-    humanPossibleMoves.rookB = calculateHumanRookPossibleMoves(
+    humanPossibleMoves.humanRookB = calculateHumanRookPossibleMoves(
       pieceLocations.humanRookB.row,
       pieceLocations.humanRookB.column,
       pieceLocations,
@@ -136,7 +136,7 @@ const calculateHumanPossibleMoves = (
   }
 
   if (pieceLocations.humanKnightA.captured === false) {
-    humanPossibleMoves.knightA = calculateHumanKnightPossibleMoves(
+    humanPossibleMoves.humanKnightA = calculateHumanKnightPossibleMoves(
       pieceLocations.humanKnightA.row,
       pieceLocations.humanKnightA.column,
       pieceLocations,
@@ -147,7 +147,7 @@ const calculateHumanPossibleMoves = (
   }
 
   if (pieceLocations.humanKnightB.captured === false) {
-    humanPossibleMoves.knightB = calculateHumanKnightPossibleMoves(
+    humanPossibleMoves.humanKnightB = calculateHumanKnightPossibleMoves(
       pieceLocations.humanKnightB.row,
       pieceLocations.humanKnightB.column,
       pieceLocations,
@@ -158,7 +158,7 @@ const calculateHumanPossibleMoves = (
   }
 
   if (pieceLocations.humanBishopA.captured === false) {
-    humanPossibleMoves.bishopA = calculateHumanBishopPossibleMoves(
+    humanPossibleMoves.humanBishopA = calculateHumanBishopPossibleMoves(
       pieceLocations.humanBishopA.row,
       pieceLocations.humanBishopA.column,
       pieceLocations,
@@ -169,7 +169,7 @@ const calculateHumanPossibleMoves = (
   }
 
   if (pieceLocations.humanBishopB.captured === false) {
-    humanPossibleMoves.bishopB = calculateHumanBishopPossibleMoves(
+    humanPossibleMoves.humanBishopB = calculateHumanBishopPossibleMoves(
       pieceLocations.humanBishopB.row,
       pieceLocations.humanBishopB.column,
       pieceLocations,
@@ -180,7 +180,7 @@ const calculateHumanPossibleMoves = (
   }
 
   if (pieceLocations.humanQueen.captured === false) {
-    humanPossibleMoves.queen = calculateHumanQueenPossibleMoves(
+    humanPossibleMoves.humanQueen = calculateHumanQueenPossibleMoves(
       pieceLocations.humanQueen.row,
       pieceLocations.humanQueen.column,
       pieceLocations,
@@ -189,7 +189,7 @@ const calculateHumanPossibleMoves = (
     );
   }
 
-  humanPossibleMoves.king = calculateHumanKingPossibleMoves(
+  humanPossibleMoves.humanKing = calculateHumanKingPossibleMoves(
     pieceLocations.humanKing.row,
     pieceLocations.humanKing.column,
     pieceLocations,

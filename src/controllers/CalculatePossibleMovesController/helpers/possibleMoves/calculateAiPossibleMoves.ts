@@ -18,7 +18,7 @@ const calculateAiPossibleMoves = (
   const aiPossibleMoves: PossibleMovesAssignedToPieces = {};
 
   if (pieceLocations.aiPawnA.captured === false) {
-    aiPossibleMoves.pawnA = calculateAiPawnPossibleMoves(
+    aiPossibleMoves.aiPawnA = calculateAiPawnPossibleMoves(
       pieceLocations.aiPawnA.row,
       pieceLocations.aiPawnA.column,
       oneTimeOnlyMoveFlags.aiPawnAInitialMoveEligible,
@@ -30,7 +30,7 @@ const calculateAiPossibleMoves = (
   }
 
   if (pieceLocations.aiPawnB.captured === false) {
-    aiPossibleMoves.pawnB = calculateAiPawnPossibleMoves(
+    aiPossibleMoves.aiPawnB = calculateAiPawnPossibleMoves(
       pieceLocations.aiPawnB.row,
       pieceLocations.aiPawnB.column,
       oneTimeOnlyMoveFlags.aiPawnBInitialMoveEligible,
@@ -42,7 +42,7 @@ const calculateAiPossibleMoves = (
   }
 
   if (pieceLocations.aiPawnC.captured === false) {
-    aiPossibleMoves.pawnC = calculateAiPawnPossibleMoves(
+    aiPossibleMoves.aiPawnC = calculateAiPawnPossibleMoves(
       pieceLocations.aiPawnC.row,
       pieceLocations.aiPawnC.column,
       oneTimeOnlyMoveFlags.aiPawnCInitialMoveEligible,
@@ -54,7 +54,7 @@ const calculateAiPossibleMoves = (
   }
 
   if (pieceLocations.aiPawnD.captured === false) {
-    aiPossibleMoves.pawnD = calculateAiPawnPossibleMoves(
+    aiPossibleMoves.aiPawnD = calculateAiPawnPossibleMoves(
       pieceLocations.aiPawnD.row,
       pieceLocations.aiPawnD.column,
       oneTimeOnlyMoveFlags.aiPawnDInitialMoveEligible,
@@ -66,7 +66,7 @@ const calculateAiPossibleMoves = (
   }
 
   if (pieceLocations.aiPawnE.captured === false) {
-    aiPossibleMoves.pawnE = calculateAiPawnPossibleMoves(
+    aiPossibleMoves.aiPawnE = calculateAiPawnPossibleMoves(
       pieceLocations.aiPawnE.row,
       pieceLocations.aiPawnE.column,
       oneTimeOnlyMoveFlags.aiPawnEInitialMoveEligible,
@@ -78,7 +78,7 @@ const calculateAiPossibleMoves = (
   }
 
   if (pieceLocations.aiPawnF.captured === false) {
-    aiPossibleMoves.pawnF = calculateAiPawnPossibleMoves(
+    aiPossibleMoves.aiPawnF = calculateAiPawnPossibleMoves(
       pieceLocations.aiPawnF.row,
       pieceLocations.aiPawnF.column,
       oneTimeOnlyMoveFlags.aiPawnFInitialMoveEligible,
@@ -90,7 +90,7 @@ const calculateAiPossibleMoves = (
   }
 
   if (pieceLocations.aiPawnG.captured === false) {
-    aiPossibleMoves.pawnG = calculateAiPawnPossibleMoves(
+    aiPossibleMoves.aiPawnG = calculateAiPawnPossibleMoves(
       pieceLocations.aiPawnG.row,
       pieceLocations.aiPawnG.column,
       oneTimeOnlyMoveFlags.aiPawnGInitialMoveEligible,
@@ -102,7 +102,7 @@ const calculateAiPossibleMoves = (
   }
 
   if (pieceLocations.aiPawnH.captured === false) {
-    aiPossibleMoves.pawnH = calculateAiPawnPossibleMoves(
+    aiPossibleMoves.aiPawnH = calculateAiPawnPossibleMoves(
       pieceLocations.aiPawnH.row,
       pieceLocations.aiPawnH.column,
       oneTimeOnlyMoveFlags.aiPawnHInitialMoveEligible,
@@ -114,7 +114,7 @@ const calculateAiPossibleMoves = (
   }
 
   if (pieceLocations.aiRookA.captured === false) {
-    aiPossibleMoves.rookA = calculateAiRookPossibleMoves(
+    aiPossibleMoves.aiRookA = calculateAiRookPossibleMoves(
       pieceLocations.aiRookA.row,
       pieceLocations.aiRookA.column,
       pieceLocations,
@@ -125,7 +125,7 @@ const calculateAiPossibleMoves = (
   }
 
   if (pieceLocations.aiRookB.captured === false) {
-    aiPossibleMoves.rookB = calculateAiRookPossibleMoves(
+    aiPossibleMoves.aiRookB = calculateAiRookPossibleMoves(
       pieceLocations.aiRookB.row,
       pieceLocations.aiRookB.column,
       pieceLocations,
@@ -136,7 +136,7 @@ const calculateAiPossibleMoves = (
   }
 
   if (pieceLocations.aiKnightA.captured === false) {
-    aiPossibleMoves.knightA = calculateAiKnightPossibleMoves(
+    aiPossibleMoves.aiKnightA = calculateAiKnightPossibleMoves(
       pieceLocations.aiKnightA.row,
       pieceLocations.aiKnightA.column,
       pieceLocations,
@@ -147,7 +147,7 @@ const calculateAiPossibleMoves = (
   }
 
   if (pieceLocations.aiKnightB.captured === false) {
-    aiPossibleMoves.knightB = calculateAiKnightPossibleMoves(
+    aiPossibleMoves.aiKnightB = calculateAiKnightPossibleMoves(
       pieceLocations.aiKnightB.row,
       pieceLocations.aiKnightB.column,
       pieceLocations,
@@ -158,7 +158,7 @@ const calculateAiPossibleMoves = (
   }
 
   if (pieceLocations.aiBishopA.captured === false) {
-    aiPossibleMoves.bishopA = calculateAiBishopPossibleMoves(
+    aiPossibleMoves.aiBishopA = calculateAiBishopPossibleMoves(
       pieceLocations.aiBishopA.row,
       pieceLocations.aiBishopA.column,
       pieceLocations,
@@ -169,7 +169,7 @@ const calculateAiPossibleMoves = (
   }
 
   if (pieceLocations.aiBishopB.captured === false) {
-    aiPossibleMoves.bishopB = calculateAiBishopPossibleMoves(
+    aiPossibleMoves.aiBishopB = calculateAiBishopPossibleMoves(
       pieceLocations.aiBishopB.row,
       pieceLocations.aiBishopB.column,
       pieceLocations,
@@ -180,7 +180,7 @@ const calculateAiPossibleMoves = (
   }
 
   if (pieceLocations.aiQueen.captured === false) {
-    aiPossibleMoves.queen = calculateAiQueenPossibleMoves(
+    aiPossibleMoves.aiQueen = calculateAiQueenPossibleMoves(
       pieceLocations.aiQueen.row,
       pieceLocations.aiQueen.column,
       pieceLocations,
@@ -189,7 +189,7 @@ const calculateAiPossibleMoves = (
     );
   }
 
-  aiPossibleMoves.king = calculateAiKingPossibleMoves(
+  aiPossibleMoves.aiKing = calculateAiKingPossibleMoves(
     pieceLocations.aiKing.row,
     pieceLocations.aiKing.column,
     pieceLocations,
