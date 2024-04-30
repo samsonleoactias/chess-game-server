@@ -52,7 +52,6 @@ const DoTurnController = async (
       .select()
       .from<OneTimeOnlyMoveFlags>("one_time_only_move_flags")
   );
-  console.log(oneTimeOnlyMoveFlags);
 
   if (!pieceLocations || !oneTimeOnlyMoveFlags) {
     throw Error("DB error"); // TODO better error
@@ -64,8 +63,6 @@ const DoTurnController = async (
   const finalOneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags = <
     OneTimeOnlyMoveFlags
   >objectSnakeToCamel(oneTimeOnlyMoveFlags);
-
-  console.log("final: " + JSON.stringify(finalOneTimeOnlyMoveFlags));
 
   const pieceLocationsAfterHumanMove: PieceLocations = await makeMove({
     db,

@@ -91,14 +91,6 @@ const resolvers = {
           humanMove: parsedMove,
         });
 
-        console.log({
-          pieceLocations,
-          possibleMoves,
-          humanWinner,
-          aiWinner,
-          humanColor,
-        });
-
         return {
           pieceLocations,
           possibleMoves,
