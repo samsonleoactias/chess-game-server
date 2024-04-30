@@ -26,7 +26,7 @@ const pieceLocationsObjectToDb = (pieceLocations: PieceLocations): Object => {
     human_pawn_h_row: pieceLocations.humanPawnH.row,
     human_pawn_h_column: pieceLocations.humanPawnH.column,
     human_pawn_h_captured: pieceLocations.humanPawnH.captured,
-    human_rook_a_row: pieceLocations.humanRookA.column,
+    human_rook_a_row: pieceLocations.humanRookA.row,
     human_rook_a_column: pieceLocations.humanRookA.column,
     human_rook_a_captured: pieceLocations.humanRookA.captured,
     human_rook_b_row: pieceLocations.humanRookB.row,

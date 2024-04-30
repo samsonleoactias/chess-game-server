@@ -33,7 +33,7 @@ const chooseAiMove = (
   var pickedPiece = pieceNames[Math.floor(Math.random() * pieceNames.length)];
 
   if ((<any>possibleMovesAssignedToPieces)[pickedPiece].length === 0) {
-    chooseAiMove(
+    return chooseAiMove(
       pieceLocations,
       oneTimeOnlyMoveFlags,
       possibleMovesAssignedToPieces

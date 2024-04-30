@@ -33,7 +33,6 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
     humanColor,
   } = params;
 
-  console.log("count");
   var pieceCurrentlyOnSquare: Piece = findWhatPieceIsOnASquare(
     pieceLocations,
     move.location.row,

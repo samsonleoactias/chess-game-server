@@ -15,6 +15,7 @@ import chooseAiMove from "./helpers/index.js";
 import calculateHumanPossibleMoves from "../CalculatePossibleMovesController/helpers/possibleMoves/calculateHumanPossibleMoves.js";
 import { Knex } from "knex";
 import dbResultToPieceLocations from "../utils/dbMaps/dbResultToPieceLocations.js";
+import objectSnakeToCamel from "../utils/objectSnakeToCamel.js";
 
 type DoTurnControllerParams = {
   db: Knex;
@@ -59,39 +60,34 @@ const DoTurnController = async (
   const finalPieceLocations: PieceLocations =
     dbResultToPieceLocations(pieceLocations);
 
+  const finalOneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags = <
+    OneTimeOnlyMoveFlags
+  >objectSnakeToCamel(oneTimeOnlyMoveFlags);
+
   const pieceLocationsAfterHumanMove: PieceLocations = await makeMove({
     db,
     pieceLocations: finalPieceLocations,
     piece,
-    oneTimeOnlyMoveFlags,
+    oneTimeOnlyMoveFlags: finalOneTimeOnlyMoveFlags,
     gameId: game.game_id,
     move: humanMove,
     humanColor: game.humanColor,
   });
 
+  console.log(pieceLocationsAfterHumanMove.humanRookA.row);
+
   const possibleAiMovesAssignedToPieces: PossibleMovesAssignedToPieces =
     calculateAiPossibleMoves(
       pieceLocationsAfterHumanMove,
-      oneTimeOnlyMoveFlags
+      finalOneTimeOnlyMoveFlags
     );
 
   const chosenAiMove: { piece: string; move: PossibleMove } = chooseAiMove(
     pieceLocationsAfterHumanMove,
-    oneTimeOnlyMoveFlags,
+    finalOneTimeOnlyMoveFlags,
     possibleAiMovesAssignedToPieces
   );
-  console.log(
-    JSON.stringify({
-      db,
-      pieceLocations: pieceLocationsAfterHumanMove,
-      gameId: game.game_id,
-      humanColor: game.humanColor,
-      piece: <Piece>chosenAiMove.piece,
-      oneTimeOnlyMoveFlags,
-      move: chosenAiMove.move,
-    })
-  );
-
+  console.log(chosenAiMove);
   // TODO if winning move?
   let pieceLocationsAfterAiMove: PieceLocations = await makeMove({
     db,
@@ -99,11 +95,9 @@ const DoTurnController = async (
     gameId: game.game_id,
     humanColor: game.humanColor,
     piece: <Piece>chosenAiMove.piece,
-    oneTimeOnlyMoveFlags,
+    oneTimeOnlyMoveFlags: finalOneTimeOnlyMoveFlags,
     move: chosenAiMove.move,
   });
-
-  console.log(pieceLocationsAfterAiMove);
 
   if (pieceLocationsAfterAiMove.humanKing.captured === true) {
     // TODO insert losing logic
@@ -113,7 +107,7 @@ const DoTurnController = async (
   const possibleHumanMovesAssignedToPieces: PossibleMovesAssignedToPieces =
     calculateHumanPossibleMoves(
       pieceLocationsAfterAiMove,
-      oneTimeOnlyMoveFlags
+      finalOneTimeOnlyMoveFlags
     );
 
   return [
