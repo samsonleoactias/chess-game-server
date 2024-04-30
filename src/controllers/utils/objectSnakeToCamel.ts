@@ -1,12 +1,13 @@
 import snakeToCamel from "./snakeToCamel.js";
 
-const objectSnakeToCamel = (object: Object): Object => {
-  const newObject: Object = {};
+const objectSnakeToCamel = (object: any): any => {
+  const newObject: any = {};
 
   const keys: string[] = Object.keys(object);
+  const values: string[] = Object.values(object);
 
-  keys.forEach((key): void => {
-    (<any>newObject)[snakeToCamel(key)] = (<any>object)[key];
+  keys.forEach((key, index): void => {
+    newObject[snakeToCamel(key)] = values[index];
   });
 
   return newObject;

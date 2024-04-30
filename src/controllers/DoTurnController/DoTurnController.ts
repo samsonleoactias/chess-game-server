@@ -52,6 +52,7 @@ const DoTurnController = async (
       .select()
       .from<OneTimeOnlyMoveFlags>("one_time_only_move_flags")
   );
+  console.log(oneTimeOnlyMoveFlags);
 
   if (!pieceLocations || !oneTimeOnlyMoveFlags) {
     throw Error("DB error"); // TODO better error
@@ -64,6 +65,8 @@ const DoTurnController = async (
     OneTimeOnlyMoveFlags
   >objectSnakeToCamel(oneTimeOnlyMoveFlags);
 
+  console.log("final: " + JSON.stringify(finalOneTimeOnlyMoveFlags));
+
   const pieceLocationsAfterHumanMove: PieceLocations = await makeMove({
     db,
     pieceLocations: finalPieceLocations,
@@ -73,8 +76,6 @@ const DoTurnController = async (
     move: humanMove,
     humanColor: game.humanColor,
   });
-
-  console.log(pieceLocationsAfterHumanMove.humanRookA.row);
 
   const possibleAiMovesAssignedToPieces: PossibleMovesAssignedToPieces =
     calculateAiPossibleMoves(
@@ -87,7 +88,7 @@ const DoTurnController = async (
     finalOneTimeOnlyMoveFlags,
     possibleAiMovesAssignedToPieces
   );
-  console.log(chosenAiMove);
+
   // TODO if winning move?
   let pieceLocationsAfterAiMove: PieceLocations = await makeMove({
     db,

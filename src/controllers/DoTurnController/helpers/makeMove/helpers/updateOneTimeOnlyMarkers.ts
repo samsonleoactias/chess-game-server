@@ -21,7 +21,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.humanPawnAInitialMoveEligible === true &&
-    pieceLocations.humanPawnA.row <= 6
+    pieceLocations.humanPawnA.row < 6
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -30,7 +30,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.humanPawnBInitialMoveEligible === true &&
-    pieceLocations.humanPawnB.row <= 6
+    pieceLocations.humanPawnB.row < 6
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -39,7 +39,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.humanPawnCInitialMoveEligible === true &&
-    pieceLocations.humanPawnC.row <= 6
+    pieceLocations.humanPawnC.row < 6
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -48,7 +48,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.humanPawnDInitialMoveEligible === true &&
-    pieceLocations.humanPawnD.row <= 6
+    pieceLocations.humanPawnD.row < 6
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -57,7 +57,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.humanPawnEInitialMoveEligible === true &&
-    pieceLocations.humanPawnE.row <= 6
+    pieceLocations.humanPawnE.row < 6
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -66,7 +66,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.humanPawnFInitialMoveEligible === true &&
-    pieceLocations.humanPawnF.row <= 6
+    pieceLocations.humanPawnF.row < 6
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -75,7 +75,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.humanPawnGInitialMoveEligible === true &&
-    pieceLocations.humanPawnG.row <= 6
+    pieceLocations.humanPawnG.row < 6
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -84,7 +84,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.humanPawnHInitialMoveEligible === true &&
-    pieceLocations.humanPawnH.row <= 6
+    pieceLocations.humanPawnH.row < 6
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -165,10 +165,10 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.humanCastleRookAEligible === true &&
-    (pieceLocations.humanKing.row <= 6 ||
+    (pieceLocations.humanKing.row < 6 ||
       pieceLocations.humanKing.column !==
         (humanColor === Color.WHITE ? 4 : 3) ||
-      pieceLocations.humanRookA.row <= 6 ||
+      pieceLocations.humanRookA.row < 6 ||
       pieceLocations.humanRookA.column >= 1 ||
       pieceLocations.humanRookA.captured === true)
   ) {
@@ -179,11 +179,11 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.humanCastleRookBEligible === true &&
-    (pieceLocations.humanKing.row <= 6 ||
+    (pieceLocations.humanKing.row < 6 ||
       pieceLocations.humanKing.column !==
         (humanColor === Color.WHITE ? 4 : 3) ||
-      pieceLocations.humanRookB.row <= 6 ||
-      pieceLocations.humanRookB.column <= 6 ||
+      pieceLocations.humanRookB.row < 6 ||
+      pieceLocations.humanRookB.column < 6 ||
       pieceLocations.humanRookB.captured === true)
   ) {
     await db("one_time_only_move_flags")
@@ -209,7 +209,7 @@ const updateOneTimeOnlyMarkers = async (
     (pieceLocations.aiKing.row >= 1 ||
       pieceLocations.aiKing.column !== (humanColor === Color.BLACK ? 4 : 3) ||
       pieceLocations.aiRookB.row >= 1 ||
-      pieceLocations.aiRookB.column <= 6 ||
+      pieceLocations.aiRookB.column < 6 ||
       pieceLocations.aiRookB.captured === true)
   ) {
     await db("one_time_only_move_flags")
