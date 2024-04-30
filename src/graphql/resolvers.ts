@@ -48,14 +48,21 @@ const resolvers = {
         aiWinner: false,
       };
     },
-    // TODO fix input
     doTurn: async (
       parent: null,
-      args: { humanPlayerId: string; piece: Piece; move: string },
+      args: { humanPlayerId: string; piece: string; move: string },
       contextValue: null,
       info: null
     ) => {
+      let parsedPiece: Piece;
       let parsedMove: PossibleMove;
+
+      try {
+        parsedPiece = args.piece as Piece;
+      } catch (e) {
+        console.log(e); // TODO better error
+        return;
+      }
 
       try {
         parsedMove = JSON.parse(args.move);
@@ -64,32 +71,44 @@ const resolvers = {
         return;
       }
 
-      const [
-        humanColor,
-        pieceLocations,
-        possibleMoves,
-        aiWinner,
-        humanWinner,
-      ]: [
-        Color,
-        PieceLocations,
-        PossibleMovesAssignedToPieces,
-        boolean,
-        boolean
-      ] = await DoTurnController({
-        db,
-        humanPlayerId: args.humanPlayerId,
-        piece: args.piece,
-        humanMove: parsedMove,
-      });
+      try {
+        const [
+          humanColor,
+          pieceLocations,
+          possibleMoves,
+          aiWinner,
+          humanWinner,
+        ]: [
+          Color,
+          PieceLocations,
+          PossibleMovesAssignedToPieces,
+          boolean,
+          boolean
+        ] = await DoTurnController({
+          db,
+          humanPlayerId: args.humanPlayerId,
+          piece: parsedPiece,
+          humanMove: parsedMove,
+        });
 
-      return {
-        pieceLocations,
-        possibleMoves,
-        humanWinner,
-        aiWinner,
-        humanColor,
-      };
+        console.log({
+          pieceLocations,
+          possibleMoves,
+          humanWinner,
+          aiWinner,
+          humanColor,
+        });
+
+        return {
+          pieceLocations,
+          possibleMoves,
+          humanWinner,
+          aiWinner,
+          humanColor,
+        };
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
   Query: {

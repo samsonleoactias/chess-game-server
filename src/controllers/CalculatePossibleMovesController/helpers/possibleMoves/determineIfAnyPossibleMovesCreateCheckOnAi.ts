@@ -19,8 +19,10 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
   possibleMove: PossibleMove,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
 ): boolean => {
+  const theoreticalPieceLocations = JSON.parse(JSON.stringify(pieceLocations));
+
   const pieceOnSquareCurrently: Piece = findWhatPieceIsOnASquare(
-    pieceLocations,
+    theoreticalPieceLocations,
     possibleMove.location.row,
     possibleMove.location.column
   );
@@ -30,25 +32,25 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
   }
 
   if (pieceOnSquareCurrently !== Piece.None) {
-    pieceLocations[pieceOnSquareCurrently].captured = true;
+    theoreticalPieceLocations[pieceOnSquareCurrently].captured = true;
   }
 
-  pieceLocations[movingPiece].row = possibleMove.location.row;
-  pieceLocations[movingPiece].column = possibleMove.location.column;
+  theoreticalPieceLocations[movingPiece].row = possibleMove.location.row;
+  theoreticalPieceLocations[movingPiece].column = possibleMove.location.column;
 
   let isCheck = false;
 
-  if (pieceLocations.humanPawnA.captured === false) {
+  if (theoreticalPieceLocations.humanPawnA.captured === false) {
     calculateHumanPawnPossibleMoves(
-      pieceLocations.humanPawnA.row,
-      pieceLocations.humanPawnA.column,
+      theoreticalPieceLocations.humanPawnA.row,
+      theoreticalPieceLocations.humanPawnA.column,
       oneTimeOnlyMoveFlags.humanPawnAInitialMoveEligible,
-      pieceLocations,
+      theoreticalPieceLocations,
       Piece.HumanPawnA,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -56,17 +58,17 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanPawnB.captured === false) {
+  if (theoreticalPieceLocations.humanPawnB.captured === false) {
     calculateHumanPawnPossibleMoves(
-      pieceLocations.humanPawnB.row,
-      pieceLocations.humanPawnB.column,
+      theoreticalPieceLocations.humanPawnB.row,
+      theoreticalPieceLocations.humanPawnB.column,
       oneTimeOnlyMoveFlags.humanPawnBInitialMoveEligible,
-      pieceLocations,
+      theoreticalPieceLocations,
       Piece.HumanPawnB,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -74,17 +76,17 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanPawnC.captured === false) {
+  if (theoreticalPieceLocations.humanPawnC.captured === false) {
     calculateHumanPawnPossibleMoves(
-      pieceLocations.humanPawnC.row,
-      pieceLocations.humanPawnC.column,
+      theoreticalPieceLocations.humanPawnC.row,
+      theoreticalPieceLocations.humanPawnC.column,
       oneTimeOnlyMoveFlags.humanPawnCInitialMoveEligible,
-      pieceLocations,
+      theoreticalPieceLocations,
       Piece.HumanPawnC,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -92,17 +94,17 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanPawnD.captured === false) {
+  if (theoreticalPieceLocations.humanPawnD.captured === false) {
     calculateHumanPawnPossibleMoves(
-      pieceLocations.humanPawnD.row,
-      pieceLocations.humanPawnD.column,
+      theoreticalPieceLocations.humanPawnD.row,
+      theoreticalPieceLocations.humanPawnD.column,
       oneTimeOnlyMoveFlags.humanPawnDInitialMoveEligible,
-      pieceLocations,
+      theoreticalPieceLocations,
       Piece.HumanPawnD,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -110,17 +112,17 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanPawnE.captured === false) {
+  if (theoreticalPieceLocations.humanPawnE.captured === false) {
     calculateHumanPawnPossibleMoves(
-      pieceLocations.humanPawnE.row,
-      pieceLocations.humanPawnE.column,
+      theoreticalPieceLocations.humanPawnE.row,
+      theoreticalPieceLocations.humanPawnE.column,
       oneTimeOnlyMoveFlags.humanPawnEInitialMoveEligible,
-      pieceLocations,
+      theoreticalPieceLocations,
       Piece.HumanPawnE,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -128,17 +130,17 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanPawnF.captured === false) {
+  if (theoreticalPieceLocations.humanPawnF.captured === false) {
     calculateHumanPawnPossibleMoves(
-      pieceLocations.humanPawnF.row,
-      pieceLocations.humanPawnF.column,
+      theoreticalPieceLocations.humanPawnF.row,
+      theoreticalPieceLocations.humanPawnF.column,
       oneTimeOnlyMoveFlags.humanPawnFInitialMoveEligible,
-      pieceLocations,
+      theoreticalPieceLocations,
       Piece.HumanPawnF,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -146,17 +148,17 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanPawnG.captured === false) {
+  if (theoreticalPieceLocations.humanPawnG.captured === false) {
     calculateHumanPawnPossibleMoves(
-      pieceLocations.humanPawnG.row,
-      pieceLocations.humanPawnG.column,
+      theoreticalPieceLocations.humanPawnG.row,
+      theoreticalPieceLocations.humanPawnG.column,
       oneTimeOnlyMoveFlags.humanPawnGInitialMoveEligible,
-      pieceLocations,
+      theoreticalPieceLocations,
       Piece.HumanPawnG,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -164,17 +166,17 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanPawnH.captured === false) {
+  if (theoreticalPieceLocations.humanPawnH.captured === false) {
     calculateHumanPawnPossibleMoves(
-      pieceLocations.humanPawnH.row,
-      pieceLocations.humanPawnH.column,
+      theoreticalPieceLocations.humanPawnH.row,
+      theoreticalPieceLocations.humanPawnH.column,
       oneTimeOnlyMoveFlags.humanPawnHInitialMoveEligible,
-      pieceLocations,
+      theoreticalPieceLocations,
       Piece.HumanPawnH,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -182,16 +184,16 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanRookA.captured === false) {
+  if (theoreticalPieceLocations.humanRookA.captured === false) {
     calculateHumanRookPossibleMoves(
-      pieceLocations.humanRookA.row,
-      pieceLocations.humanRookA.column,
-      pieceLocations,
+      theoreticalPieceLocations.humanRookA.row,
+      theoreticalPieceLocations.humanRookA.column,
+      theoreticalPieceLocations,
       Piece.HumanRookA,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -199,16 +201,16 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanRookB.captured === false) {
+  if (theoreticalPieceLocations.humanRookB.captured === false) {
     calculateHumanRookPossibleMoves(
-      pieceLocations.humanRookB.row,
-      pieceLocations.humanRookB.column,
-      pieceLocations,
+      theoreticalPieceLocations.humanRookB.row,
+      theoreticalPieceLocations.humanRookB.column,
+      theoreticalPieceLocations,
       Piece.HumanRookB,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -216,16 +218,16 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanKnightA.captured === false) {
+  if (theoreticalPieceLocations.humanKnightA.captured === false) {
     calculateHumanKnightPossibleMoves(
-      pieceLocations.humanKnightA.row,
-      pieceLocations.humanKnightA.column,
-      pieceLocations,
+      theoreticalPieceLocations.humanKnightA.row,
+      theoreticalPieceLocations.humanKnightA.column,
+      theoreticalPieceLocations,
       Piece.HumanKnightA,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -233,16 +235,16 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanKnightB.captured === false) {
+  if (theoreticalPieceLocations.humanKnightB.captured === false) {
     calculateHumanKnightPossibleMoves(
-      pieceLocations.humanKnightB.row,
-      pieceLocations.humanKnightB.column,
-      pieceLocations,
+      theoreticalPieceLocations.humanKnightB.row,
+      theoreticalPieceLocations.humanKnightB.column,
+      theoreticalPieceLocations,
       Piece.HumanKnightB,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -250,16 +252,16 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanBishopA.captured === false) {
+  if (theoreticalPieceLocations.humanBishopA.captured === false) {
     calculateHumanBishopPossibleMoves(
-      pieceLocations.humanBishopA.row,
-      pieceLocations.humanBishopA.column,
-      pieceLocations,
+      theoreticalPieceLocations.humanBishopA.row,
+      theoreticalPieceLocations.humanBishopA.column,
+      theoreticalPieceLocations,
       Piece.HumanBishopA,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -267,16 +269,16 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanBishopB.captured === false) {
+  if (theoreticalPieceLocations.humanBishopB.captured === false) {
     calculateHumanBishopPossibleMoves(
-      pieceLocations.humanBishopB.row,
-      pieceLocations.humanBishopB.column,
-      pieceLocations,
+      theoreticalPieceLocations.humanBishopB.row,
+      theoreticalPieceLocations.humanBishopB.column,
+      theoreticalPieceLocations,
       Piece.HumanBishopB,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -284,15 +286,15 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanQueen.captured === false) {
+  if (theoreticalPieceLocations.humanQueen.captured === false) {
     calculateHumanQueenPossibleMoves(
-      pieceLocations.humanQueen.row,
-      pieceLocations.humanQueen.column,
-      pieceLocations,
+      theoreticalPieceLocations.humanQueen.row,
+      theoreticalPieceLocations.humanQueen.column,
+      theoreticalPieceLocations,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {
@@ -300,15 +302,15 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
     }
   }
 
-  if (pieceLocations.humanKing.captured === false) {
+  if (theoreticalPieceLocations.humanKing.captured === false) {
     calculateHumanKingPossibleMoves(
-      pieceLocations.humanKing.row,
-      pieceLocations.humanKing.column,
-      pieceLocations,
+      theoreticalPieceLocations.humanKing.row,
+      theoreticalPieceLocations.humanKing.column,
+      theoreticalPieceLocations,
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      isCheck = checkIfAMoveCreatesCheckOnAi(move, pieceLocations);
+      isCheck = checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations);
     });
 
     if (isCheck) {

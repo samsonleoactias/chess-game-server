@@ -14,6 +14,7 @@ import calculateAiPossibleMoves from "../CalculatePossibleMovesController/helper
 import chooseAiMove from "./helpers/index.js";
 import calculateHumanPossibleMoves from "../CalculatePossibleMovesController/helpers/possibleMoves/calculateHumanPossibleMoves.js";
 import { Knex } from "knex";
+import dbResultToPieceLocations from "../utils/dbMaps/dbResultToPieceLocations.js";
 
 type DoTurnControllerParams = {
   db: Knex;
@@ -32,20 +33,21 @@ const DoTurnController = async (
   const game = lodash.first(
     await db
       .where({ human_player_id: humanPlayerId })
-      .select("id")
-      .from<Game>("games")
+      .select("game_id")
+      .from<Game>("game")
+      .orderBy("created_at", "desc")
   );
 
   const pieceLocations: PieceLocations = lodash.first(
     await db
-      .where({ game_id: game.gameId })
+      .where({ game_id: game.game_id })
       .select()
       .from<PieceLocations>("piece_locations")
   );
 
   const oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags = lodash.first(
     await db
-      .where({ game_id: game.gameId })
+      .where({ game_id: game.game_id })
       .select()
       .from<OneTimeOnlyMoveFlags>("one_time_only_move_flags")
   );
@@ -54,12 +56,15 @@ const DoTurnController = async (
     throw Error("DB error"); // TODO better error
   }
 
+  const finalPieceLocations: PieceLocations =
+    dbResultToPieceLocations(pieceLocations);
+
   const pieceLocationsAfterHumanMove: PieceLocations = await makeMove({
     db,
-    pieceLocations,
+    pieceLocations: finalPieceLocations,
     piece,
     oneTimeOnlyMoveFlags,
-    gameId: game.gameId,
+    gameId: game.game_id,
     move: humanMove,
     humanColor: game.humanColor,
   });
@@ -71,23 +76,34 @@ const DoTurnController = async (
     );
 
   const chosenAiMove: { piece: string; move: PossibleMove } = chooseAiMove(
-    pieceLocations,
+    pieceLocationsAfterHumanMove,
     oneTimeOnlyMoveFlags,
     possibleAiMovesAssignedToPieces
   );
-
-  let pieceLocationsAfterAiMove: PieceLocations;
+  console.log(
+    JSON.stringify({
+      db,
+      pieceLocations: pieceLocationsAfterHumanMove,
+      gameId: game.game_id,
+      humanColor: game.humanColor,
+      piece: <Piece>chosenAiMove.piece,
+      oneTimeOnlyMoveFlags,
+      move: chosenAiMove.move,
+    })
+  );
 
   // TODO if winning move?
-  pieceLocationsAfterAiMove = await makeMove({
+  let pieceLocationsAfterAiMove: PieceLocations = await makeMove({
     db,
-    pieceLocations,
-    gameId: game.gameId,
+    pieceLocations: pieceLocationsAfterHumanMove,
+    gameId: game.game_id,
     humanColor: game.humanColor,
-    piece: (<any>Piece)[chosenAiMove.piece],
+    piece: <Piece>chosenAiMove.piece,
     oneTimeOnlyMoveFlags,
     move: chosenAiMove.move,
   });
+
+  console.log(pieceLocationsAfterAiMove);
 
   if (pieceLocationsAfterAiMove.humanKing.captured === true) {
     // TODO insert losing logic

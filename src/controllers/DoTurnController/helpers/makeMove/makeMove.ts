@@ -9,6 +9,8 @@ import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare.js
 import objectCamelToSnake from "../../../utils/objectCamelToSnake.js";
 import { Knex } from "knex";
 import updateOneTimeOnlyMarkers from "./helpers/index.js";
+import lodash from "lodash";
+import pieceLocationsObjectToDb from "../../../utils/dbMaps/pieceLocationsObjectToDb.js";
 
 type makeMoveParams = {
   db: Knex;
@@ -31,6 +33,7 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
     humanColor,
   } = params;
 
+  console.log("count");
   var pieceCurrentlyOnSquare: Piece = findWhatPieceIsOnASquare(
     pieceLocations,
     move.location.row,
@@ -58,7 +61,7 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
     await db("piece_locations")
       .where({ game_id: gameId })
       .update({
-        ...objectCamelToSnake(pieceLocations),
+        ...pieceLocationsObjectToDb(pieceLocations),
       });
   } catch (error) {
     console.log("Database error: " + JSON.stringify(error)); // TODO better error

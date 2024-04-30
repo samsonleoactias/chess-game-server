@@ -132,7 +132,7 @@ const schema = `#graphql
 
   type Mutation {
     createGame(humanPlayerId: String!): Game!,
-    doTurn(humanPlayerId: String!, piece: Piece!, moveIndex: Int!):  Game!
+    doTurn(humanPlayerId: String!, piece: String!, move: String!):  Game!
   }
 `;
 
