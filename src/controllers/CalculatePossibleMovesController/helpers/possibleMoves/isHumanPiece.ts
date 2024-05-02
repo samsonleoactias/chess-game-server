@@ -5,7 +5,6 @@ const isHumanPiece = (piece: Piece): boolean => {
   if (piece.split("")[0] === "h") {
     return true;
   }
-
   return false;
 };
 

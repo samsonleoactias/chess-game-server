@@ -40,7 +40,7 @@ const calculateAiQueenPossibleMoves = (
 
   // check down-right direction
   for (let i = 1; i < Math.min(8 - row, 8 - column); i++) {
-    if (!checkIfSquareIsOccupiedByAiPiece(pieceLocations, row + 1, column + i))
+    if (!checkIfSquareIsOccupiedByAiPiece(pieceLocations, row + i, column + i))
       possibleMoves.push({ location: { row: row + i, column: column + i } });
 
     // !check if space is occupied, if so space is a valid move, but break the for loop
@@ -50,7 +50,7 @@ const calculateAiQueenPossibleMoves = (
   }
 
   // check down-left direction
-  for (let i = 1; i < Math.min(8 - row, column); i++) {
+  for (let i = 1; i < Math.min(8 - row, 8 - column); i++) {
     if (!checkIfSquareIsOccupiedByAiPiece(pieceLocations, row + i, column - i))
       possibleMoves.push({ location: { row: row + i, column: column - i } });
 
@@ -60,7 +60,7 @@ const calculateAiQueenPossibleMoves = (
     }
   }
 
-  // check rows above
+  // check rows below
   for (let i = row + 1; i <= 7; i++) {
     if (!checkIfSquareIsOccupiedByAiPiece(pieceLocations, i, column))
       possibleMoves.push({ location: { row: i, column: column } });
@@ -71,7 +71,7 @@ const calculateAiQueenPossibleMoves = (
     }
   }
 
-  // check rows below
+  // check rows above
   for (let i = row - 1; i >= 0; i--) {
     if (!checkIfSquareIsOccupiedByAiPiece(pieceLocations, i, column))
       possibleMoves.push({ location: { row: i, column: column } });

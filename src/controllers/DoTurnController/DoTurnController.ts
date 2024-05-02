@@ -68,7 +68,6 @@ const DoTurnController = async (
     OneTimeOnlyMoveFlags
   >objectSnakeToCamel(oneTimeOnlyMoveFlags);
 
-  console.log(humanMove);
   const pieceLocationsAfterHumanMove: PieceLocations = await makeMove({
     db,
     pieceLocations: finalPieceLocations,

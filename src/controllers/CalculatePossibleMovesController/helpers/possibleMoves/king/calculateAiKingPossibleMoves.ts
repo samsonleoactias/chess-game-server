@@ -123,6 +123,16 @@ const calculateAiKingPossibleMoves = (
     let possibleMovesCheckedForCheckOnAi: PossibleMove[] = [];
 
     possibleMoves.forEach((possibleMove): void => {
+      console.log("possibleMove: " + JSON.stringify(possibleMove));
+      console.log(
+        "creates check: " +
+          determineIfAnyPossibleMovesCreateCheckOnAi(
+            pieceLocations,
+            Piece.AiKing,
+            possibleMove,
+            oneTimeOnlyMoveFlags
+          )
+      );
       if (
         !determineIfAnyPossibleMovesCreateCheckOnAi(
           pieceLocations,

@@ -36,6 +36,8 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
     move.location.row,
     move.location.column
   );
+  console.log(piece);
+  console.log("piece on square: " + pieceCurrentlyOnSquare);
 
   if (piece === Piece.None) {
     throw new Error("Cannot move 'None' piece"); // TODO better error
