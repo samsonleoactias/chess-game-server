@@ -4,7 +4,7 @@ import newGameGenerator from "./helpers/newGameGenerator/newGameGenerator.js";
 
 type NewGameControllerParams = {
   db: Knex;
-  humanPlayerId: string;
+  humanPlayerId?: string;
 };
 
 const NewGameController = async (

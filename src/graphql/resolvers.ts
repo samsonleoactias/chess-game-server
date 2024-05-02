@@ -19,7 +19,7 @@ const resolvers = {
   Mutation: {
     createGame: async (
       parent: null,
-      args: { humanPlayerId: string },
+      args: { humanPlayerId?: string },
       contextValue: null,
       info: null
     ) => {
@@ -29,7 +29,7 @@ const resolvers = {
         Color
       ] = await NewGameController({
         db,
-        humanPlayerId: args.humanPlayerId,
+        humanPlayerId: args.humanPlayerId || undefined,
       });
 
       const possibleMoves: PossibleMovesAssignedToPieces =
