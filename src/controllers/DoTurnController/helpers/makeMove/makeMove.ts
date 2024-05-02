@@ -6,10 +6,8 @@ import {
   PossibleMove,
 } from "../../../../types/index.js";
 import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare.js";
-import objectCamelToSnake from "../../../utils/objectCamelToSnake.js";
 import { Knex } from "knex";
 import updateOneTimeOnlyMarkers from "./helpers/index.js";
-import lodash from "lodash";
 import pieceLocationsObjectToDb from "../../../utils/dbMaps/pieceLocationsObjectToDb.js";
 
 type makeMoveParams = {

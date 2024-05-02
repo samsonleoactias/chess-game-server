@@ -11,7 +11,11 @@ import {
 } from "../../types/index.js";
 import makeMove from "./helpers/makeMove/index.js";
 import calculateAiPossibleMoves from "../CalculatePossibleMovesController/helpers/possibleMoves/calculateAiPossibleMoves.js";
-import chooseAiMove from "./helpers/index.js";
+import {
+  chooseAiMove,
+  determineIfCheckmateOnAi,
+  determineIfCheckmateOnHuman,
+} from "./helpers/index.js";
 import calculateHumanPossibleMoves from "../CalculatePossibleMovesController/helpers/possibleMoves/calculateHumanPossibleMoves.js";
 import { Knex } from "knex";
 import dbResultToPieceLocations from "../utils/dbMaps/dbResultToPieceLocations.js";
@@ -64,6 +68,7 @@ const DoTurnController = async (
     OneTimeOnlyMoveFlags
   >objectSnakeToCamel(oneTimeOnlyMoveFlags);
 
+  console.log(humanMove);
   const pieceLocationsAfterHumanMove: PieceLocations = await makeMove({
     db,
     pieceLocations: finalPieceLocations,
@@ -80,13 +85,22 @@ const DoTurnController = async (
       finalOneTimeOnlyMoveFlags
     );
 
+  if (
+    determineIfCheckmateOnAi(
+      pieceLocationsAfterHumanMove,
+      possibleAiMovesAssignedToPieces,
+      finalOneTimeOnlyMoveFlags
+    )
+  ) {
+    return [game.humanColor, pieceLocationsAfterHumanMove, {}, false, true];
+  }
+
   const chosenAiMove: { piece: string; move: PossibleMove } = chooseAiMove(
     pieceLocationsAfterHumanMove,
     finalOneTimeOnlyMoveFlags,
     possibleAiMovesAssignedToPieces
   );
 
-  // TODO if winning move?
   let pieceLocationsAfterAiMove: PieceLocations = await makeMove({
     db,
     pieceLocations: pieceLocationsAfterHumanMove,
@@ -97,16 +111,21 @@ const DoTurnController = async (
     move: chosenAiMove.move,
   });
 
-  if (pieceLocationsAfterAiMove.humanKing.captured === true) {
-    // TODO insert losing logic
-    return [game.humanColor, pieceLocationsAfterAiMove, {}, true, false];
-  }
-
   const possibleHumanMovesAssignedToPieces: PossibleMovesAssignedToPieces =
     calculateHumanPossibleMoves(
       pieceLocationsAfterAiMove,
       finalOneTimeOnlyMoveFlags
     );
+
+  if (
+    determineIfCheckmateOnHuman(
+      pieceLocationsAfterAiMove,
+      possibleHumanMovesAssignedToPieces,
+      finalOneTimeOnlyMoveFlags
+    )
+  ) {
+    return [game.humanColor, pieceLocationsAfterAiMove, {}, true, false];
+  }
 
   return [
     game.humanColor,

@@ -90,7 +90,15 @@ const resolvers = {
           piece: parsedPiece,
           humanMove: parsedMove,
         });
-
+        console.log(
+          JSON.stringify({
+            pieceLocations,
+            possibleMoves,
+            humanWinner,
+            aiWinner,
+            humanColor,
+          })
+        );
         return {
           pieceLocations,
           possibleMoves,

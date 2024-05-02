@@ -32,7 +32,11 @@ const chooseAiMove = (
 
   var pickedPiece = pieceNames[Math.floor(Math.random() * pieceNames.length)];
 
-  if ((<any>possibleMovesAssignedToPieces)[pickedPiece].length === 0) {
+  // TODO do we neeed both checks here?
+  if (
+    !(<any>possibleMovesAssignedToPieces)[pickedPiece] ||
+    (<any>possibleMovesAssignedToPieces)[pickedPiece].length === 0
+  ) {
     return chooseAiMove(
       pieceLocations,
       oneTimeOnlyMoveFlags,

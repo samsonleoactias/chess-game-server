@@ -25,7 +25,7 @@ const calculateHumanPossibleMoves = (
       Piece.HumanPawnA,
       oneTimeOnlyMoveFlags.humanPawnAInitialMoveEligible,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -37,7 +37,7 @@ const calculateHumanPossibleMoves = (
       Piece.HumanPawnB,
       oneTimeOnlyMoveFlags.humanPawnBInitialMoveEligible,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -49,7 +49,7 @@ const calculateHumanPossibleMoves = (
       Piece.HumanPawnC,
       oneTimeOnlyMoveFlags.humanPawnCInitialMoveEligible,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -61,7 +61,7 @@ const calculateHumanPossibleMoves = (
       Piece.HumanPawnD,
       oneTimeOnlyMoveFlags.humanPawnDInitialMoveEligible,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -73,7 +73,7 @@ const calculateHumanPossibleMoves = (
       Piece.HumanPawnE,
       oneTimeOnlyMoveFlags.humanPawnEInitialMoveEligible,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -85,7 +85,7 @@ const calculateHumanPossibleMoves = (
       Piece.HumanPawnF,
       oneTimeOnlyMoveFlags.humanPawnFInitialMoveEligible,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -97,7 +97,7 @@ const calculateHumanPossibleMoves = (
       Piece.HumanPawnG,
       oneTimeOnlyMoveFlags.humanPawnGInitialMoveEligible,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -109,7 +109,7 @@ const calculateHumanPossibleMoves = (
       Piece.HumanPawnH,
       oneTimeOnlyMoveFlags.humanPawnHInitialMoveEligible,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -120,7 +120,7 @@ const calculateHumanPossibleMoves = (
       pieceLocations,
       Piece.HumanRookA,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -131,7 +131,7 @@ const calculateHumanPossibleMoves = (
       pieceLocations,
       Piece.HumanRookB,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -142,7 +142,7 @@ const calculateHumanPossibleMoves = (
       pieceLocations,
       Piece.HumanKnightA,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -153,7 +153,7 @@ const calculateHumanPossibleMoves = (
       pieceLocations,
       Piece.HumanKnightB,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -164,7 +164,7 @@ const calculateHumanPossibleMoves = (
       pieceLocations,
       Piece.HumanBishopA,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -175,7 +175,7 @@ const calculateHumanPossibleMoves = (
       pieceLocations,
       Piece.HumanBishopB,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -185,7 +185,7 @@ const calculateHumanPossibleMoves = (
       pieceLocations.humanQueen.column,
       pieceLocations,
       oneTimeOnlyMoveFlags,
-      false
+      true
     );
   }
 
@@ -194,7 +194,7 @@ const calculateHumanPossibleMoves = (
     pieceLocations.humanKing.column,
     pieceLocations,
     oneTimeOnlyMoveFlags,
-    false
+    true
   );
 
   return humanPossibleMoves;

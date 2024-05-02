@@ -13,12 +13,14 @@ import calculateHumanRookPossibleMoves from "./rook/calculateHumanRookPossibleMo
 import checkIfAMoveCreatesCheckOnAi from "./checkIfAMoveCreatesCheckOnAi.js";
 import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare.js";
 
+// TODO rename to determineIfAnyPossibleMovesCapturesKing
 const determineIfAnyPossibleMovesCreateCheckOnAi = (
   pieceLocations: PieceLocations,
   movingPiece: Piece,
   possibleMove: PossibleMove,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
 ): boolean => {
+  // TODO why?
   const theoreticalPieceLocations = JSON.parse(JSON.stringify(pieceLocations));
 
   const pieceOnSquareCurrently: Piece = findWhatPieceIsOnASquare(

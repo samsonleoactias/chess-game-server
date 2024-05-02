@@ -23,6 +23,7 @@ const determineIfAnyPossibleMovesCreateCheckOnHuman = (
     throw Error("Moving piece cannot be Piece.None"); // TODO better errors
   }
 
+  // TODO why?
   const theoreticalPieceLocations = JSON.parse(JSON.stringify(pieceLocations));
 
   const pieceOnSquareCurrently = findWhatPieceIsOnASquare(

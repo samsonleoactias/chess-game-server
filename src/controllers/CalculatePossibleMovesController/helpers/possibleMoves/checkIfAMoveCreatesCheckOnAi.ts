@@ -1,5 +1,6 @@
 import { PieceLocations, PossibleMove } from "../../../../types/index.js";
 
+// TODO rename to determineIfMovesCapturesKing
 const checkIfAMoveCreatesCheckOnAi = (
   move: PossibleMove,
   pieceLocations: PieceLocations

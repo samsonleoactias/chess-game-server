@@ -1,5 +1,6 @@
 import { PieceLocations, PossibleMove } from "../../../../types/index.js";
 
+// TODO rename to determineIfMovesCapturesKing
 const checkIfAMoveCreatesCheckOnHuman = (
   move: PossibleMove,
   pieceLocations: PieceLocations
