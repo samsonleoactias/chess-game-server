@@ -1,7 +1,7 @@
 import pkg from "knex";
 import * as dotenv from "dotenv";
 
-dotenv.config();
+if (!process.env.NO_NEED_FOR_DONTENV) dotenv.config();
 
 const { knex } = pkg;
 

@@ -1,6 +1,7 @@
 const getLastMigration = require("./helpers/getLastMigration.cjs");
 
-require("dotenv").config({ path: "../.env" });
+if (!process.env.NO_NEED_FOR_DONTENV)
+  require("dotenv").config({ path: "../.env" });
 
 const db = require("knex")({
   client: "pg",
