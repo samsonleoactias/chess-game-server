@@ -52,12 +52,12 @@ const newGameGenerator = async (
         humanBishopB: { row: 7, column: 5, captured: false },
         humanQueen: {
           row: 7,
-          column: humanColor === Color.BLACK ? 4 : 3,
+          column: aiColor === Color.BLACK ? 3 : 3,
           captured: false,
         },
         humanKing: {
           row: 7,
-          column: humanColor === Color.BLACK ? 3 : 4,
+          column: aiColor === Color.BLACK ? 4 : 3,
           captured: false,
         },
         aiPawnA: { row: 1, column: 0, captured: false },
@@ -76,12 +76,12 @@ const newGameGenerator = async (
         aiBishopB: { row: 0, column: 5, captured: false },
         aiQueen: {
           row: 0,
-          column: aiColor === Color.BLACK ? 4 : 3,
+          column: aiColor === Color.BLACK ? 3 : 4,
           captured: false,
         },
         aiKing: {
           row: 0,
-          column: aiColor === Color.BLACK ? 3 : 4,
+          column: aiColor === Color.BLACK ? 4 : 3,
           captured: false,
         },
         matrix: [
