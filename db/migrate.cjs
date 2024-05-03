@@ -62,4 +62,6 @@ const sleep = () => {
   } while (done === false);
 };
 
+sleep();
+
 console.log("migration complete");

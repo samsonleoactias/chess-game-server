@@ -41,4 +41,6 @@ const sleep = () => {
   } while (done === false);
 };
 
+sleep();
+
 console.log("rollback complete");
