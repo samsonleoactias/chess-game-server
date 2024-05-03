@@ -23,9 +23,10 @@ import objectSnakeToCamel from "../utils/objectSnakeToCamel.js";
 
 type DoTurnControllerParams = {
   db: Knex;
-  humanMove: PossibleMove;
-  piece: Piece;
+  humanMove?: PossibleMove;
+  piece?: Piece;
   humanPlayerId: string;
+  aiFirstMove?: boolean;
 };
 
 const DoTurnController = async (
@@ -33,7 +34,7 @@ const DoTurnController = async (
 ): Promise<
   [Color, PieceLocations, PossibleMovesAssignedToPieces, boolean, boolean]
 > => {
-  const { db, humanMove, piece, humanPlayerId } = params;
+  const { db, humanMove, piece, humanPlayerId, aiFirstMove } = params;
 
   const game = lodash.first(
     await db
@@ -68,15 +69,23 @@ const DoTurnController = async (
     OneTimeOnlyMoveFlags
   >objectSnakeToCamel(oneTimeOnlyMoveFlags);
 
-  const pieceLocationsAfterHumanMove: PieceLocations = await makeMove({
-    db,
-    pieceLocations: finalPieceLocations,
-    piece,
-    oneTimeOnlyMoveFlags: finalOneTimeOnlyMoveFlags,
-    gameId: game.game_id,
-    move: humanMove,
-    humanColor: game.humanColor,
-  });
+  let pieceLocationsAfterHumanMove: PieceLocations;
+
+  if (!aiFirstMove && piece && humanMove) {
+    pieceLocationsAfterHumanMove = await makeMove({
+      db,
+      pieceLocations: finalPieceLocations,
+      piece,
+      oneTimeOnlyMoveFlags: finalOneTimeOnlyMoveFlags,
+      gameId: game.game_id,
+      move: humanMove,
+      humanColor: game.humanColor,
+    });
+  } else if (aiFirstMove && !piece && !humanMove) {
+    pieceLocationsAfterHumanMove = finalPieceLocations;
+  } else {
+    throw new Error(); // TODO better error
+  }
 
   const possibleAiMovesAssignedToPieces: PossibleMovesAssignedToPieces =
     calculateAiPossibleMoves(

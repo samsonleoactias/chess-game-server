@@ -104,6 +104,42 @@ const resolvers = {
         console.log(e);
       }
     },
+    aiFirstMove: async (
+      parent: null,
+      args: { humanPlayerId: string },
+      contextValue: null,
+      info: null
+    ) => {
+      try {
+        const [
+          humanColor,
+          pieceLocations,
+          possibleMoves,
+          aiWinner,
+          humanWinner,
+        ]: [
+          Color,
+          PieceLocations,
+          PossibleMovesAssignedToPieces,
+          boolean,
+          boolean
+        ] = await DoTurnController({
+          db,
+          humanPlayerId: args.humanPlayerId,
+          aiFirstMove: true,
+        });
+
+        return {
+          pieceLocations,
+          possibleMoves,
+          humanWinner,
+          aiWinner,
+          humanColor,
+        };
+      } catch (e) {
+        console.log(e);
+      }
+    },
   },
   Query: {
     async getGame(
