@@ -9,16 +9,20 @@ type NewGameControllerParams = {
 
 const NewGameController = async (
   params: NewGameControllerParams
-): Promise<[string, PieceLocations, Color]> => {
+): Promise<[string, PieceLocations, Color, string]> => {
   const { db, humanPlayerId } = params;
 
-  const [gameId, pieceLocations, humanColor]: [string, PieceLocations, Color] =
-    await newGameGenerator({
-      db,
-      humanPlayerId,
-    });
+  const [gameId, pieceLocations, humanColor, dbHumanPlayerId]: [
+    string,
+    PieceLocations,
+    Color,
+    string
+  ] = await newGameGenerator({
+    db,
+    humanPlayerId,
+  });
 
-  return [gameId, pieceLocations, humanColor];
+  return [gameId, pieceLocations, humanColor, dbHumanPlayerId];
 };
 
 export default NewGameController;

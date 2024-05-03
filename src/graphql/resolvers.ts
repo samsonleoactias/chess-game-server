@@ -23,10 +23,11 @@ const resolvers = {
       contextValue: null,
       info: null
     ) => {
-      const [gameId, pieceLocations, humanColor]: [
+      const [gameId, pieceLocations, humanColor, humanPlayerId]: [
         string,
         PieceLocations,
-        Color
+        Color,
+        string
       ] = await NewGameController({
         db,
         humanPlayerId: args.humanPlayerId || undefined,
@@ -46,6 +47,7 @@ const resolvers = {
         humanColor: humanColor === Color.WHITE ? "WHITE" : "BLACK",
         humanWinner: false,
         aiWinner: false,
+        humanPlayerId,
       };
     },
     doTurn: async (

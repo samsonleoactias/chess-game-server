@@ -11,7 +11,7 @@ type NewGameGeneratorParams = {
 
 const newGameGenerator = async (
   params: NewGameGeneratorParams
-): Promise<[string, PieceLocations, Color]> => {
+): Promise<[string, PieceLocations, Color, string]> => {
   const { db, humanPlayerId } = params;
 
   const humanColor = chooseColor();
@@ -112,7 +112,12 @@ const newGameGenerator = async (
           game_id: gameId,
         });
 
-        return [gameId, newGamePieceLocations, humanColor];
+        return [
+          gameId,
+          newGamePieceLocations,
+          humanColor,
+          (<any>humanIdDbResult)["human_player_id"],
+        ];
       }
     }
   } catch (e: any) {

@@ -124,6 +124,7 @@ const schema = `#graphql
     humanWinner: Boolean,
     aiWinner: Boolean,
     humanColor: Color,
+    humanPlayerId: String!
   }
 
   type Query {
