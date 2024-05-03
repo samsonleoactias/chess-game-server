@@ -1,11 +1,11 @@
 const getMigrations = require("./helpers/getMigrations.cjs");
 
-if (!process.env.NO_NEED_FOR_DONTENV)
-  require("dotenv").config({ path: "../.env" });
+if (!process.env.DATABASE_URL) require("dotenv").config({ path: "../.env" });
 
 const db = require("knex")({
   client: "pg",
   connection: {
+    connectionString: process.env.DATABASE_URL,
     host: process.env.POSTGRES_HOST,
     port: process.env.POSTGRES_PORT,
     user: process.env.POSTGRES_USER,
