@@ -2,7 +2,7 @@ const { readdir } = require("node:fs/promises");
 
 const getMigrations = async () => {
   try {
-    const files = await readdir("./migrations");
+    const files = await readdir("./db/migrations");
 
     files.sort();
 
