@@ -78,15 +78,16 @@ const calculateHumanKingPossibleMoves = (
 
   // TODO add additional rules for castles
   if (oneTimeOnlyMoveFlags.humanCastleRookAEligible) {
+    console.log(JSON.stringify(pieceLocations.matrix));
     let castlePossible = true;
 
-    for (let i = column; i > 0; i--) {
-      if (pieceLocations.matrix[0][i] === true) {
+    for (let i = column - 1; i > 0; i--) {
+      if (pieceLocations.matrix[7][i] === true) {
         castlePossible = false;
         break;
       }
     }
-
+    console.log("possible: " + castlePossible);
     if (
       castlePossible &&
       !checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row, column - 2)
@@ -103,8 +104,8 @@ const calculateHumanKingPossibleMoves = (
   if (oneTimeOnlyMoveFlags.humanCastleRookBEligible) {
     let castlePossible = true;
 
-    for (let i = column; i < 8; i++) {
-      if (pieceLocations.matrix[0][i] === true) {
+    for (let i = column + 1; i < 8; i++) {
+      if (pieceLocations.matrix[7][i] === true) {
         castlePossible = false;
         break;
       }

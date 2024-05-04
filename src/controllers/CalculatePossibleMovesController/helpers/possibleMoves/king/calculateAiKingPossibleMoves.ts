@@ -80,8 +80,8 @@ const calculateAiKingPossibleMoves = (
   if (oneTimeOnlyMoveFlags.aiCastleRookAEligible) {
     let castlePossible = true;
 
-    for (let i = column; i > 0; i--) {
-      if (pieceLocations.matrix[7][i] === true) {
+    for (let i = column - 1; i > 0; i--) {
+      if (pieceLocations.matrix[0][i] === true) {
         castlePossible = false;
         break;
       }
@@ -101,8 +101,8 @@ const calculateAiKingPossibleMoves = (
   if (oneTimeOnlyMoveFlags.aiCastleRookBEligible) {
     let castlePossible = true;
 
-    for (let i = column; i < 8; i++) {
-      if (pieceLocations.matrix[7][i] === true) {
+    for (let i = column + 1; i < 8; i++) {
+      if (pieceLocations.matrix[0][i] === true) {
         castlePossible = false;
         break;
       }

@@ -89,7 +89,7 @@ const schema = `#graphql
   }
 
   type SideEffect {
-    piece: Piece!,
+    piece: String!,
     row: Int!,
     column: Int!
   }
