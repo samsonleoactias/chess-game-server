@@ -31,7 +31,7 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
     humanColor,
   } = params;
 
-  var pieceCurrentlyOnSquare: Piece = findWhatPieceIsOnASquare(
+  let pieceCurrentlyOnSquare: Piece = findWhatPieceIsOnASquare(
     pieceLocations,
     move.location.row,
     move.location.column
@@ -53,6 +53,33 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
 
   pieceLocations[piece].row = move.location.row;
   pieceLocations[piece].column = move.location.column;
+
+  move.sideEffects?.forEach((sideEffect) => {
+    if (sideEffect.piece && sideEffect.row && sideEffect.column) {
+      let pieceCurrentlyOnSideEffectSquare: Piece = findWhatPieceIsOnASquare(
+        pieceLocations,
+        sideEffect.row,
+        sideEffect.column
+      );
+
+      if (sideEffect.piece === Piece.None) {
+        throw new Error("Cannot move 'None' piece"); // TODO better error
+      }
+
+      if (pieceCurrentlyOnSideEffectSquare !== Piece.None) {
+        pieceLocations[pieceCurrentlyOnSideEffectSquare].captured = true;
+      } else {
+        pieceLocations.matrix[sideEffect.row][sideEffect.column] = true;
+      }
+
+      pieceLocations.matrix[pieceLocations[sideEffect.piece].row][
+        pieceLocations[sideEffect.piece].column
+      ] = false;
+
+      pieceLocations[sideEffect.piece].row = sideEffect.row;
+      pieceLocations[sideEffect.piece].column = sideEffect.column;
+    }
+  });
 
   try {
     await db("piece_locations")
