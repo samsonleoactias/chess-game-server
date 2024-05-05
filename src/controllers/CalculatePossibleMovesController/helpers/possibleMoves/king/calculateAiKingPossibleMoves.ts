@@ -6,6 +6,7 @@ import {
 } from "../../../../../types/index.js";
 import checkIfSquareIsOccupiedByAiPiece from "../checkIfSquareIsOccupiedByAiPiece.js";
 import determineIfAnyPossibleMovesCaptureAiKing from "../determineIfAnyPossibleMovesCaptureAiKing.js";
+import isAiCastlePossible from "../isAiCastlePossible.js";
 
 const calculateAiKingPossibleMoves = (
   row: number,
@@ -77,46 +78,34 @@ const calculateAiKingPossibleMoves = (
   }
 
   // TODO add additional rules for castles
-  if (oneTimeOnlyMoveFlags.aiCastleRookAEligible) {
-    let castlePossible = true;
-
-    for (let i = column - 1; i > 0; i--) {
-      if (pieceLocations.matrix[0][i] === true) {
-        castlePossible = false;
-        break;
-      }
-    }
-
-    if (
-      castlePossible &&
-      !checkIfSquareIsOccupiedByAiPiece(pieceLocations, row, column - 2)
-    ) {
-      possibleMoves.push({
-        location: { row: row, column: column - 2 },
-        sideEffects: [{ piece: Piece.AiRookA, row: row, column: column - 1 }],
-      });
-    }
+  if (
+    oneTimeOnlyMoveFlags.aiCastleRookBEligible &&
+    isAiCastlePossible(
+      column,
+      pieceLocations,
+      Piece.AiRookB,
+      oneTimeOnlyMoveFlags
+    )
+  ) {
+    possibleMoves.push({
+      location: { row: row, column: column - 2 },
+      sideEffects: [{ piece: Piece.AiRookA, row: row, column: column - 1 }],
+    });
   }
 
-  if (oneTimeOnlyMoveFlags.aiCastleRookBEligible) {
-    let castlePossible = true;
-
-    for (let i = column + 1; i < 7; i++) {
-      if (pieceLocations.matrix[0][i] === true) {
-        castlePossible = false;
-        break;
-      }
-    }
-
-    if (
-      castlePossible &&
-      !checkIfSquareIsOccupiedByAiPiece(pieceLocations, row, column + 2)
-    ) {
-      possibleMoves.push({
-        location: { row: row, column: column + 2 },
-        sideEffects: [{ piece: Piece.AiRookB, row: row, column: column + 1 }],
-      });
-    }
+  if (
+    oneTimeOnlyMoveFlags.aiCastleRookAEligible &&
+    isAiCastlePossible(
+      column,
+      pieceLocations,
+      Piece.AiRookA,
+      oneTimeOnlyMoveFlags
+    )
+  ) {
+    possibleMoves.push({
+      location: { row: row, column: column + 2 },
+      sideEffects: [{ piece: Piece.AiRookB, row: row, column: column + 1 }],
+    });
   }
 
   if (checkForCheck) {
@@ -126,9 +115,9 @@ const calculateAiKingPossibleMoves = (
       if (
         !determineIfAnyPossibleMovesCaptureAiKing(
           pieceLocations,
+          oneTimeOnlyMoveFlags,
           Piece.AiKing,
-          possibleMove,
-          oneTimeOnlyMoveFlags
+          possibleMove
         )
       ) {
         possibleMovesCheckedForCheckOnAi.push(possibleMove);

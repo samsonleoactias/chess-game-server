@@ -65,9 +65,9 @@ const calculateAiPawnPossibleMoves = (
       if (
         !determineIfAnyPossibleMovesCaptureAiKing(
           pieceLocations,
+          oneTimeOnlyMoveFlags,
           piece,
-          possibleMove,
-          oneTimeOnlyMoveFlags
+          possibleMove
         )
       ) {
         possibleMovesCheckedForCheckOnAi.push(possibleMove);

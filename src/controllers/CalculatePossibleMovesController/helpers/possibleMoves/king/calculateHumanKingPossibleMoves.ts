@@ -77,61 +77,33 @@ const calculateHumanKingPossibleMoves = (
     possibleMoves.push({ location: { row: row - 1, column: column - 1 } });
   }
 
-  // TODO add additional rules for castles
-  if (oneTimeOnlyMoveFlags.humanCastleRookAEligible) {
-    let castlePossible = true;
-
-    for (let i = column - 1; i > 0; i--) {
-      if (pieceLocations.matrix[7][i] === true) {
-        castlePossible = false;
-        break;
-      }
-    }
-
-    if (
-      isHumanCastlePossible(
-        column,
-        pieceLocations,
-        Piece.HumanRookA,
-        oneTimeOnlyMoveFlags
-      ) &&
-      !checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row, column - 2)
-    ) {
-      possibleMoves.push({
-        location: { row: row, column: column - 2 },
-        sideEffects: [
-          { piece: Piece.HumanRookA, row: row, column: column - 1 },
-        ],
-      });
-    }
+  if (
+    oneTimeOnlyMoveFlags.humanCastleRookAEligible &&
+    isHumanCastlePossible(
+      column,
+      pieceLocations,
+      Piece.HumanRookA,
+      oneTimeOnlyMoveFlags
+    )
+  ) {
+    possibleMoves.push({
+      location: { row: row, column: column - 2 },
+      sideEffects: [{ piece: Piece.HumanRookA, row: row, column: column - 1 }],
+    });
   }
-
-  if (oneTimeOnlyMoveFlags.humanCastleRookBEligible) {
-    let castlePossible = true;
-
-    for (let i = column + 1; i < 7; i++) {
-      if (pieceLocations.matrix[7][i] === true) {
-        castlePossible = false;
-        break;
-      }
-    }
-
-    if (
-      isHumanCastlePossible(
-        column,
-        pieceLocations,
-        Piece.HumanRookB,
-        oneTimeOnlyMoveFlags
-      ) &&
-      !checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row, column + 2)
-    ) {
-      possibleMoves.push({
-        location: { row: row, column: column + 2 },
-        sideEffects: [
-          { piece: Piece.HumanRookB, row: row, column: column + 1 },
-        ],
-      });
-    }
+  if (
+    oneTimeOnlyMoveFlags.humanCastleRookBEligible &&
+    isHumanCastlePossible(
+      column,
+      pieceLocations,
+      Piece.HumanRookB,
+      oneTimeOnlyMoveFlags
+    )
+  ) {
+    possibleMoves.push({
+      location: { row: row, column: column + 2 },
+      sideEffects: [{ piece: Piece.HumanRookB, row: row, column: column + 1 }],
+    });
   }
 
   if (checkForCheck) {

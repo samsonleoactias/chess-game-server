@@ -111,9 +111,9 @@ const calculateAiQueenPossibleMoves = (
       if (
         !determineIfAnyPossibleMovesCaptureAiKing(
           pieceLocations,
+          oneTimeOnlyMoveFlags,
           Piece.AiQueen,
-          possibleMove,
-          oneTimeOnlyMoveFlags
+          possibleMove
         )
       ) {
         possibleMovesCheckedForCheckOnAi.push(possibleMove);

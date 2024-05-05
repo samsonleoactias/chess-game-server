@@ -17,9 +17,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiPawnA,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -32,9 +32,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiPawnB,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -47,9 +47,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiPawnC,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -62,9 +62,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiPawnD,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -77,9 +77,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiPawnE,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -92,9 +92,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiPawnF,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -107,9 +107,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiPawnG,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -122,9 +122,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiPawnH,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -137,9 +137,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiRookA,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -152,9 +152,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiRookB,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -167,9 +167,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiKnightA,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -182,9 +182,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiKnightB,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -197,9 +197,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiBishopA,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -212,9 +212,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiBishopB,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -227,9 +227,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiQueen,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -242,9 +242,9 @@ const determineIfCheckmateOnAi = (
     if (
       !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.AiKing,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
