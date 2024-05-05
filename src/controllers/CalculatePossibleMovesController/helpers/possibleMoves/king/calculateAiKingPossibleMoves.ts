@@ -5,7 +5,7 @@ import {
   OneTimeOnlyMoveFlags,
 } from "../../../../../types/index.js";
 import checkIfSquareIsOccupiedByAiPiece from "../checkIfSquareIsOccupiedByAiPiece.js";
-import determineIfAnyPossibleMovesCreateCheckOnAi from "../determineIfAnyPossibleMovesCreateCheckOnAi.js";
+import determineIfAnyPossibleMovesCaptureAiKing from "../determineIfAnyPossibleMovesCaptureAiKing.js";
 
 const calculateAiKingPossibleMoves = (
   row: number,
@@ -101,7 +101,7 @@ const calculateAiKingPossibleMoves = (
   if (oneTimeOnlyMoveFlags.aiCastleRookBEligible) {
     let castlePossible = true;
 
-    for (let i = column + 1; i < 8; i++) {
+    for (let i = column + 1; i < 7; i++) {
       if (pieceLocations.matrix[0][i] === true) {
         castlePossible = false;
         break;
@@ -124,7 +124,7 @@ const calculateAiKingPossibleMoves = (
 
     possibleMoves.forEach((possibleMove): void => {
       if (
-        !determineIfAnyPossibleMovesCreateCheckOnAi(
+        !determineIfAnyPossibleMovesCaptureAiKing(
           pieceLocations,
           Piece.AiKing,
           possibleMove,

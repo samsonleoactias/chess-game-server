@@ -18,7 +18,6 @@ const updateOneTimeOnlyMarkers = async (
 ): Promise<void> => {
   const { db, gameId, pieceLocations, oneTimeOnlyMoveFlags, humanColor } =
     params;
-
   if (
     oneTimeOnlyMoveFlags.humanPawnAInitialMoveEligible === true &&
     pieceLocations.humanPawnA.row < 6
@@ -165,10 +164,10 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.humanCastleRookAEligible === true &&
-    (pieceLocations.humanKing.row < 6 ||
+    (pieceLocations.humanKing.row < 7 ||
       pieceLocations.humanKing.column !==
         (humanColor === Color.WHITE ? 4 : 3) ||
-      pieceLocations.humanRookA.row < 6 ||
+      pieceLocations.humanRookA.row < 7 ||
       pieceLocations.humanRookA.column >= 1 ||
       pieceLocations.humanRookA.captured === true)
   ) {
@@ -179,11 +178,11 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.humanCastleRookBEligible === true &&
-    (pieceLocations.humanKing.row < 6 ||
+    (pieceLocations.humanKing.row < 7 ||
       pieceLocations.humanKing.column !==
         (humanColor === Color.WHITE ? 4 : 3) ||
-      pieceLocations.humanRookB.row < 6 ||
-      pieceLocations.humanRookB.column < 6 ||
+      pieceLocations.humanRookB.row < 7 ||
+      pieceLocations.humanRookB.column < 7 ||
       pieceLocations.humanRookB.captured === true)
   ) {
     await db("one_time_only_move_flags")
@@ -194,7 +193,7 @@ const updateOneTimeOnlyMarkers = async (
   if (
     oneTimeOnlyMoveFlags.aiCastleRookAEligible === true &&
     (pieceLocations.aiKing.row >= 1 ||
-      pieceLocations.aiKing.column !== (humanColor === Color.BLACK ? 4 : 3) ||
+      pieceLocations.aiKing.column !== (humanColor === Color.WHITE ? 4 : 3) ||
       pieceLocations.aiRookA.row >= 1 ||
       pieceLocations.aiRookA.column >= 1 ||
       pieceLocations.aiRookA.captured === true)
@@ -207,9 +206,9 @@ const updateOneTimeOnlyMarkers = async (
   if (
     oneTimeOnlyMoveFlags.aiCastleRookBEligible === true &&
     (pieceLocations.aiKing.row >= 1 ||
-      pieceLocations.aiKing.column !== (humanColor === Color.BLACK ? 4 : 3) ||
+      pieceLocations.aiKing.column !== (humanColor === Color.WHITE ? 4 : 3) ||
       pieceLocations.aiRookB.row >= 1 ||
-      pieceLocations.aiRookB.column < 6 ||
+      pieceLocations.aiRookB.column <= 6 ||
       pieceLocations.aiRookB.captured === true)
   ) {
     await db("one_time_only_move_flags")

@@ -13,39 +13,40 @@ import calculateAiRookPossibleMoves from "./rook/calculateAiRookPossibleMoves.js
 import checkIfAMoveCreatesCheckOnHuman from "./checkIfAMoveCapturesHumanKing.js";
 import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare.js";
 
-const determineIfAnyPossibleMovesCreateCheckOnHuman = (
+const determineIfAnyPossibleMovesCaptureHumanKing = (
   pieceLocations: PieceLocations,
-  movingPiece: Piece,
-  possibleMove: PossibleMove,
-  oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
+  oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
+  movingPiece?: Piece,
+  possibleMove?: PossibleMove
 ): boolean => {
-  if (movingPiece === Piece.None) {
-    throw Error("Moving piece cannot be Piece.None"); // TODO better errors
-  }
-
   // TODO why?
   const theoreticalPieceLocations: PieceLocations = JSON.parse(
     JSON.stringify(pieceLocations)
   );
 
-  const pieceOnSquareCurrently = findWhatPieceIsOnASquare(
-    theoreticalPieceLocations,
-    possibleMove.location.row,
-    possibleMove.location.column
-  );
+  if (movingPiece && possibleMove && movingPiece !== Piece.None) {
+    const pieceOnSquareCurrently = findWhatPieceIsOnASquare(
+      theoreticalPieceLocations,
+      possibleMove.location.row,
+      possibleMove.location.column
+    );
 
-  if (pieceOnSquareCurrently !== Piece.None) {
-    theoreticalPieceLocations[pieceOnSquareCurrently].captured = true;
+    if (pieceOnSquareCurrently !== Piece.None) {
+      theoreticalPieceLocations[pieceOnSquareCurrently].captured = true;
+    }
+
+    theoreticalPieceLocations.matrix[
+      theoreticalPieceLocations[movingPiece].row
+    ][theoreticalPieceLocations[movingPiece].column] = false;
+    theoreticalPieceLocations[movingPiece].row = possibleMove.location.row;
+    theoreticalPieceLocations[movingPiece].column =
+      possibleMove.location.column;
+    theoreticalPieceLocations.matrix[possibleMove.location.row][
+      possibleMove.location.column
+    ] = true;
+  } else if (!movingPiece || !possibleMove || movingPiece === Piece.None) {
+    throw Error("Moving piece cannot be Piece.None"); // TODO better errors
   }
-
-  theoreticalPieceLocations.matrix[theoreticalPieceLocations[movingPiece].row][
-    theoreticalPieceLocations[movingPiece].column
-  ] = false;
-  theoreticalPieceLocations[movingPiece].row = possibleMove.location.row;
-  theoreticalPieceLocations[movingPiece].column = possibleMove.location.column;
-  theoreticalPieceLocations.matrix[possibleMove.location.row][
-    possibleMove.location.column
-  ] = true;
 
   let isCheck = false;
 
@@ -362,4 +363,4 @@ const determineIfAnyPossibleMovesCreateCheckOnHuman = (
   return false;
 };
 
-export default determineIfAnyPossibleMovesCreateCheckOnHuman;
+export default determineIfAnyPossibleMovesCaptureHumanKing;

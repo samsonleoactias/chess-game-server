@@ -4,7 +4,7 @@ import {
   PieceLocations,
   PossibleMovesAssignedToPieces,
 } from "../../../types/index.js";
-import determineIfAnyPossibleMovesCreateCheckOnAi from "../../CalculatePossibleMovesController/helpers/possibleMoves/determineIfAnyPossibleMovesCreateCheckOnAi.js";
+import determineIfAnyPossibleMovesCaptureAiKing from "../../CalculatePossibleMovesController/helpers/possibleMoves/determineIfAnyPossibleMovesCaptureAiKing.js";
 
 const determineIfCheckmateOnAi = (
   pieceLocations: PieceLocations,
@@ -15,7 +15,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiPawnA?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiPawnA,
         possibleMove,
@@ -30,7 +30,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiPawnB?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiPawnB,
         possibleMove,
@@ -45,7 +45,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiPawnC?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiPawnC,
         possibleMove,
@@ -60,7 +60,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiPawnD?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiPawnD,
         possibleMove,
@@ -75,7 +75,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiPawnE?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiPawnE,
         possibleMove,
@@ -90,7 +90,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiPawnF?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiPawnF,
         possibleMove,
@@ -105,7 +105,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiPawnG?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiPawnG,
         possibleMove,
@@ -120,7 +120,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiPawnH?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiPawnH,
         possibleMove,
@@ -135,7 +135,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiRookA?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiRookA,
         possibleMove,
@@ -150,7 +150,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiRookB?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiRookB,
         possibleMove,
@@ -165,7 +165,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiKnightA?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiKnightA,
         possibleMove,
@@ -180,7 +180,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiKnightB?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiKnightB,
         possibleMove,
@@ -195,7 +195,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiBishopA?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiBishopA,
         possibleMove,
@@ -210,7 +210,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiBishopB?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiBishopB,
         possibleMove,
@@ -225,7 +225,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiQueen?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiQueen,
         possibleMove,
@@ -240,7 +240,7 @@ const determineIfCheckmateOnAi = (
 
   possibleMoves.aiKing?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnAi(
+      !determineIfAnyPossibleMovesCaptureAiKing(
         pieceLocations,
         Piece.AiKing,
         possibleMove,

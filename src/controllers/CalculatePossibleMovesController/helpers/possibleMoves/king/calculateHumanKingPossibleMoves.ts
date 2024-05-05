@@ -5,7 +5,8 @@ import {
   OneTimeOnlyMoveFlags,
 } from "../../../../../types/index.js";
 import checkIfSquareIsOccupiedByHumanPiece from "../checkIfSquareIsOccupiedByHumanPiece.js";
-import determineIfAnyPossibleMovesCreateCheckOnHuman from "../determineIfAnyPossibleMovesCreateCheckOnHuman.js";
+import determineIfAnyPossibleMovesCaptureHumanKing from "../determineIfAnyPossibleMovesCaptureHumanKing.js";
+import isHumanCastlePossible from "../isHumanCastlePossible.js";
 
 const calculateHumanKingPossibleMoves = (
   row: number,
@@ -78,7 +79,6 @@ const calculateHumanKingPossibleMoves = (
 
   // TODO add additional rules for castles
   if (oneTimeOnlyMoveFlags.humanCastleRookAEligible) {
-    console.log(JSON.stringify(pieceLocations.matrix));
     let castlePossible = true;
 
     for (let i = column - 1; i > 0; i--) {
@@ -87,9 +87,14 @@ const calculateHumanKingPossibleMoves = (
         break;
       }
     }
-    console.log("possible: " + castlePossible);
+
     if (
-      castlePossible &&
+      isHumanCastlePossible(
+        column,
+        pieceLocations,
+        Piece.HumanRookA,
+        oneTimeOnlyMoveFlags
+      ) &&
       !checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row, column - 2)
     ) {
       possibleMoves.push({
@@ -104,7 +109,7 @@ const calculateHumanKingPossibleMoves = (
   if (oneTimeOnlyMoveFlags.humanCastleRookBEligible) {
     let castlePossible = true;
 
-    for (let i = column + 1; i < 8; i++) {
+    for (let i = column + 1; i < 7; i++) {
       if (pieceLocations.matrix[7][i] === true) {
         castlePossible = false;
         break;
@@ -112,7 +117,12 @@ const calculateHumanKingPossibleMoves = (
     }
 
     if (
-      castlePossible &&
+      isHumanCastlePossible(
+        column,
+        pieceLocations,
+        Piece.HumanRookB,
+        oneTimeOnlyMoveFlags
+      ) &&
       !checkIfSquareIsOccupiedByHumanPiece(pieceLocations, row, column + 2)
     ) {
       possibleMoves.push({
@@ -129,11 +139,11 @@ const calculateHumanKingPossibleMoves = (
 
     possibleMoves.forEach((possibleMove): void => {
       if (
-        !determineIfAnyPossibleMovesCreateCheckOnHuman(
+        !determineIfAnyPossibleMovesCaptureHumanKing(
           pieceLocations,
+          oneTimeOnlyMoveFlags,
           Piece.HumanKing,
-          possibleMove,
-          oneTimeOnlyMoveFlags
+          possibleMove
         )
       ) {
         possibleMovesCheckedForCheckOnHuman.push(possibleMove);

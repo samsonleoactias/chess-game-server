@@ -16,7 +16,6 @@ const calculateHumanPossibleMoves = (
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
 ): PossibleMovesAssignedToPieces => {
   const humanPossibleMoves: PossibleMovesAssignedToPieces = {};
-
   if (pieceLocations.humanPawnA.captured === false) {
     humanPossibleMoves.humanPawnA = calculateHumanPawnPossibleMoves(
       pieceLocations.humanPawnA.row,

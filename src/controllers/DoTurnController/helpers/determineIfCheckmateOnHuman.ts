@@ -4,7 +4,7 @@ import {
   PieceLocations,
   PossibleMovesAssignedToPieces,
 } from "../../../types/index.js";
-import determineIfAnyPossibleMovesCreateCheckOnHuman from "../../CalculatePossibleMovesController/helpers/possibleMoves/determineIfAnyPossibleMovesCreateCheckOnHuman.js";
+import determineIfAnyPossibleMovesCaptureHumanKing from "../../CalculatePossibleMovesController/helpers/possibleMoves/determineIfAnyPossibleMovesCaptureHumanKing.js";
 
 const determineIfCheckmateOnHuman = (
   pieceLocations: PieceLocations,
@@ -15,11 +15,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanPawnA?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanPawnA,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -30,11 +30,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanPawnB?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanPawnB,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -45,11 +45,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanPawnC?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanPawnC,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -60,11 +60,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanPawnD?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanPawnD,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -75,11 +75,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanPawnE?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanPawnE,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -90,11 +90,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanPawnF?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanPawnF,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -105,11 +105,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanPawnG?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanPawnG,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -120,11 +120,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanPawnH?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanPawnH,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -135,11 +135,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanRookA?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanRookA,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -150,11 +150,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanRookB?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanRookB,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -165,11 +165,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanKnightA?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanKnightA,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -180,11 +180,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanKnightB?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanKnightB,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -195,11 +195,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanBishopA?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanBishopA,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -210,11 +210,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanBishopB?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanBishopB,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -225,11 +225,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanQueen?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanQueen,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;
@@ -240,11 +240,11 @@ const determineIfCheckmateOnHuman = (
 
   possibleMoves.humanKing?.forEach((possibleMove) => {
     if (
-      !determineIfAnyPossibleMovesCreateCheckOnHuman(
+      !determineIfAnyPossibleMovesCaptureHumanKing(
         pieceLocations,
+        oneTimeOnlyMoveFlags,
         Piece.HumanKing,
-        possibleMove,
-        oneTimeOnlyMoveFlags
+        possibleMove
       )
     ) {
       checkmate = false;

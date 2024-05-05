@@ -39,7 +39,7 @@ const DoTurnController = async (
   const game = lodash.first(
     await db
       .where({ human_player_id: humanPlayerId })
-      .select("game_id")
+      .select("game_id", "human_player_color")
       .from<Game>("game")
       .orderBy("created_at", "desc")
   );
@@ -79,7 +79,7 @@ const DoTurnController = async (
       oneTimeOnlyMoveFlags: finalOneTimeOnlyMoveFlags,
       gameId: game.game_id,
       move: humanMove,
-      humanColor: game.humanColor,
+      humanColor: <Color>game.human_player_color,
     });
   } else if (aiFirstMove && !piece && !humanMove) {
     pieceLocationsAfterHumanMove = finalPieceLocations;
@@ -113,7 +113,7 @@ const DoTurnController = async (
     db,
     pieceLocations: pieceLocationsAfterHumanMove,
     gameId: game.game_id,
-    humanColor: game.humanColor,
+    humanColor: <Color>game.human_player_color,
     piece: <Piece>chosenAiMove.piece,
     oneTimeOnlyMoveFlags: finalOneTimeOnlyMoveFlags,
     move: chosenAiMove.move,

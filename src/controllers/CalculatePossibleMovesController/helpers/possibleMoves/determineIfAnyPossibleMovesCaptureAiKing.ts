@@ -14,7 +14,7 @@ import checkIfAMoveCreatesCheckOnAi from "./checkIfAMoveCreatesCheckOnAi.js";
 import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare.js";
 
 // TODO rename to determineIfAnyPossibleMovesCapturesKing
-const determineIfAnyPossibleMovesCreateCheckOnAi = (
+const determineIfAnyPossibleMovesCaptureAiKing = (
   pieceLocations: PieceLocations,
   movingPiece: Piece,
   possibleMove: PossibleMove,
@@ -363,4 +363,4 @@ const determineIfAnyPossibleMovesCreateCheckOnAi = (
   return false;
 };
 
-export default determineIfAnyPossibleMovesCreateCheckOnAi;
+export default determineIfAnyPossibleMovesCaptureAiKing;

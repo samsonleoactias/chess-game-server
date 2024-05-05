@@ -5,7 +5,7 @@ import {
   PossibleMove,
 } from "../../../../../types/index.js";
 import checkIfSquareIsOccupiedByHumanPiece from "../checkIfSquareIsOccupiedByHumanPiece.js";
-import determineIfAnyPossibleMovesCreateCheckOnHuman from "../determineIfAnyPossibleMovesCreateCheckOnHuman.js";
+import determineIfAnyPossibleMovesCaptureHumanKing from "../determineIfAnyPossibleMovesCaptureHumanKing.js";
 
 const calculateHumanQueenPossibleMoves = (
   row: number,
@@ -125,11 +125,11 @@ const calculateHumanQueenPossibleMoves = (
 
     possibleMoves.forEach((possibleMove): void => {
       if (
-        !determineIfAnyPossibleMovesCreateCheckOnHuman(
+        !determineIfAnyPossibleMovesCaptureHumanKing(
           pieceLocations,
+          oneTimeOnlyMoveFlags,
           Piece.HumanQueen,
-          possibleMove,
-          oneTimeOnlyMoveFlags
+          possibleMove
         )
       ) {
         possibleMovesCheckedForCheckOnHuman.push(possibleMove);

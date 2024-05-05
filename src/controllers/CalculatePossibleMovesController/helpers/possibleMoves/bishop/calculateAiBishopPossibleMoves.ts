@@ -5,7 +5,7 @@ import {
   PossibleMove,
 } from "../../../../../types/index.js";
 import checkIfSquareIsOccupiedByAiPiece from "../checkIfSquareIsOccupiedByAiPiece.js";
-import determineIfAnyPossibleMovesCreateCheckOnAi from "../determineIfAnyPossibleMovesCreateCheckOnAi.js";
+import determineIfAnyPossibleMovesCaptureAiKing from "../determineIfAnyPossibleMovesCaptureAiKing.js";
 
 const calculateAiBishopPossibleMoves = (
   row: number,
@@ -66,7 +66,7 @@ const calculateAiBishopPossibleMoves = (
 
     possibleMoves.forEach((possibleMove): void => {
       if (
-        !determineIfAnyPossibleMovesCreateCheckOnAi(
+        !determineIfAnyPossibleMovesCaptureAiKing(
           pieceLocations,
           piece,
           possibleMove,
