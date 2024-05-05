@@ -36,9 +36,7 @@ const rollback = async () => {
 rollback();
 
 const sleep = () => {
-  do {
-    setTimeout(sleep, 1000);
-  } while (done === false);
+  do {} while (done === false);
 };
 
 sleep();

@@ -57,9 +57,7 @@ const migrate = async () => {
 migrate();
 
 const sleep = () => {
-  do {
-    setTimeout(sleep, 1000);
-  } while (done === false);
+  do {} while (done === false);
 };
 
 sleep();
