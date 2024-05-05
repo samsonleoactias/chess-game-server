@@ -8,11 +8,14 @@ const isAiCastlePossible = (
   pieceLocations: PieceLocations,
   rook: Piece.AiRookA | Piece.AiRookB,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
-) => {
+): boolean => {
   if (
     determineIfAnyPossibleMovesCaptureAiKing(
       pieceLocations,
-      oneTimeOnlyMoveFlags
+      oneTimeOnlyMoveFlags,
+      undefined,
+      undefined,
+      true
     )
   )
     return false;
@@ -32,7 +35,8 @@ const isAiCastlePossible = (
           pieceLocations,
           oneTimeOnlyMoveFlags,
           Piece.AiKing,
-          { location: { row: 0, column: i } }
+          { location: { row: 0, column: i } },
+          true
         )
       ) {
         castlePossible = false;
@@ -52,7 +56,8 @@ const isAiCastlePossible = (
           pieceLocations,
           oneTimeOnlyMoveFlags,
           Piece.AiKing,
-          { location: { row: 0, column: i } }
+          { location: { row: 0, column: i } },
+          true
         )
       ) {
         castlePossible = false;
@@ -60,6 +65,8 @@ const isAiCastlePossible = (
       }
     }
   }
+
+  return castlePossible;
 };
 
 export default isAiCastlePossible;

@@ -13,7 +13,8 @@ const calculateAiKingPossibleMoves = (
   column: number,
   pieceLocations: PieceLocations,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
-  checkForCheck: boolean
+  checkForCheck: boolean,
+  humanCastleCheck?: boolean
 ): PossibleMove[] => {
   const possibleMoves: PossibleMove[] = [];
 
@@ -77,8 +78,8 @@ const calculateAiKingPossibleMoves = (
     possibleMoves.push({ location: { row: row - 1, column: column - 1 } });
   }
 
-  // TODO add additional rules for castles
   if (
+    !humanCastleCheck &&
     oneTimeOnlyMoveFlags.aiCastleRookBEligible &&
     isAiCastlePossible(
       column,
@@ -89,11 +90,12 @@ const calculateAiKingPossibleMoves = (
   ) {
     possibleMoves.push({
       location: { row: row, column: column - 2 },
-      sideEffects: [{ piece: Piece.AiRookA, row: row, column: column - 1 }],
+      sideEffects: [{ piece: Piece.AiRookB, row: row, column: column - 1 }],
     });
   }
 
   if (
+    !humanCastleCheck &&
     oneTimeOnlyMoveFlags.aiCastleRookAEligible &&
     isAiCastlePossible(
       column,
@@ -104,7 +106,7 @@ const calculateAiKingPossibleMoves = (
   ) {
     possibleMoves.push({
       location: { row: row, column: column + 2 },
-      sideEffects: [{ piece: Piece.AiRookB, row: row, column: column + 1 }],
+      sideEffects: [{ piece: Piece.AiRookA, row: row, column: column + 1 }],
     });
   }
 

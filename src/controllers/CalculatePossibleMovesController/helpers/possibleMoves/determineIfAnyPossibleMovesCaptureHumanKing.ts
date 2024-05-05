@@ -17,7 +17,8 @@ const determineIfAnyPossibleMovesCaptureHumanKing = (
   pieceLocations: PieceLocations,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
   movingPiece?: Piece,
-  possibleMove?: PossibleMove
+  possibleMove?: PossibleMove,
+  humanCastleCheck?: boolean
 ): boolean => {
   // TODO why?
   const theoreticalPieceLocations: PieceLocations = JSON.parse(
@@ -44,7 +45,11 @@ const determineIfAnyPossibleMovesCaptureHumanKing = (
     theoreticalPieceLocations.matrix[possibleMove.location.row][
       possibleMove.location.column
     ] = true;
-  } else if (!movingPiece || !possibleMove || movingPiece === Piece.None) {
+  } else if (
+    (!movingPiece && possibleMove) ||
+    (movingPiece && !possibleMove) ||
+    movingPiece === Piece.None
+  ) {
     throw Error("Moving piece cannot be Piece.None"); // TODO better errors
   }
 
@@ -348,7 +353,8 @@ const determineIfAnyPossibleMovesCaptureHumanKing = (
       theoreticalPieceLocations.aiKing.column,
       theoreticalPieceLocations,
       oneTimeOnlyMoveFlags,
-      false
+      false,
+      humanCastleCheck
     ).forEach((move): void => {
       if (checkIfAMoveCreatesCheckOnHuman(move, theoreticalPieceLocations)) {
         isCheck = true;

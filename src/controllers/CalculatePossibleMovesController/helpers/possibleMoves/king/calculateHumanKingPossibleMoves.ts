@@ -13,7 +13,8 @@ const calculateHumanKingPossibleMoves = (
   column: number,
   pieceLocations: PieceLocations,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
-  checkForCheck: boolean
+  checkForCheck: boolean,
+  aiCastleCheck?: boolean
 ): PossibleMove[] => {
   const possibleMoves: PossibleMove[] = [];
 
@@ -78,6 +79,7 @@ const calculateHumanKingPossibleMoves = (
   }
 
   if (
+    !aiCastleCheck &&
     oneTimeOnlyMoveFlags.humanCastleRookAEligible &&
     isHumanCastlePossible(
       column,
@@ -91,7 +93,9 @@ const calculateHumanKingPossibleMoves = (
       sideEffects: [{ piece: Piece.HumanRookA, row: row, column: column - 1 }],
     });
   }
+
   if (
+    !aiCastleCheck &&
     oneTimeOnlyMoveFlags.humanCastleRookBEligible &&
     isHumanCastlePossible(
       column,

@@ -8,11 +8,18 @@ const isHumanCastlePossible = (
   pieceLocations: PieceLocations,
   rook: Piece.HumanRookA | Piece.HumanRookB,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
-) => {
+): boolean => {
+  if (rook === Piece.HumanRookA) {
+    console.log(JSON.stringify(pieceLocations));
+    console.log(JSON.stringify(oneTimeOnlyMoveFlags));
+  }
   if (
     determineIfAnyPossibleMovesCaptureHumanKing(
       pieceLocations,
-      oneTimeOnlyMoveFlags
+      oneTimeOnlyMoveFlags,
+      undefined,
+      undefined,
+      true
     )
   )
     return false;
@@ -32,7 +39,8 @@ const isHumanCastlePossible = (
           pieceLocations,
           oneTimeOnlyMoveFlags,
           Piece.HumanKing,
-          { location: { row: 7, column: i } }
+          { location: { row: 7, column: i } },
+          true
         )
       ) {
         castlePossible = false;
@@ -52,7 +60,8 @@ const isHumanCastlePossible = (
           pieceLocations,
           oneTimeOnlyMoveFlags,
           Piece.HumanKing,
-          { location: { row: 7, column: i } }
+          { location: { row: 7, column: i } },
+          true
         )
       ) {
         castlePossible = false;
@@ -60,6 +69,8 @@ const isHumanCastlePossible = (
       }
     }
   }
+
+  return castlePossible;
 };
 
 export default isHumanCastlePossible;
