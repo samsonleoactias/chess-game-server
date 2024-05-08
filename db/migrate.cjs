@@ -11,11 +11,9 @@ const db = require("knex")({
     user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DATABASE,
-    ssl: { rejectUnauthorized: false },
+    ssl: !process.env.DATABASE_URL ? undefined : { rejectUnauthorized: false },
   },
 });
-
-let done = false;
 
 const migrate = async () => {
   const migrations = await getMigrations();
@@ -30,36 +28,29 @@ const migrate = async () => {
       table.increments("order");
       table.dateTime("completed_at").defaultTo(db.fn.now()).notNull();
     });
-  } catch (err) {
-    console.log(`create migration table failed: ${err}`);
+  } catch (e) {
+    console.log(`create migration table failed: ${e}`);
   }
 
-  try {
-    const priorMigrations = await db.select("migration_name").from("migration");
+  const priorMigrations = await db.select("migration_name").from("migration");
 
-    const priorMigrationsNames = priorMigrations.map(
-      (priorMigration) => priorMigration.migration_name
-    );
+  const priorMigrationsNames = priorMigrations.map(
+    (priorMigration) => priorMigration.migration_name
+  );
 
-    for (const migration of migrations) {
-      if (!priorMigrationsNames.includes(migration.fileName)) {
-        await migration.up(db);
-        await db("migration").insert({ migration_name: migration.fileName });
-      }
+  for (const migration of migrations) {
+    if (!priorMigrationsNames.includes(migration.fileName)) {
+      await migration.up(db);
+      await db("migration").insert({ migration_name: migration.fileName });
     }
-
-    done = true;
-  } catch (err) {
-    console.error("migrations failed: " + err);
   }
 };
 
-migrate();
-
-const sleep = () => {
-  do {} while (done === false);
-};
-
-sleep();
-
-console.log("migration complete");
+migrate()
+  .then(() => {
+    db.destroy();
+    console.log("migration complete");
+  })
+  .catch((e) => {
+    console.error(`migrations failed: ${e}`);
+  });

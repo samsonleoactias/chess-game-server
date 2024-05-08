@@ -11,34 +11,25 @@ const db = require("knex")({
     user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DATABASE,
-    ssl: { rejectUnauthorized: false },
+    ssl: !process.env.DATABASE_URL ? undefined : { rejectUnauthorized: false },
   },
 });
-
-let done = false;
 
 const rollback = async () => {
   const { lastMigration, lastMigrationData } = await getLastMigration(db);
 
-  try {
-    await lastMigration.down(db);
+  await lastMigration.down(db);
 
-    await db("migration")
-      .where("migration_name", lastMigrationData.migration_name)
-      .del();
-
-    done = true;
-  } catch (err) {
-    console.log(`running last migration failed: ${err}`);
-  }
+  await db("migration")
+    .where("migration_name", lastMigrationData.migration_name)
+    .del();
 };
 
-rollback();
-
-const sleep = () => {
-  do {} while (done === false);
-};
-
-sleep();
-
-console.log("rollback complete");
+rollback()
+  .then(() => {
+    db.destroy();
+    console.log("rollback complete");
+  })
+  .catch((e) => {
+    console.error(`running last migration failed: ${e}`);
+  });
