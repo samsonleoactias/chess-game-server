@@ -13,6 +13,7 @@ type PossibleMove = {
       column: number;
     }
   ];
+  enPassantCapture?: Piece;
 };
 
 export default PossibleMove;

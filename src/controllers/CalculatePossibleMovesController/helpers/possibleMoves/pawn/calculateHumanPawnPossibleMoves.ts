@@ -6,6 +6,7 @@ import {
 } from "../../../../../types/index.js";
 import checkIfSquareIsOccupiedByHumanPiece from "../checkIfSquareIsOccupiedByHumanPiece.js";
 import determineIfAnyPossibleMovesCaptureHumanKing from "../determineIfAnyPossibleMovesCaptureHumanKing.js";
+import calculateHumanPawnEnPassant from "./helpers/calculateHumanPawnEnPassant.js";
 
 const calculateHumanPawnPossibleMoves = (
   row: number,
@@ -74,6 +75,16 @@ const calculateHumanPawnPossibleMoves = (
     });
 
     return possibleMovesCheckedForCheckOnHuman;
+  }
+
+  let enPassantMoves = calculateHumanPawnEnPassant(
+    piece,
+    oneTimeOnlyMoveFlags,
+    pieceLocations
+  );
+
+  if (enPassantMoves.length > 0) {
+    possibleMoves.push(...enPassantMoves);
   }
 
   return possibleMoves;

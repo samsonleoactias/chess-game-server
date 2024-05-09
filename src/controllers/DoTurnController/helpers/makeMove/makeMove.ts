@@ -7,7 +7,7 @@ import {
 } from "../../../../types/index.js";
 import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare.js";
 import { Knex } from "knex";
-import updateOneTimeOnlyMarkers from "./helpers/index.js";
+import { updateOneTimeOnlyMarkers } from "./helpers/index.js";
 import pieceLocationsObjectToDb from "../../../utils/dbMaps/pieceLocationsObjectToDb.js";
 
 type makeMoveParams = {
@@ -81,6 +81,13 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
     }
   });
 
+  if (move.enPassantCapture && move.enPassantCapture !== Piece.None) {
+    pieceLocations[move.enPassantCapture].captured = true;
+    pieceLocations.matrix[pieceLocations[move.enPassantCapture].row][
+      pieceLocations[move.enPassantCapture].column
+    ] = false;
+  }
+
   try {
     await db("piece_locations")
       .where({ game_id: gameId })
@@ -98,6 +105,8 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
     pieceLocations,
     oneTimeOnlyMoveFlags,
     humanColor,
+    piece,
+    move,
   });
 
   return pieceLocations;

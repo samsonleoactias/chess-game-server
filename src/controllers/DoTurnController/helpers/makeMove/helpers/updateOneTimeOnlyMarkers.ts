@@ -2,8 +2,11 @@ import { Knex } from "knex";
 import {
   Color,
   OneTimeOnlyMoveFlags,
+  Piece,
   PieceLocations,
+  PossibleMove,
 } from "../../../../../types/index.js";
+import enPassantCheckAndDbUpdate from "./enPassantCheckAndDbUpdate.js";
 
 type UpdateOneTimeOnlyMarkersParams = {
   db: Knex;
@@ -11,13 +14,22 @@ type UpdateOneTimeOnlyMarkersParams = {
   pieceLocations: PieceLocations;
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags;
   humanColor: Color;
+  piece: Piece;
+  move: PossibleMove;
 };
 
 const updateOneTimeOnlyMarkers = async (
   params: UpdateOneTimeOnlyMarkersParams
 ): Promise<void> => {
-  const { db, gameId, pieceLocations, oneTimeOnlyMoveFlags, humanColor } =
-    params;
+  const {
+    db,
+    gameId,
+    pieceLocations,
+    oneTimeOnlyMoveFlags,
+    humanColor,
+    piece,
+    move,
+  } = params;
   if (
     oneTimeOnlyMoveFlags.humanPawnAInitialMoveEligible === true &&
     pieceLocations.humanPawnA.row < 6
@@ -215,6 +227,15 @@ const updateOneTimeOnlyMarkers = async (
       .where({ game_id: gameId })
       .update({ ai_castle_rook_b_eligible: false });
   }
+
+  await enPassantCheckAndDbUpdate(
+    gameId,
+    piece,
+    move,
+    pieceLocations,
+    db,
+    oneTimeOnlyMoveFlags
+  );
 };
 
 export default updateOneTimeOnlyMarkers;

@@ -97,6 +97,7 @@ const schema = `#graphql
   type PossibleMove {
     location: Location!,
     sideEffects: [SideEffect!]
+    enPassantCapture: Piece
   }
 
   type PossibleMovesAssignedToPieces {

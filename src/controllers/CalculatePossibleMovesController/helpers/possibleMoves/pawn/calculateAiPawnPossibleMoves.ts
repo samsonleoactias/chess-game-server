@@ -6,6 +6,7 @@ import {
 } from "../../../../../types/index.js";
 import checkIfSquareIsOccupiedByAiPiece from "../checkIfSquareIsOccupiedByAiPiece.js";
 import determineIfAnyPossibleMovesCaptureAiKing from "../determineIfAnyPossibleMovesCaptureAiKing.js";
+import calculateAiPawnEnPassant from "./helpers/calculateAiPawnEnPassant.js";
 
 const calculateAiPawnPossibleMoves = (
   row: number,
@@ -75,6 +76,16 @@ const calculateAiPawnPossibleMoves = (
     });
 
     return possibleMovesCheckedForCheckOnAi;
+  }
+
+  let enPassantMoves = calculateAiPawnEnPassant(
+    piece,
+    oneTimeOnlyMoveFlags,
+    pieceLocations
+  );
+
+  if (enPassantMoves.length > 0) {
+    possibleMoves.push(...enPassantMoves);
   }
 
   return possibleMoves;
