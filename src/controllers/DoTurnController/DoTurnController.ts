@@ -110,7 +110,6 @@ const DoTurnController = async (
 
   const chosenAiMove: { piece: string; move: PossibleMove } = chooseAiMove(
     pieceLocationsAfterHumanMove,
-    finalOneTimeOnlyMoveFlags,
     possibleAiMovesAssignedToPieces
   );
 

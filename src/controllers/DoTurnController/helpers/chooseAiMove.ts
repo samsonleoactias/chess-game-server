@@ -8,7 +8,6 @@ import {
 
 const chooseAiMove = (
   pieceLocations: PieceLocations,
-  oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags,
   possibleMovesAssignedToPieces: PossibleMovesAssignedToPieces
 ): { piece: string; move: PossibleMove } => {
   var pieceNames = [
@@ -30,19 +29,74 @@ const chooseAiMove = (
     Piece.AiKing,
   ];
 
-  var pickedPiece = pieceNames[Math.floor(Math.random() * pieceNames.length)];
+  let possibleMovesThatCapture: PossibleMovesAssignedToPieces = {
+    aiPawnA: [],
+    aiPawnB: [],
+    aiPawnC: [],
+    aiPawnD: [],
+    aiPawnE: [],
+    aiPawnF: [],
+    aiPawnG: [],
+    aiPawnH: [],
+    aiRookA: [],
+    aiRookB: [],
+    aiKnightA: [],
+    aiKnightB: [],
+    aiBishopA: [],
+    aiBishopB: [],
+    aiQueen: [],
+    aiKing: [],
+  };
 
-  // TODO do we neeed both checks here?
-  if (
-    !(<any>possibleMovesAssignedToPieces)[pickedPiece] ||
-    (<any>possibleMovesAssignedToPieces)[pickedPiece].length === 0
-  ) {
-    return chooseAiMove(
-      pieceLocations,
-      oneTimeOnlyMoveFlags,
-      possibleMovesAssignedToPieces
-    );
+  let usePossibleMovesThatCapture: boolean = false;
+
+  pieceNames.forEach((pieceName) => {
+    if (pieceName !== Piece.None) {
+      possibleMovesAssignedToPieces[pieceName]?.forEach((move) => {
+        if (pieceLocations.matrix[move.location.row][move.location.column]) {
+          possibleMovesThatCapture[pieceName]?.push(move);
+          usePossibleMovesThatCapture = true;
+        }
+      });
+    }
+  });
+
+  if (usePossibleMovesThatCapture) {
+    let pieceNamesWithMoves: Piece[] = [];
+
+    let possibleMovesAsArray = Object.entries(possibleMovesThatCapture);
+
+    possibleMovesAsArray.forEach(([key, value]) => {
+      if (value.length > 0) {
+        pieceNamesWithMoves.push(key as Piece);
+      }
+    });
+
+    var pickedPiece =
+      pieceNamesWithMoves[
+        Math.floor(Math.random() * pieceNamesWithMoves.length)
+      ];
+
+    var pickedMove: PossibleMove = (<any>possibleMovesThatCapture)[pickedPiece][
+      Math.floor(
+        Math.random() * (<any>possibleMovesThatCapture)[pickedPiece].length
+      )
+    ];
+
+    return { piece: pickedPiece, move: pickedMove };
   }
+  let pieceNamesWithMoves: Piece[] = [];
+
+  let possibleMovesAsArray = Object.entries(possibleMovesAssignedToPieces);
+
+  possibleMovesAsArray.forEach(([key, value]) => {
+    if (value.length > 0) {
+      pieceNamesWithMoves.push(key as Piece);
+    }
+  });
+
+  var pickedPiece =
+    pieceNamesWithMoves[Math.floor(Math.random() * pieceNamesWithMoves.length)];
 
   var pickedMove: PossibleMove = (<any>possibleMovesAssignedToPieces)[
     pickedPiece
