@@ -20,14 +20,14 @@ const chooseAiMove = (
     Piece.AiPawnF,
     Piece.AiPawnG,
     Piece.AiPawnH,
-    Piece.AiRookA,
-    Piece.AiRookB,
-    Piece.AiKnightA,
-    Piece.AiKnightB,
-    Piece.AiBishopA,
-    Piece.AiBishopB,
-    Piece.AiQueen,
-    Piece.AiKing,
+    // Piece.AiRookA,
+    // Piece.AiRookB,
+    // Piece.AiKnightA,
+    // Piece.AiKnightB,
+    // Piece.AiBishopA,
+    // Piece.AiBishopB,
+    // Piece.AiQueen,
+    // Piece.AiKing,
   ];
 
   var pickedPiece = pieceNames[Math.floor(Math.random() * pieceNames.length)];

@@ -9,10 +9,6 @@ const isHumanCastlePossible = (
   rook: Piece.HumanRookA | Piece.HumanRookB,
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags
 ): boolean => {
-  if (rook === Piece.HumanRookA) {
-    console.log(JSON.stringify(pieceLocations));
-    console.log(JSON.stringify(oneTimeOnlyMoveFlags));
-  }
   if (
     determineIfAnyPossibleMovesCaptureHumanKing(
       pieceLocations,

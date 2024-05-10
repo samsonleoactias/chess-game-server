@@ -31,8 +31,10 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
     humanColor,
   } = params;
 
+  let newPieceLocations = JSON.parse(JSON.stringify(pieceLocations));
+
   let pieceCurrentlyOnSquare: Piece = findWhatPieceIsOnASquare(
-    pieceLocations,
+    newPieceLocations,
     move.location.row,
     move.location.column
   );
@@ -42,22 +44,22 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
   }
 
   if (pieceCurrentlyOnSquare !== Piece.None) {
-    pieceLocations[pieceCurrentlyOnSquare].captured = true;
+    newPieceLocations[pieceCurrentlyOnSquare].captured = true;
   } else {
-    pieceLocations.matrix[move.location.row][move.location.column] = true;
+    newPieceLocations.matrix[move.location.row][move.location.column] = true;
   }
 
-  pieceLocations.matrix[pieceLocations[piece].row][
-    pieceLocations[piece].column
+  newPieceLocations.matrix[newPieceLocations[piece].row][
+    newPieceLocations[piece].column
   ] = false;
 
-  pieceLocations[piece].row = move.location.row;
-  pieceLocations[piece].column = move.location.column;
+  newPieceLocations[piece].row = move.location.row;
+  newPieceLocations[piece].column = move.location.column;
 
   move.sideEffects?.forEach((sideEffect) => {
     if (sideEffect.piece && sideEffect.row && sideEffect.column) {
       let pieceCurrentlyOnSideEffectSquare: Piece = findWhatPieceIsOnASquare(
-        pieceLocations,
+        newPieceLocations,
         sideEffect.row,
         sideEffect.column
       );
@@ -67,24 +69,24 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
       }
 
       if (pieceCurrentlyOnSideEffectSquare !== Piece.None) {
-        pieceLocations[pieceCurrentlyOnSideEffectSquare].captured = true;
+        newPieceLocations[pieceCurrentlyOnSideEffectSquare].captured = true;
       } else {
-        pieceLocations.matrix[sideEffect.row][sideEffect.column] = true;
+        newPieceLocations.matrix[sideEffect.row][sideEffect.column] = true;
       }
 
-      pieceLocations.matrix[pieceLocations[sideEffect.piece].row][
-        pieceLocations[sideEffect.piece].column
+      newPieceLocations.matrix[newPieceLocations[sideEffect.piece].row][
+        newPieceLocations[sideEffect.piece].column
       ] = false;
 
-      pieceLocations[sideEffect.piece].row = sideEffect.row;
-      pieceLocations[sideEffect.piece].column = sideEffect.column;
+      newPieceLocations[sideEffect.piece].row = sideEffect.row;
+      newPieceLocations[sideEffect.piece].column = sideEffect.column;
     }
   });
 
   if (move.enPassantCapture && move.enPassantCapture !== Piece.None) {
-    pieceLocations[move.enPassantCapture].captured = true;
-    pieceLocations.matrix[pieceLocations[move.enPassantCapture].row][
-      pieceLocations[move.enPassantCapture].column
+    newPieceLocations[move.enPassantCapture].captured = true;
+    newPieceLocations.matrix[newPieceLocations[move.enPassantCapture].row][
+      newPieceLocations[move.enPassantCapture].column
     ] = false;
   }
 
@@ -92,24 +94,25 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
     await db("piece_locations")
       .where({ game_id: gameId })
       .update({
-        ...pieceLocationsObjectToDb(pieceLocations),
+        ...pieceLocationsObjectToDb(newPieceLocations),
       });
   } catch (error) {
     console.log("Database error: " + JSON.stringify(error)); // TODO better error
     throw error;
   }
 
-  updateOneTimeOnlyMarkers({
+  await updateOneTimeOnlyMarkers({
     db,
     gameId,
-    pieceLocations,
+    pieceLocations: newPieceLocations,
+    formerPieceLocations: pieceLocations,
     oneTimeOnlyMoveFlags,
     humanColor,
     piece,
     move,
   });
 
-  return pieceLocations;
+  return newPieceLocations;
 };
 
 export default makeMove;

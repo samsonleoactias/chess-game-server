@@ -54,6 +54,38 @@ const mapToOneTimeOnlyMoveFlags = (object: Object): OneTimeOnlyMoveFlags => {
     humanCastleRookBEligible: (<any>object)["human_castle_rook_b_eligible"],
     aiCastleRookAEligible: (<any>object)["human_castle_rook_a_eligible"],
     aiCastleRookBEligible: (<any>object)["human_castle_rook_b_eligible"],
+    humanPawnAEnPassantEligible: (<any>object)[
+      "human_pawn_a_en_passant_eligible"
+    ],
+    humanPawnBEnPassantEligible: (<any>object)[
+      "human_pawn_b_en_passant_eligible"
+    ],
+    humanPawnCEnPassantEligible: (<any>object)[
+      "human_pawn_c_en_passant_eligible"
+    ],
+    humanPawnDEnPassantEligible: (<any>object)[
+      "human_pawn_d_en_passant_eligible"
+    ],
+    humanPawnEEnPassantEligible: (<any>object)[
+      "human_pawn_e_en_passant_eligible"
+    ],
+    humanPawnFEnPassantEligible: (<any>object)[
+      "human_pawn_f_en_passant_eligible"
+    ],
+    humanPawnGEnPassantEligible: (<any>object)[
+      "human_pawn_g_en_passant_eligible"
+    ],
+    humanPawnHEnPassantEligible: (<any>object)[
+      "human_pawn_h_en_passant_eligible"
+    ],
+    aiPawnAEnPassantEligible: (<any>object)["ai_pawn_a_en_passant_eligible"],
+    aiPawnBEnPassantEligible: (<any>object)["ai_pawn_b_en_passant_eligible"],
+    aiPawnCEnPassantEligible: (<any>object)["ai_pawn_c_en_passant_eligible"],
+    aiPawnDEnPassantEligible: (<any>object)["ai_pawn_d_en_passant_eligible"],
+    aiPawnEEnPassantEligible: (<any>object)["ai_pawn_e_en_passant_eligible"],
+    aiPawnFEnPassantEligible: (<any>object)["ai_pawn_f_en_passant_eligible"],
+    aiPawnGEnPassantEligible: (<any>object)["ai_pawn_g_en_passant_eligible"],
+    aiPawnHEnPassantEligible: (<any>object)["ai_pawn_h_en_passant_eligible"],
   };
 
   return oneTimeOnlyMoveFlags;

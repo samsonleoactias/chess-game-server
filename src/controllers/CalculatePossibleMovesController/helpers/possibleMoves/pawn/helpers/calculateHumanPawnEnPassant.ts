@@ -9,7 +9,9 @@ const calculateHumanPawnEnPassant = (
   pieceLocations: PieceLocations
 ) => {
   const possibleMoves: PossibleMove[] = [];
-
+  console.log("piece: " + piece);
+  console.log("onetimeonly: " + JSON.stringify(oneTimeOnlyMoveFlags));
+  console.log("pieceLocations: " + JSON.stringify(pieceLocations));
   if (
     piece === Piece.HumanPawnA &&
     pieceLocations.humanPawnA.row === 3 &&

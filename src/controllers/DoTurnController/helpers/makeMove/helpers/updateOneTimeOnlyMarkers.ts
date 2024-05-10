@@ -12,6 +12,7 @@ type UpdateOneTimeOnlyMarkersParams = {
   db: Knex;
   gameId: string;
   pieceLocations: PieceLocations;
+  formerPieceLocations: PieceLocations;
   oneTimeOnlyMoveFlags: OneTimeOnlyMoveFlags;
   humanColor: Color;
   piece: Piece;
@@ -25,6 +26,7 @@ const updateOneTimeOnlyMarkers = async (
     db,
     gameId,
     pieceLocations,
+    formerPieceLocations,
     oneTimeOnlyMoveFlags,
     humanColor,
     piece,
@@ -104,7 +106,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.aiPawnAInitialMoveEligible === true &&
-    pieceLocations.aiPawnA.row >= 1
+    pieceLocations.aiPawnA.row > 1
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -113,7 +115,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.aiPawnBInitialMoveEligible === true &&
-    pieceLocations.aiPawnB.row >= 1
+    pieceLocations.aiPawnB.row > 1
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -122,7 +124,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.aiPawnCInitialMoveEligible === true &&
-    pieceLocations.aiPawnC.row >= 1
+    pieceLocations.aiPawnC.row > 1
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -131,7 +133,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.aiPawnDInitialMoveEligible === true &&
-    pieceLocations.aiPawnD.row >= 1
+    pieceLocations.aiPawnD.row > 1
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -140,7 +142,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.aiPawnEInitialMoveEligible === true &&
-    pieceLocations.aiPawnE.row >= 1
+    pieceLocations.aiPawnE.row > 1
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -149,7 +151,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.aiPawnFInitialMoveEligible === true &&
-    pieceLocations.aiPawnF.row >= 1
+    pieceLocations.aiPawnF.row > 1
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -158,7 +160,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.aiPawnGInitialMoveEligible === true &&
-    pieceLocations.aiPawnG.row >= 1
+    pieceLocations.aiPawnG.row > 1
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -167,7 +169,7 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.aiPawnHInitialMoveEligible === true &&
-    pieceLocations.aiPawnH.row >= 1
+    pieceLocations.aiPawnH.row > 1
   ) {
     await db("one_time_only_move_flags")
       .where({ game_id: gameId })
@@ -180,7 +182,7 @@ const updateOneTimeOnlyMarkers = async (
       pieceLocations.humanKing.column !==
         (humanColor === Color.WHITE ? 4 : 3) ||
       pieceLocations.humanRookA.row < 7 ||
-      pieceLocations.humanRookA.column >= 1 ||
+      pieceLocations.humanRookA.column > 1 ||
       pieceLocations.humanRookA.captured === true)
   ) {
     await db("one_time_only_move_flags")
@@ -204,10 +206,10 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.aiCastleRookAEligible === true &&
-    (pieceLocations.aiKing.row >= 1 ||
+    (pieceLocations.aiKing.row > 1 ||
       pieceLocations.aiKing.column !== (humanColor === Color.WHITE ? 4 : 3) ||
-      pieceLocations.aiRookA.row >= 1 ||
-      pieceLocations.aiRookA.column >= 1 ||
+      pieceLocations.aiRookA.row > 1 ||
+      pieceLocations.aiRookA.column > 1 ||
       pieceLocations.aiRookA.captured === true)
   ) {
     await db("one_time_only_move_flags")
@@ -217,9 +219,9 @@ const updateOneTimeOnlyMarkers = async (
 
   if (
     oneTimeOnlyMoveFlags.aiCastleRookBEligible === true &&
-    (pieceLocations.aiKing.row >= 1 ||
+    (pieceLocations.aiKing.row > 1 ||
       pieceLocations.aiKing.column !== (humanColor === Color.WHITE ? 4 : 3) ||
-      pieceLocations.aiRookB.row >= 1 ||
+      pieceLocations.aiRookB.row > 1 ||
       pieceLocations.aiRookB.column <= 6 ||
       pieceLocations.aiRookB.captured === true)
   ) {
@@ -232,7 +234,7 @@ const updateOneTimeOnlyMarkers = async (
     gameId,
     piece,
     move,
-    pieceLocations,
+    formerPieceLocations,
     db,
     oneTimeOnlyMoveFlags
   );

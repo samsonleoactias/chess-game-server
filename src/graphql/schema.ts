@@ -96,8 +96,8 @@ const schema = `#graphql
 
   type PossibleMove {
     location: Location!,
-    sideEffects: [SideEffect!]
-    enPassantCapture: Piece
+    sideEffects: [SideEffect!],
+    enPassantCapture: String
   }
 
   type PossibleMovesAssignedToPieces {
@@ -121,7 +121,7 @@ const schema = `#graphql
 
   type Game {
     pieceLocations: PieceLocations,
-    possibleMoves: PossibleMovesAssignedToPieces
+    possibleMoves: PossibleMovesAssignedToPieces,
     humanWinner: Boolean,
     aiWinner: Boolean,
     humanColor: Color,

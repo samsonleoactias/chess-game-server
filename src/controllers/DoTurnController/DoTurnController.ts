@@ -119,22 +119,35 @@ const DoTurnController = async (
     move: chosenAiMove.move,
   });
 
+  const oneTimeOnlyMoveFlagsPart2: OneTimeOnlyMoveFlags = lodash.first(
+    await db
+      .where({ game_id: game.game_id })
+      .select()
+      .from<OneTimeOnlyMoveFlags>("one_time_only_move_flags")
+  );
+
+  const finalOneTimeOnlyMoveFlagsPart2: OneTimeOnlyMoveFlags = <
+    OneTimeOnlyMoveFlags
+  >objectSnakeToCamel(oneTimeOnlyMoveFlagsPart2);
+
   const possibleHumanMovesAssignedToPieces: PossibleMovesAssignedToPieces =
     calculateHumanPossibleMoves(
       pieceLocationsAfterAiMove,
-      finalOneTimeOnlyMoveFlags
+      finalOneTimeOnlyMoveFlagsPart2
     );
 
   if (
     determineIfCheckmateOnHuman(
       pieceLocationsAfterAiMove,
       possibleHumanMovesAssignedToPieces,
-      finalOneTimeOnlyMoveFlags
+      finalOneTimeOnlyMoveFlagsPart2
     )
   ) {
     return [game.humanColor, pieceLocationsAfterAiMove, {}, true, false];
   }
-
+  console.log(
+    "possible moves: " + JSON.stringify(possibleHumanMovesAssignedToPieces)
+  );
   return [
     game.humanColor,
     pieceLocationsAfterAiMove,

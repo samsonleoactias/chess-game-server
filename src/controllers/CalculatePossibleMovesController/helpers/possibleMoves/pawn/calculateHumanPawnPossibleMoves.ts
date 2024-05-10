@@ -58,6 +58,16 @@ const calculateHumanPawnPossibleMoves = (
     possibleMoves.push({ location: { row: row - 1, column: column + 1 } });
   }
 
+  let enPassantMoves: PossibleMove[] = calculateHumanPawnEnPassant(
+    piece,
+    oneTimeOnlyMoveFlags,
+    pieceLocations
+  );
+
+  if (enPassantMoves.length > 0) {
+    possibleMoves.push(...enPassantMoves);
+  }
+
   if (checkForCheck) {
     let possibleMovesCheckedForCheckOnHuman: PossibleMove[] = [];
 
@@ -75,16 +85,6 @@ const calculateHumanPawnPossibleMoves = (
     });
 
     return possibleMovesCheckedForCheckOnHuman;
-  }
-
-  let enPassantMoves = calculateHumanPawnEnPassant(
-    piece,
-    oneTimeOnlyMoveFlags,
-    pieceLocations
-  );
-
-  if (enPassantMoves.length > 0) {
-    possibleMoves.push(...enPassantMoves);
   }
 
   return possibleMoves;
