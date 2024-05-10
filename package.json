@@ -8,7 +8,7 @@
     "compile": "tsc",
     "database:up": "node ./db/migrate.cjs",
     "database:down": "node ./db/rollback.cjs",
-    "start": "npm run compile && node ./dist/App.js",
+    "start": "npm run compile && npm run database:up && node ./dist/App.js",
     "test": "jest"
   },
   "repository": {
