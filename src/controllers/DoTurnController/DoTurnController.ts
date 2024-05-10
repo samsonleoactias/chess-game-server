@@ -12,6 +12,7 @@ import {
 import makeMove from "./helpers/makeMove/index.js";
 import calculateAiPossibleMoves from "../CalculatePossibleMovesController/helpers/possibleMoves/calculateAiPossibleMoves.js";
 import {
+  checkForStalemate,
   chooseAiMove,
   determineIfCheckmateOnAi,
   determineIfCheckmateOnHuman,
@@ -93,6 +94,10 @@ const DoTurnController = async (
       finalOneTimeOnlyMoveFlags
     );
 
+  if (checkForStalemate(possibleAiMovesAssignedToPieces)) {
+    return [game.humanColor, pieceLocationsAfterHumanMove, {}, true, true];
+  }
+
   if (
     determineIfCheckmateOnAi(
       pieceLocationsAfterHumanMove,
@@ -135,6 +140,10 @@ const DoTurnController = async (
       pieceLocationsAfterAiMove,
       finalOneTimeOnlyMoveFlagsPart2
     );
+
+  if (checkForStalemate(possibleHumanMovesAssignedToPieces)) {
+    return [game.humanColor, pieceLocationsAfterHumanMove, {}, true, true];
+  }
 
   if (
     determineIfCheckmateOnHuman(
