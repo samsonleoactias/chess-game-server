@@ -113,89 +113,89 @@ const calculateAiPossibleMoves = (
     );
   }
 
-  // if (pieceLocations.aiRookA.captured === false) {
-  //   aiPossibleMoves.aiRookA = calculateAiRookPossibleMoves(
-  //     pieceLocations.aiRookA.row,
-  //     pieceLocations.aiRookA.column,
-  //     pieceLocations,
-  //     Piece.AiRookA,
-  //     oneTimeOnlyMoveFlags,
-  //     true
-  //   );
-  // }
+  if (pieceLocations.aiRookA.captured === false) {
+    aiPossibleMoves.aiRookA = calculateAiRookPossibleMoves(
+      pieceLocations.aiRookA.row,
+      pieceLocations.aiRookA.column,
+      pieceLocations,
+      Piece.AiRookA,
+      oneTimeOnlyMoveFlags,
+      true
+    );
+  }
 
-  // if (pieceLocations.aiRookB.captured === false) {
-  //   aiPossibleMoves.aiRookB = calculateAiRookPossibleMoves(
-  //     pieceLocations.aiRookB.row,
-  //     pieceLocations.aiRookB.column,
-  //     pieceLocations,
-  //     Piece.AiRookB,
-  //     oneTimeOnlyMoveFlags,
-  //     true
-  //   );
-  // }
+  if (pieceLocations.aiRookB.captured === false) {
+    aiPossibleMoves.aiRookB = calculateAiRookPossibleMoves(
+      pieceLocations.aiRookB.row,
+      pieceLocations.aiRookB.column,
+      pieceLocations,
+      Piece.AiRookB,
+      oneTimeOnlyMoveFlags,
+      true
+    );
+  }
 
-  // if (pieceLocations.aiKnightA.captured === false) {
-  //   aiPossibleMoves.aiKnightA = calculateAiKnightPossibleMoves(
-  //     pieceLocations.aiKnightA.row,
-  //     pieceLocations.aiKnightA.column,
-  //     pieceLocations,
-  //     Piece.AiKnightA,
-  //     oneTimeOnlyMoveFlags,
-  //     true
-  //   );
-  // }
+  if (pieceLocations.aiKnightA.captured === false) {
+    aiPossibleMoves.aiKnightA = calculateAiKnightPossibleMoves(
+      pieceLocations.aiKnightA.row,
+      pieceLocations.aiKnightA.column,
+      pieceLocations,
+      Piece.AiKnightA,
+      oneTimeOnlyMoveFlags,
+      true
+    );
+  }
 
-  // if (pieceLocations.aiKnightB.captured === false) {
-  //   aiPossibleMoves.aiKnightB = calculateAiKnightPossibleMoves(
-  //     pieceLocations.aiKnightB.row,
-  //     pieceLocations.aiKnightB.column,
-  //     pieceLocations,
-  //     Piece.AiKnightB,
-  //     oneTimeOnlyMoveFlags,
-  //     true
-  //   );
-  // }
+  if (pieceLocations.aiKnightB.captured === false) {
+    aiPossibleMoves.aiKnightB = calculateAiKnightPossibleMoves(
+      pieceLocations.aiKnightB.row,
+      pieceLocations.aiKnightB.column,
+      pieceLocations,
+      Piece.AiKnightB,
+      oneTimeOnlyMoveFlags,
+      true
+    );
+  }
 
-  // if (pieceLocations.aiBishopA.captured === false) {
-  //   aiPossibleMoves.aiBishopA = calculateAiBishopPossibleMoves(
-  //     pieceLocations.aiBishopA.row,
-  //     pieceLocations.aiBishopA.column,
-  //     pieceLocations,
-  //     Piece.AiBishopA,
-  //     oneTimeOnlyMoveFlags,
-  //     true
-  //   );
-  // }
+  if (pieceLocations.aiBishopA.captured === false) {
+    aiPossibleMoves.aiBishopA = calculateAiBishopPossibleMoves(
+      pieceLocations.aiBishopA.row,
+      pieceLocations.aiBishopA.column,
+      pieceLocations,
+      Piece.AiBishopA,
+      oneTimeOnlyMoveFlags,
+      true
+    );
+  }
 
-  // if (pieceLocations.aiBishopB.captured === false) {
-  //   aiPossibleMoves.aiBishopB = calculateAiBishopPossibleMoves(
-  //     pieceLocations.aiBishopB.row,
-  //     pieceLocations.aiBishopB.column,
-  //     pieceLocations,
-  //     Piece.AiBishopB,
-  //     oneTimeOnlyMoveFlags,
-  //     true
-  //   );
-  // }
+  if (pieceLocations.aiBishopB.captured === false) {
+    aiPossibleMoves.aiBishopB = calculateAiBishopPossibleMoves(
+      pieceLocations.aiBishopB.row,
+      pieceLocations.aiBishopB.column,
+      pieceLocations,
+      Piece.AiBishopB,
+      oneTimeOnlyMoveFlags,
+      true
+    );
+  }
 
-  // if (pieceLocations.aiQueen.captured === false) {
-  //   aiPossibleMoves.aiQueen = calculateAiQueenPossibleMoves(
-  //     pieceLocations.aiQueen.row,
-  //     pieceLocations.aiQueen.column,
-  //     pieceLocations,
-  //     oneTimeOnlyMoveFlags,
-  //     true
-  //   );
-  // }
+  if (pieceLocations.aiQueen.captured === false) {
+    aiPossibleMoves.aiQueen = calculateAiQueenPossibleMoves(
+      pieceLocations.aiQueen.row,
+      pieceLocations.aiQueen.column,
+      pieceLocations,
+      oneTimeOnlyMoveFlags,
+      true
+    );
+  }
 
-  // aiPossibleMoves.aiKing = calculateAiKingPossibleMoves(
-  //   pieceLocations.aiKing.row,
-  //   pieceLocations.aiKing.column,
-  //   pieceLocations,
-  //   oneTimeOnlyMoveFlags,
-  //   true
-  // );
+  aiPossibleMoves.aiKing = calculateAiKingPossibleMoves(
+    pieceLocations.aiKing.row,
+    pieceLocations.aiKing.column,
+    pieceLocations,
+    oneTimeOnlyMoveFlags,
+    true
+  );
 
   return aiPossibleMoves;
 };
