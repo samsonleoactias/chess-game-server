@@ -24,7 +24,7 @@ const newGameGenerator = async (
     );
 
     if (!humanIdDbResult) {
-      throw new Error(); // TODO better error
+      throw new Error("Error creating human player in DB");
     } else {
       const gameIdDbResult: any = lodash.first(
         await db("game").insert(
@@ -38,7 +38,7 @@ const newGameGenerator = async (
       );
 
       if (!gameIdDbResult) {
-        throw new Error(); // TODO better error
+        throw new Error("Error retrieving game from DB.");
       } else {
         const gameId: string = (<any>gameIdDbResult)["game_id"];
 
@@ -121,7 +121,7 @@ const newGameGenerator = async (
       }
     }
   } catch (e: any) {
-    throw new Error(e); // TODO better error
+    throw new Error("DB error: " + e);
   }
 };
 

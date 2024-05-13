@@ -40,7 +40,7 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
   );
 
   if (piece === Piece.None) {
-    throw new Error("Cannot move 'None' piece"); // TODO better error
+    throw new Error("Cannot move 'None' piece");
   }
 
   if (pieceCurrentlyOnSquare !== Piece.None) {
@@ -65,7 +65,7 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
       );
 
       if (sideEffect.piece === Piece.None) {
-        throw new Error("Cannot move 'None' piece"); // TODO better error
+        throw new Error("Cannot move 'None' piece");
       }
 
       if (pieceCurrentlyOnSideEffectSquare !== Piece.None) {
@@ -97,7 +97,7 @@ const makeMove = async (params: makeMoveParams): Promise<PieceLocations> => {
         ...pieceLocationsObjectToDb(newPieceLocations),
       });
   } catch (error) {
-    console.log("Database error: " + JSON.stringify(error)); // TODO better error
+    console.log("Database error: " + JSON.stringify(error));
     throw error;
   }
 

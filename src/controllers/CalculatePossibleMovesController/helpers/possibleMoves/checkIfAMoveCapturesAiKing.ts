@@ -1,7 +1,6 @@
 import { PieceLocations, PossibleMove } from "../../../../types/index.js";
 
-// TODO rename to determineIfMovesCapturesKing
-const checkIfAMoveCreatesCheckOnAi = (
+const checkIfAMoveCapturesAiKing = (
   move: PossibleMove,
   pieceLocations: PieceLocations
 ): boolean => {
@@ -26,4 +25,4 @@ const checkIfAMoveCreatesCheckOnAi = (
   return sideEffectCreatesCheck;
 };
 
-export default checkIfAMoveCreatesCheckOnAi;
+export default checkIfAMoveCapturesAiKing;

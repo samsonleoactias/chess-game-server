@@ -60,7 +60,7 @@ const DoTurnController = async (
   );
 
   if (!pieceLocations || !oneTimeOnlyMoveFlags) {
-    throw Error("DB error"); // TODO better error
+    throw new Error("DB error");
   }
 
   const finalPieceLocations: PieceLocations =
@@ -85,7 +85,9 @@ const DoTurnController = async (
   } else if (aiFirstMove && !piece && !humanMove) {
     pieceLocationsAfterHumanMove = finalPieceLocations;
   } else {
-    throw new Error(); // TODO better error
+    throw new Error(
+      "Do Turn can only happen if there is a human piece and move or if AI is going first."
+    );
   }
 
   const possibleAiMovesAssignedToPieces: PossibleMovesAssignedToPieces =

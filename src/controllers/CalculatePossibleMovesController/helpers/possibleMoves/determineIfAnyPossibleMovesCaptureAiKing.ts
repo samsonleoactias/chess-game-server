@@ -10,7 +10,7 @@ import calculateHumanKnightPossibleMoves from "./knight/calculateHumanKnightPoss
 import calculateHumanPawnPossibleMoves from "./pawn/calculateHumanPawnPossibleMoves.js";
 import calculateHumanQueenPossibleMoves from "./queen/calculateHumanQueenPossibleMoves.js";
 import calculateHumanRookPossibleMoves from "./rook/calculateHumanRookPossibleMoves.js";
-import checkIfAMoveCreatesCheckOnAi from "./checkIfAMoveCreatesCheckOnAi.js";
+import checkIfAMoveCapturesAiKing from "./checkIfAMoveCapturesAiKing.js";
 import findWhatPieceIsOnASquare from "../../../utils/findWhatPieceIsOnASquare.js";
 
 const determineIfAnyPossibleMovesCaptureAiKing = (
@@ -20,7 +20,6 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
   possibleMove?: PossibleMove,
   aiCastleCheck?: boolean
 ): boolean => {
-  // TODO why?
   let theoreticalPieceLocations: PieceLocations = JSON.parse(
     JSON.stringify(pieceLocations)
   );
@@ -50,7 +49,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
     (movingPiece && !possibleMove) ||
     movingPiece === Piece.None
   ) {
-    throw Error("Moving piece cannot be Piece.None"); // TODO better errors
+    throw new Error("Moving piece cannot be Piece.None");
   }
 
   let isCheck = false;
@@ -65,7 +64,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -85,7 +84,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -105,7 +104,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -125,7 +124,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -145,7 +144,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -165,7 +164,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -185,7 +184,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -205,7 +204,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -224,7 +223,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -243,7 +242,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -262,7 +261,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -281,7 +280,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -300,7 +299,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -319,7 +318,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -337,7 +336,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       oneTimeOnlyMoveFlags,
       false
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });
@@ -356,7 +355,7 @@ const determineIfAnyPossibleMovesCaptureAiKing = (
       false,
       aiCastleCheck
     ).forEach((move): void => {
-      if (checkIfAMoveCreatesCheckOnAi(move, theoreticalPieceLocations)) {
+      if (checkIfAMoveCapturesAiKing(move, theoreticalPieceLocations)) {
         isCheck = true;
       }
     });

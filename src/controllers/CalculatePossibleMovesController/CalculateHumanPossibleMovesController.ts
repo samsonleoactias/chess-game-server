@@ -24,13 +24,7 @@ const CalculateHumanPossibleMovesController = async (
     lodash.first(await db("one_time_only_move_flags").where("game_id", gameId))
   );
 
-  // TODO do we need player type, is this always human when called
-  if (playerType === PlayerType.HUMAN) {
-    return calculateHumanPossibleMoves(pieceLocations, oneTimeOnlyMoveFlags);
-  }
-
-  // TODO needed if don't need player type
-  return {};
+  return calculateHumanPossibleMoves(pieceLocations, oneTimeOnlyMoveFlags);
 };
 
 export default CalculateHumanPossibleMovesController;

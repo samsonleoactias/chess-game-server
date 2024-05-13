@@ -201,8 +201,7 @@ const enPassantCheckAndDbUpdate = async (
           newOneTimeOnlyMoveFlags.aiPawnHEnPassantEligible,
       });
     } catch (error) {
-      console.log("Database error: " + JSON.stringify(error)); // TODO better error
-      throw error;
+      throw new Error("Database error: " + JSON.stringify(error));
     }
   }
 };
